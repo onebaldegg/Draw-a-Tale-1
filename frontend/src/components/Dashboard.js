@@ -47,13 +47,16 @@ const Dashboard = ({ user, onLogout }) => {
   return (
     <div className="page-wrapper">
       {/* Navigation */}
-      <nav className="nav-container">
-        <div className="nav-content">
-          <div className="nav-logo">
+      <nav className="bg-white shadow-lg border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+          {/* Logo section with black background */}
+          <div className="bg-black px-6 py-2 rounded-lg">
             <DrawATaleLogo width={180} showTagline={false} />
           </div>
-          <div className="flex items-center space-x-4">
-            <span className="text-gray-700">Welcome, {user.username}!</span>
+          
+          {/* Right side with black background for white text */}
+          <div className="flex items-center space-x-4 bg-black px-6 py-2 rounded-lg">
+            <span className="text-white font-medium">Welcome, {user.username}!</span>
             <button
               onClick={handleLogout}
               className="btn-child btn-secondary text-sm px-4 py-2"
