@@ -508,7 +508,7 @@ const DrawingCanvas = ({ user }) => {
             {/* Current Color Display */}
             <div className="mb-2 px-1">
               <div 
-                className="w-full h-8 rounded border-2 border-gray-300 cursor-pointer"
+                className="w-full h-6 rounded border-2 border-gray-300 cursor-pointer"
                 style={{ backgroundColor: tool === 'rainbow' ? `hsl(${rainbowHue}, 80%, 60%)` : color }}
                 onClick={() => setShowColorPicker(!showColorPicker)}
                 title="Current Color"
