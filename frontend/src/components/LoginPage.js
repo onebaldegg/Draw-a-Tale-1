@@ -35,8 +35,8 @@ const LoginPage = ({ onLogin }) => {
 
   return (
     <div className="min-h-screen flex bg-black">
-      {/* Left side - Logo with right alignment and extra left margin */}
-      <div className="flex-1 bg-black flex items-center justify-end pr-16 pl-32">
+      {/* Left side - Logo with right alignment and moderate left margin */}
+      <div className="flex-1 bg-black flex items-center justify-end pr-16 pl-24">
         <div className="max-w-2xl w-full">
           <img 
             src="https://i.imgur.com/3QxT3zD.png" 
