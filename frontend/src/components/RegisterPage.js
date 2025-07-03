@@ -59,8 +59,8 @@ const RegisterPage = ({ onLogin }) => {
 
   return (
     <div className="min-h-screen flex bg-black">
-      {/* Left side - Logo */}
-      <div className="flex-1 bg-black flex items-center justify-center p-8">
+      {/* Left side - Logo with right alignment */}
+      <div className="flex-1 bg-black flex items-center justify-end pr-16">
         <div className="max-w-2xl w-full">
           <img 
             src="https://i.imgur.com/3QxT3zD.png" 
@@ -71,8 +71,8 @@ const RegisterPage = ({ onLogin }) => {
         </div>
       </div>
       
-      {/* Right side - Register Form */}
-      <div className="flex-1 bg-black flex items-center justify-center p-8">
+      {/* Right side - Register Form with left alignment */}
+      <div className="flex-1 bg-black flex items-center justify-start pl-16">
         <div className="w-full max-w-md">
           <div className="rounded-xl shadow-2xl border border-purple-400 p-8" style={{ backgroundColor: '#8A2BE2' }}>
             <form onSubmit={handleSubmit} className="space-y-6">
