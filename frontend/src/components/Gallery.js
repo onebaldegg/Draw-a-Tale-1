@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { drawingService } from '../services/drawingService';
 import LoadingSpinner from './LoadingSpinner';
+import DrawATaleLogo from './DrawATaleLogo';
 import paper from 'paper';
 
 const Gallery = ({ user }) => {
