@@ -13,6 +13,7 @@
     "paper": "^0.12.17",
     "axios": "^1.6.2",
     "@tensorflow/tfjs": "^4.15.0",
+    "@tensorflow/tfjs-react-native": "^0.8.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
