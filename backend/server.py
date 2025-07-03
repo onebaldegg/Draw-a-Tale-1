@@ -354,7 +354,6 @@ async def get_user_progress(current_user: dict = Depends(get_current_user)):
 # Quest routes (placeholder for now)
 @app.get("/api/quests")
 async def get_quests():
-    # TODO: Implement quest system
     return {
         "quests": [
             {
@@ -380,6 +379,175 @@ async def get_quests():
             }
         ]
     }
+
+# AI-powered analysis and recommendations
+@app.get("/api/ai/interests")
+async def get_user_interests(current_user: dict = Depends(get_current_user)):
+    """Get AI-analyzed user interests based on drawing patterns"""
+    try:
+        # Get user's drawings
+        user_drawings = await drawings_collection.find({"user_id": str(current_user["_id"])}).to_list(100)
+        
+        # Analyze interests
+        interests = interest_analyzer.analyze_drawing_patterns(user_drawings)
+        
+        return {
+            "interests": interests,
+            "top_interests": [k for k, v in sorted(interests.items(), key=lambda x: x[1], reverse=True)[:5]],
+            "total_drawings_analyzed": len(user_drawings)
+        }
+    except Exception as e:
+        print(f"Interest analysis error: {e}")
+        return {"interests": {}, "top_interests": [], "total_drawings_analyzed": 0}
+
+@app.get("/api/ai/recommendations")
+async def get_personalized_recommendations(current_user: dict = Depends(get_current_user)):
+    """Get personalized quest and story recommendations"""
+    try:
+        # Get user's drawings and current progress
+        user_drawings = await drawings_collection.find({"user_id": str(current_user["_id"])}).to_list(100)
+        user_progress = await progress_collection.find({"user_id": str(current_user["_id"])}).to_list(100)
+        
+        # Analyze interests
+        interests = interest_analyzer.analyze_drawing_patterns(user_drawings)
+        
+        # Get current quest IDs
+        current_quests = [p["quest_id"] for p in user_progress]
+        
+        # Generate recommendations
+        recommendations = interest_analyzer.get_personalized_recommendations(interests, current_quests)
+        
+        return {
+            "recommendations": recommendations,
+            "based_on_interests": [k for k, v in sorted(interests.items(), key=lambda x: x[1], reverse=True)[:3]],
+            "total_recommendations": len(recommendations)
+        }
+    except Exception as e:
+        print(f"Recommendation error: {e}")
+        return {"recommendations": [], "based_on_interests": [], "total_recommendations": 0}
+
+@app.post("/api/ai/analyze-drawing")
+async def analyze_drawing_progress(
+    analysis_request: dict,
+    current_user: dict = Depends(get_current_user)
+):
+    """Analyze drawing progress and provide intelligent feedback"""
+    try:
+        drawing_id = analysis_request.get("drawing_id")
+        if not drawing_id:
+            raise HTTPException(status_code=400, detail="Drawing ID is required")
+        
+        # Get drawing data
+        drawing = await drawings_collection.find_one({
+            "_id": ObjectId(drawing_id),
+            "user_id": str(current_user["_id"])
+        })
+        
+        if not drawing:
+            raise HTTPException(status_code=404, detail="Drawing not found")
+        
+        # Analyze drawing progress
+        time_lapse = drawing.get("time_lapse", [])
+        created_at = drawing.get("created_at")
+        updated_at = drawing.get("updated_at")
+        
+        drawing_duration = 0
+        if created_at and updated_at:
+            drawing_duration = (updated_at - created_at).total_seconds()
+        
+        analysis = progress_analyzer.analyze_drawing_progress(time_lapse, drawing_duration)
+        
+        return {
+            "drawing_id": drawing_id,
+            "analysis": analysis,
+            "drawing_title": drawing.get("title", "Untitled"),
+            "analysis_timestamp": datetime.utcnow()
+        }
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"Drawing analysis error: {e}")
+        raise HTTPException(status_code=500, detail=f"Analysis failed: {str(e)}")
+
+@app.get("/api/ai/drawing-hints")
+async def get_drawing_hints(
+    quest_id: Optional[str] = None,
+    current_user: dict = Depends(get_current_user)
+):
+    """Get AI-powered drawing hints and tips"""
+    try:
+        # Get user's skill level based on completed quests
+        user_progress = await progress_collection.find({"user_id": str(current_user["_id"])}).to_list(100)
+        completed_quests = [p for p in user_progress if p.get("status") == "completed"]
+        
+        skill_level = "beginner"
+        if len(completed_quests) >= 3:
+            skill_level = "intermediate"
+        elif len(completed_quests) >= 6:
+            skill_level = "advanced"
+        
+        # Generate contextual hints
+        hints = []
+        
+        if quest_id:
+            # Quest-specific hints
+            quest_hints = {
+                "quest_1": [
+                    "🖊️ Start with light strokes and gradually make them bolder",
+                    "📏 Practice drawing lines from left to right for better control",
+                    "🎯 Focus on connecting your lines smoothly"
+                ],
+                "quest_2": [
+                    "⭕ Start shapes with simple gestures, then refine them",
+                    "📐 Use the grid in your mind to keep shapes proportional",
+                    "🔄 Practice the same shape multiple times to build muscle memory"
+                ],
+                "quest_3": [
+                    "🌈 Try mixing primary colors to discover new ones",
+                    "🎨 Use lighter colors first, then add darker ones on top",
+                    "✨ Experiment with the rainbow brush for magical effects!"
+                ]
+            }
+            hints = quest_hints.get(quest_id, [])
+        
+        # General hints based on skill level
+        general_hints = {
+            "beginner": [
+                "🎨 Don't worry about making mistakes - they're part of learning!",
+                "⏰ Take your time and enjoy the creative process",
+                "🌟 Every artist started with simple lines and shapes"
+            ],
+            "intermediate": [
+                "🎭 Try adding emotions to your characters through their expressions",
+                "🌈 Experiment with color combinations to set different moods",
+                "🔍 Add small details to make your drawings more interesting"
+            ],
+            "advanced": [
+                "🎪 Challenge yourself with complex compositions",
+                "💡 Use light and shadow to give your drawings depth",
+                "🎨 Develop your own unique artistic style"
+            ]
+        }
+        
+        if not hints:
+            hints = general_hints.get(skill_level, general_hints["beginner"])
+        
+        return {
+            "hints": hints,
+            "skill_level": skill_level,
+            "quest_id": quest_id,
+            "personalized": True
+        }
+        
+    except Exception as e:
+        print(f"Hints generation error: {e}")
+        return {
+            "hints": ["🎨 Keep practicing and have fun creating!"],
+            "skill_level": "beginner",
+            "quest_id": quest_id,
+            "personalized": False
+        }
 
 if __name__ == "__main__":
     import uvicorn
