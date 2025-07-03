@@ -106,7 +106,13 @@ const DrawingCanvas = ({ user }) => {
       size: brushSize,
       point: { x: point.x, y: point.y }
     };
-    setTimeLapse(prev => [...prev, timeStep]);
+    const newTimeLapse = [...timeLapse, timeStep];
+    setTimeLapse(newTimeLapse);
+    
+    // AI monitoring
+    if (aiInitialized) {
+      aiAssistance.monitorDrawingProgress(newTimeLapse, tool, true);
+    }
     
     // Create new path based on selected tool
     if (tool === 'pencil' || tool === 'marker' || tool === 'rainbow') {
@@ -197,7 +203,13 @@ const DrawingCanvas = ({ user }) => {
       action: 'stop',
       state: newState
     };
-    setTimeLapse(prev => [...prev, timeStep]);
+    const newTimeLapse = [...timeLapse, timeStep];
+    setTimeLapse(newTimeLapse);
+    
+    // AI monitoring
+    if (aiInitialized) {
+      aiAssistance.monitorDrawingProgress(newTimeLapse, tool, false);
+    }
   };
 
   const undo = () => {
