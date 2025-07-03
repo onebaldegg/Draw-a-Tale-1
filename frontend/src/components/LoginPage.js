@@ -39,7 +39,7 @@ const LoginPage = ({ onLogin }) => {
       <div className="flex-1 bg-black flex items-center justify-center p-8">
         <div className="max-w-lg w-full">
           <img 
-            src="/draw-a-tale-logo.svg" 
+            src="https://i.imgur.com/3QxT3zD.png" 
             alt="Draw-a-Tale Logo" 
             className="w-full h-auto"
           />
