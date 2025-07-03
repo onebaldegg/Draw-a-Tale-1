@@ -405,7 +405,7 @@ const DrawingCanvas = ({ user }) => {
       {aiHints.length > 0 && (
         <div className="mb-4">
           <h4 className="font-semibold text-gray-800 mb-2">💡 Smart Tips</h4>
-          <div className="space-y-2">
+          <div className="space-y-1">
             {aiHints.map((hint, index) => (
               <div key={index} className="text-sm bg-yellow-50 p-2 rounded border-l-4 border-yellow-400">
                 {hint}
