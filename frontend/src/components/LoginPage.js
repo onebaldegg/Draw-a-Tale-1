@@ -34,12 +34,14 @@ const LoginPage = ({ onLogin }) => {
   };
 
   return (
-    <div className="min-h-screen relative flex items-center justify-center overflow-hidden">
-      {/* Logo as wallpaper background */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <DrawATaleLogo width="80vw" height="80vh" showTagline={true} />
-      </div>
-      
+    <div className="min-h-screen relative flex items-center justify-center overflow-hidden"
+         style={{
+           backgroundImage: 'url(/logo-background.svg)',
+           backgroundSize: 'contain',
+           backgroundPosition: 'center',
+           backgroundRepeat: 'no-repeat',
+           backgroundColor: '#f8fafc'
+         }}>
       {/* Semi-transparent overlay */}
       <div className="absolute inset-0 bg-black bg-opacity-20"></div>
       
