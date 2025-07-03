@@ -1,0 +1,64 @@
+<svg width="800" height="400" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Black background -->
+  <rect width="800" height="400" fill="#000000"/>
+  
+  <!-- Paint brush handle (orange/brown wood) -->
+  <rect x="80" y="220" width="15" height="120" fill="#CD853F" rx="3"/>
+  
+  <!-- Brush ferrule (silver metal band) -->
+  <rect x="78" y="205" width="19" height="20" fill="#C0C0C0" rx="2"/>
+  
+  <!-- Brush bristles (colorful gradient) -->
+  <defs>
+    <radialGradient id="bristleGradient" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#FF1493"/>
+      <stop offset="20%" stop-color="#FF69B4"/>
+      <stop offset="40%" stop-color="#FFD700"/>
+      <stop offset="60%" stop-color="#00CED1"/>
+      <stop offset="80%" stop-color="#9370DB"/>
+      <stop offset="100%" stop-color="#FF6347"/>
+    </radialGradient>
+  </defs>
+  
+  <!-- Main brush bristle area -->
+  <ellipse cx="87" cy="170" rx="20" ry="45" fill="url(#bristleGradient)"/>
+  
+  <!-- Paint splashes around brush -->
+  <circle cx="120" cy="150" r="8" fill="#FF69B4"/>
+  <circle cx="140" cy="180" r="6" fill="#FFD700"/>
+  <circle cx="110" cy="200" r="7" fill="#00CED1"/>
+  <circle cx="130" cy="130" r="5" fill="#9370DB"/>
+  <circle cx="60" cy="160" r="4" fill="#FF6347"/>
+  <circle cx="150" cy="160" r="9" fill="#FF1493"/>
+  
+  <!-- Paint swirl on the right -->
+  <g transform="translate(680, 180)">
+    <circle cx="0" cy="0" r="35" fill="none" stroke="#FF69B4" stroke-width="6" opacity="0.8"/>
+    <circle cx="0" cy="0" r="25" fill="none" stroke="#FFD700" stroke-width="5" opacity="0.7"/>
+    <circle cx="0" cy="0" r="15" fill="none" stroke="#00CED1" stroke-width="4" opacity="0.6"/>
+    <circle cx="0" cy="0" r="8" fill="#9370DB" opacity="0.9"/>
+  </g>
+  
+  <!-- Additional paint drops -->
+  <circle cx="600" cy="120" r="6" fill="#FF69B4" opacity="0.7"/>
+  <circle cx="720" cy="140" r="4" fill="#FFD700" opacity="0.8"/>
+  <circle cx="650" cy="240" r="5" fill="#00CED1" opacity="0.6"/>
+  
+  <!-- White sparkles -->
+  <circle cx="200" cy="100" r="2" fill="#FFFFFF"/>
+  <circle cx="250" cy="280" r="1.5" fill="#FFFFFF"/>
+  <circle cx="600" cy="80" r="2" fill="#FFFFFF"/>
+  <circle cx="750" cy="300" r="1.5" fill="#FFFFFF"/>
+  
+  <!-- Main title text with white outline -->
+  <text x="400" y="240" font-family="Arial Black, sans-serif" font-size="56" font-weight="900" 
+        text-anchor="middle" fill="#FFFFFF" stroke="#8A2BE2" stroke-width="2">
+    DRAW-a-TALE
+  </text>
+  
+  <!-- Tagline in cursive script -->
+  <text x="400" y="280" font-family="Brush Script MT, cursive" font-size="24" font-style="italic"
+        text-anchor="middle" fill="#FFFFFF" opacity="0.9">
+    Begin your Artist's Journey
+  </text>
+</svg>
