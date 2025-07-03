@@ -319,13 +319,26 @@ const DrawingCanvas = ({ user }) => {
         title: drawingTitle,
         description: questContext 
           ? `Quest drawing: ${questContext.questTitle}` 
+          : storyContext
+          ? `Story illustration: ${storyContext.story.title}`
           : `Drawing created by ${user.username}`,
         canvas_data: canvasData,
         time_lapse: timeLapse,
         quest_id: questContext?.questId || null
       };
       
-      await drawingService.createDrawing(drawingData);
+      const savedDrawing = await drawingService.createDrawing(drawingData);
+      
+      // Get AI feedback on the completed drawing
+      if (aiInitialized) {
+        try {
+          const feedback = await aiAssistance.analyzeCompletedDrawing(canvasData, timeLapse);
+          showDrawingFeedback(feedback);
+        } catch (error) {
+          console.error('AI feedback failed:', error);
+        }
+      }
+      
       alert('🎨 Drawing saved successfully!');
       navigate('/gallery');
     } catch (error) {
@@ -335,6 +348,108 @@ const DrawingCanvas = ({ user }) => {
       setIsLoading(false);
     }
   };
+
+  const showDrawingFeedback = (feedback) => {
+    let message = `🎉 Drawing Complete!\n\nScore: ${feedback.score}/100\n\n`;
+    
+    if (feedback.strengths.length > 0) {
+      message += `Strengths:\n${feedback.strengths.join('\n')}\n\n`;
+    }
+    
+    if (feedback.achievements.length > 0) {
+      message += `Achievements:\n${feedback.achievements.join('\n')}\n\n`;
+    }
+    
+    if (feedback.suggestions.length > 0) {
+      message += `Suggestions for next time:\n${feedback.suggestions.join('\n')}`;
+    }
+    
+    alert(message);
+  };
+
+  const toggleAiAssistant = () => {
+    setShowAiAssistant(!showAiAssistant);
+    if (!showAiAssistant && aiHints.length === 0 && questContext) {
+      loadQuestHints(questContext.questId);
+    }
+  };
+
+  const AIAssistantPanel = () => (
+    <div className={`fixed right-4 top-20 bg-white rounded-lg shadow-lg p-4 w-72 transition-transform duration-300 z-20 ${
+      showAiAssistant ? 'translate-x-0' : 'translate-x-full'
+    }`}>
+      <div className="flex items-center justify-between mb-4">
+        <h3 className="text-lg font-bold text-draw-primary">🤖 AI Assistant</h3>
+        <button
+          onClick={toggleAiAssistant}
+          className="text-gray-500 hover:text-gray-700"
+        >
+          ✕
+        </button>
+      </div>
+      
+      {/* Story Context */}
+      {storyContext && (
+        <div className="mb-4 p-3 bg-blue-50 rounded-lg">
+          <h4 className="font-semibold text-blue-800 mb-2">📚 Current Story</h4>
+          <p className="text-sm text-blue-700">{storyContext.story.title}</p>
+          {storyContext.story.pages && storyContext.story.pages[0] && (
+            <p className="text-xs text-blue-600 mt-2">
+              {storyContext.story.pages[0].drawing_prompt}
+            </p>
+          )}
+        </div>
+      )}
+      
+      {/* AI Hints */}
+      {aiHints.length > 0 && (
+        <div className="mb-4">
+          <h4 className="font-semibold text-gray-800 mb-2">💡 Smart Tips</h4>
+          <div className="space-y-2">
+            {aiHints.map((hint, index) => (
+              <div key={index} className="text-sm bg-yellow-50 p-2 rounded border-l-4 border-yellow-400">
+                {hint}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+      
+      {/* Progress Stats */}
+      <div className="mb-4">
+        <h4 className="font-semibold text-gray-800 mb-2">📊 Progress</h4>
+        <div className="space-y-1 text-sm">
+          <div>Steps: <span className="font-medium">{timeLapse.length}</span></div>
+          <div>Current Tool: <span className="font-medium">{tool}</span></div>
+          <div>AI Status: <span className="font-medium text-green-600">
+            {aiInitialized ? 'Active' : 'Offline'}
+          </span></div>
+        </div>
+      </div>
+      
+      {/* Quick Actions */}
+      <div className="space-y-2">
+        <button
+          onClick={async () => {
+            const hints = await aiAssistance.getPersonalizedHints(questContext?.questId);
+            setAiHints(hints.hints || []);
+          }}
+          className="w-full btn-child btn-primary text-sm py-2"
+        >
+          🔄 Refresh Tips
+        </button>
+        
+        {questContext && (
+          <button
+            onClick={() => navigate('/quests')}
+            className="w-full btn-child btn-secondary text-sm py-2"
+          >
+            🗺️ Back to Quests
+          </button>
+        )}
+      </div>
+    </div>
+  );
 
   const tools = [
     { name: 'pencil', icon: '✏️', label: 'Pencil' },
