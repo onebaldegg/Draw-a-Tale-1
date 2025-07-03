@@ -37,11 +37,11 @@ const LoginPage = ({ onLogin }) => {
     <div className="min-h-screen flex">
       {/* Left side - Logo */}
       <div className="flex-1 bg-black flex items-center justify-center p-8">
-        <div className="max-w-md w-full">
+        <div className="max-w-2xl w-full">
           <img 
             src="/draw-a-tale-logo.svg" 
             alt="Draw-a-Tale Logo" 
-            className="w-full h-auto"
+            className="w-full h-auto transform scale-150"
           />
         </div>
       </div>
