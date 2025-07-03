@@ -73,8 +73,8 @@ const Dashboard = ({ user, onLogout }) => {
       </header>
 
       {/* Main Content */}
-      <div className="main-content">
-        <div className="container">
+      <div className="px-4 sm:px-6 lg:px-8 py-8">
+        <div className="max-w-7xl mx-auto">
           {/* Hero Section */}
           <div className="hero-section rounded-2xl mb-12">
             <h1 className="hero-title">
