@@ -23,7 +23,7 @@ const Dashboard = ({ user, onLogout }) => {
       description: 'View and replay your amazing artwork collection',
       icon: '🖼️',
       path: '/gallery',
-      color: 'bg-draw-secondary'
+      color: 'bg-red-600'
     },
     {
       title: 'Quest Map',
