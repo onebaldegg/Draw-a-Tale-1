@@ -176,8 +176,13 @@ const QuestMap = ({ user }) => {
   );
 
   const StoryGeneratorModal = () => (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="card max-w-md w-full m-4 p-6">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={(e) => {
+      // Only close if clicking the backdrop, not the modal content
+      if (e.target === e.currentTarget) {
+        setShowStoryGenerator(false);
+      }
+    }}>
+      <div className="card max-w-md w-full m-4 p-6" onClick={(e) => e.stopPropagation()}>
         <div className="text-center">
           <div className="text-6xl mb-4">📚</div>
           <h3 className="text-2xl font-bold mb-4">Create Your Story</h3>
@@ -190,8 +195,9 @@ const QuestMap = ({ user }) => {
               value={storyPrompt}
               onChange={(e) => setStoryPrompt(e.target.value)}
               placeholder="Example: A dinosaur astronaut exploring space, or a magical unicorn in a rainbow forest..."
-              className="input-field h-24 resize-none"
+              className="w-full px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-draw-primary focus:outline-none focus:ring-2 focus:ring-draw-primary focus:ring-opacity-20 transition-all duration-200 text-lg h-24 resize-none"
               maxLength={200}
+              autoFocus
             />
             <div className="text-xs text-gray-500 mt-1">
               {storyPrompt.length}/200 characters
