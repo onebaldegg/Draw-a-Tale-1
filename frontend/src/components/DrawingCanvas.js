@@ -639,8 +639,8 @@ const DrawingCanvas = ({ user }) => {
               <button
                 onClick={saveDrawing}
                 disabled={isLoading}
-                className="text-xs px-2 py-1 rounded bg-blue-600 text-white hover:bg-blue-700 transition-all duration-200"
-                style={{ fontSize: '10px' }}
+                className="text-sm px-3 py-2 rounded bg-blue-600 text-white hover:bg-blue-700 transition-all duration-200"
+                style={{ fontSize: '12px' }}
               >
                 {isLoading ? 'Saving...' : '💾 Save'}
               </button>
