@@ -587,6 +587,17 @@ const DrawingCanvas = ({ user }) => {
                 {isPlaying ? '⏸️' : '▶️'}
               </button>
             )}
+            
+            {/* AI Assistant Toggle */}
+            {aiInitialized && (
+              <button
+                onClick={toggleAiAssistant}
+                className={`drawing-tool w-full ${showAiAssistant ? 'bg-blue-100 border-blue-500' : 'text-purple-500'}`}
+                title="AI Assistant"
+              >
+                🤖
+              </button>
+            )}
           </div>
         </div>
       </div>
@@ -604,7 +615,9 @@ const DrawingCanvas = ({ user }) => {
             </button>
             <input
               type="text"
-              placeholder={questContext ? `Quest: ${questContext.questTitle}` : "Enter drawing title..."}
+              placeholder={questContext ? `Quest: ${questContext.questTitle}` : 
+                           storyContext ? `Story: ${storyContext.story.title}` :
+                           "Enter drawing title..."}
               value={drawingTitle}
               onChange={(e) => setDrawingTitle(e.target.value)}
               className="input-field flex-1 max-w-md"
@@ -614,12 +627,20 @@ const DrawingCanvas = ({ user }) => {
                 🎯 Quest Mode
               </div>
             )}
+            {storyContext && (
+              <div className="text-sm text-purple-600 bg-purple-50 px-3 py-1 rounded-full">
+                📚 Story Mode
+              </div>
+            )}
           </div>
           <div className="flex items-center space-x-4">
             <div className="text-sm text-gray-600">
               Tool: <span className="font-semibold">{tool}</span> | 
               Size: <span className="font-semibold">{brushSize}px</span> |
               Steps: <span className="font-semibold">{timeLapse.length}</span>
+              {aiInitialized && (
+                <span className="ml-2 text-green-600">🤖 AI Active</span>
+              )}
             </div>
             <button
               onClick={saveDrawing}
@@ -689,6 +710,9 @@ const DrawingCanvas = ({ user }) => {
           </div>
         </div>
       </div>
+
+      {/* AI Assistant Panel */}
+      <AIAssistantPanel />
     </div>
   );
 };
