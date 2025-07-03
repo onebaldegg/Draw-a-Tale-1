@@ -1,120 +1,90 @@
-<svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <!-- Brush gradient for paint bristles -->
-    <linearGradient id="brushGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="brushGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#ff1493" />
-      <stop offset="15%" stop-color="#ff69b4" />
-      <stop offset="30%" stop-color="#ffd700" />
-      <stop offset="45%" stop-color="#32cd32" />
-      <stop offset="60%" stop-color="#00bfff" />
-      <stop offset="75%" stop-color="#9370db" />
-      <stop offset="90%" stop-color="#ff6347" />
-      <stop offset="100%" stop-color="#ff1493" />
+      <stop offset="20%" stop-color="#ff69b4" />
+      <stop offset="40%" stop-color="#ffd700" />
+      <stop offset="60%" stop-color="#00ff7f" />
+      <stop offset="80%" stop-color="#00bfff" />
+      <stop offset="100%" stop-color="#9370db" />
     </linearGradient>
     
-    <!-- Spiral gradient -->
-    <radialGradient id="spiralGradient" cx="50%" cy="50%" r="50%">
+    <radialGradient id="spiralGradient1" cx="50%" cy="50%" r="50%">
       <stop offset="0%" stop-color="#ff69b4" />
-      <stop offset="20%" stop-color="#ffd700" />
-      <stop offset="40%" stop-color="#32cd32" />
-      <stop offset="60%" stop-color="#00bfff" />
-      <stop offset="80%" stop-color="#9370db" />
-      <stop offset="100%" stop-color="#ff1493" />
+      <stop offset="25%" stop-color="#ffd700" />
+      <stop offset="50%" stop-color="#00ff7f" />
+      <stop offset="75%" stop-color="#00bfff" />
+      <stop offset="100%" stop-color="#9370db" />
     </radialGradient>
     
-    <!-- Glow effect -->
-    <filter id="glow">
-      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
-      <feMerge> 
+    <filter id="glow1" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
         <feMergeNode in="coloredBlur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-    
-    <!-- Text outline -->
-    <filter id="textOutline">
-      <feMorphology operator="dilate" radius="2"/>
-      <feColorMatrix result="outline" type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0"/>
-      <feMerge> 
-        <feMergeNode in="outline"/>
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
   </defs>
   
   <!-- Black background -->
-  <rect width="1200" height="800" fill="#000000"/>
+  <rect width="1200" height="600" fill="#000000"/>
   
-  <!-- Paint brush -->
-  <g transform="translate(150, 200)">
-    <!-- Brush handle (wood) -->
-    <rect x="0" y="80" width="25" height="180" fill="#D2691E" rx="4" transform="rotate(-25 12.5 170)"/>
-    
-    <!-- Brush ferrule (metal band) -->
-    <rect x="-3" y="55" width="31" height="35" fill="#C0C0C0" rx="3" transform="rotate(-25 12.5 72)"/>
-    
-    <!-- Paint bristles -->
-    <path d="M-10 55 Q15 10 40 55 Q35 -10 25 -5 Q15 -15 5 -5 Q-5 -15 -15 -5 Q-25 -10 -10 55" 
-          fill="url(#brushGradient)" opacity="0.95" filter="url(#glow)" transform="rotate(-25 15 25)"/>
-    
-    <!-- Additional paint blob on bristles -->
-    <ellipse cx="15" cy="20" rx="8" ry="12" fill="#ff69b4" opacity="0.8" transform="rotate(-25 15 20)"/>
-  </g>
+  <!-- Paint brush handle -->
+  <rect x="120" y="280" width="20" height="140" fill="#8B4513" rx="6" transform="rotate(-15 130 350)"/>
   
-  <!-- Paint splatters around brush -->
-  <circle cx="250" cy="150" r="12" fill="#ff69b4" opacity="0.8"/>
-  <circle cx="200" cy="180" r="8" fill="#ffd700" opacity="0.7"/>
-  <circle cx="280" cy="200" r="10" fill="#32cd32" opacity="0.8"/>
-  <circle cx="180" cy="120" r="6" fill="#00bfff" opacity="0.7"/>
-  <circle cx="300" cy="170" r="7" fill="#9370db" opacity="0.8"/>
-  <circle cx="160" cy="160" r="5" fill="#ff6347" opacity="0.7"/>
+  <!-- Brush ferrule (metal band) -->
+  <rect x="115" y="260" width="30" height="25" fill="#C0C0C0" rx="3" transform="rotate(-15 130 272)"/>
+  
+  <!-- Brush bristles with colorful paint -->
+  <ellipse cx="130" cy="220" rx="25" ry="50" fill="url(#brushGradient1)" transform="rotate(-15 130 220)" filter="url(#glow1)"/>
+  
+  <!-- Paint splashes -->
+  <circle cx="220" cy="200" r="12" fill="#ff69b4" opacity="0.9"/>
+  <circle cx="180" cy="240" r="8" fill="#ffd700" opacity="0.8"/>
+  <circle cx="250" cy="180" r="10" fill="#00ff7f" opacity="0.9"/>
+  <circle cx="160" cy="190" r="6" fill="#00bfff" opacity="0.8"/>
+  <circle cx="280" cy="220" r="9" fill="#9370db" opacity="0.9"/>
   
   <!-- Small paint drops -->
-  <circle cx="120" cy="140" r="3" fill="#ff1493" opacity="0.6"/>
-  <circle cx="320" cy="140" r="4" fill="#32cd32" opacity="0.6"/>
-  <circle cx="90" cy="180" r="2" fill="#ffd700" opacity="0.6"/>
+  <circle cx="100" cy="210" r="4" fill="#ff1493" opacity="0.7"/>
+  <circle cx="300" cy="160" r="5" fill="#00ff7f" opacity="0.7"/>
+  <circle cx="90" cy="250" r="3" fill="#ffd700" opacity="0.7"/>
   
   <!-- Spiral paint swirl on the right -->
-  <g transform="translate(950, 200)">
-    <path d="M 0 0 Q 40 -40 80 0 Q 40 80 0 40 Q 20 20 40 0 Q 20 40 0 20 Q 10 10 20 0 Q 10 20 0 10" 
-          fill="url(#spiralGradient)" opacity="0.9" filter="url(#glow)"/>
-    
-    <!-- Additional spiral elements -->
-    <circle cx="40" cy="20" r="15" fill="none" stroke="url(#spiralGradient)" stroke-width="3" opacity="0.7"/>
-    <circle cx="40" cy="20" r="25" fill="none" stroke="url(#spiralGradient)" stroke-width="2" opacity="0.5"/>
+  <g transform="translate(1000, 200)">
+    <circle cx="0" cy="0" r="40" fill="url(#spiralGradient1)" opacity="0.9" filter="url(#glow1)"/>
+    <circle cx="0" cy="0" r="25" fill="none" stroke="url(#spiralGradient1)" stroke-width="4" opacity="0.8"/>
+    <circle cx="0" cy="0" r="15" fill="none" stroke="url(#spiralGradient1)" stroke-width="3" opacity="0.7"/>
   </g>
   
-  <!-- Paint drops around spiral -->
-  <circle cx="900" cy="150" r="6" fill="#ff69b4" opacity="0.7"/>
-  <circle cx="1050" cy="180" r="8" fill="#00bfff" opacity="0.7"/>
-  <circle cx="920" cy="250" r="5" fill="#ffd700" opacity="0.6"/>
-  <circle cx="1030" cy="220" r="4" fill="#32cd32" opacity="0.6"/>
+  <!-- Additional paint drops around spiral -->
+  <circle cx="950" cy="170" r="6" fill="#ff69b4" opacity="0.8"/>
+  <circle cx="1080" cy="190" r="8" fill="#00bfff" opacity="0.8"/>
+  <circle cx="970" cy="250" r="5" fill="#ffd700" opacity="0.7"/>
+  <circle cx="1060" cy="240" r="4" fill="#9370db" opacity="0.7"/>
   
   <!-- White sparkles -->
-  <circle cx="350" cy="100" r="3" fill="#ffffff" opacity="0.9"/>
-  <circle cx="380" cy="250" r="2" fill="#ffffff" opacity="0.8"/>
-  <circle cx="100" cy="100" r="2" fill="#ffffff" opacity="0.9"/>
-  <circle cx="850" cy="120" r="3" fill="#ffffff" opacity="0.8"/>
-  <circle cx="1100" cy="150" r="2" fill="#ffffff" opacity="0.9"/>
-  <circle cx="50" cy="200" r="1.5" fill="#ffffff" opacity="0.8"/>
+  <circle cx="320" cy="140" r="3" fill="#ffffff" opacity="0.9"/>
+  <circle cx="350" cy="280" r="2" fill="#ffffff" opacity="0.8"/>
+  <circle cx="80" cy="150" r="2" fill="#ffffff" opacity="0.9"/>
+  <circle cx="920" cy="130" r="3" fill="#ffffff" opacity="0.8"/>
+  <circle cx="1120" cy="160" r="2" fill="#ffffff" opacity="0.9"/>
   
-  <!-- Main title "DRAW-a-TALE" -->
-  <text x="600" y="420" font-family="Arial, sans-serif" font-size="120" font-weight="bold" 
-        fill="#ffffff" text-anchor="middle" filter="url(#textOutline)">
+  <!-- Main title "DRAW-a-TALE" with purple outline -->
+  <text x="600" y="320" font-family="Arial Black, sans-serif" font-size="80" font-weight="900" 
+        fill="#ffffff" text-anchor="middle" stroke="#8A2BE2" stroke-width="3">
     DRAW-a-TALE
   </text>
   
-  <!-- Tagline in script font -->
-  <text x="600" y="480" font-family="cursive, serif" font-size="36" font-style="italic"
+  <!-- Tagline in cursive font -->
+  <text x="600" y="380" font-family="Brush Script MT, cursive" font-size="32" font-style="italic"
         fill="#ffffff" text-anchor="middle" opacity="0.95">
     Begin your Artist's Journey
   </text>
   
   <!-- Additional decorative paint spots -->
-  <circle cx="450" cy="350" r="4" fill="#ff69b4" opacity="0.5"/>
-  <circle cx="750" cy="370" r="3" fill="#00bfff" opacity="0.5"/>
-  <circle cx="500" cy="500" r="2" fill="#ffd700" opacity="0.5"/>
-  <circle cx="700" cy="520" r="3" fill="#32cd32" opacity="0.5"/>
-  <circle cx="400" cy="480" r="2" fill="#9370db" opacity="0.5"/>
-  <circle cx="800" cy="450" r="2" fill="#ff6347" opacity="0.5"/>
+  <circle cx="450" cy="400" r="4" fill="#ff69b4" opacity="0.6"/>
+  <circle cx="750" cy="420" r="3" fill="#00bfff" opacity="0.6"/>
+  <circle cx="500" cy="480" r="2" fill="#ffd700" opacity="0.6"/>
+  <circle cx="700" cy="460" r="3" fill="#00ff7f" opacity="0.6"/>
 </svg>
