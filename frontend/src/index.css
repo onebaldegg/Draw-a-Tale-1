@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles for neuro-inclusive design */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #fafafa;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Child-friendly button styles */
+.btn-child {
+  @apply px-6 py-3 rounded-full font-semibold text-lg transition-all duration-200;
+  @apply hover:scale-105 active:scale-95;
+  @apply focus:outline-none focus:ring-4 focus:ring-opacity-50;
+  @apply shadow-lg hover:shadow-xl;
+}
+
+.btn-primary {
+  @apply bg-draw-primary text-white hover:bg-indigo-700 focus:ring-indigo-300;
+}
+
+.btn-secondary {
+  @apply bg-draw-secondary text-white hover:bg-yellow-600 focus:ring-yellow-300;
+}
+
+.btn-success {
+  @apply bg-draw-accent text-white hover:bg-green-600 focus:ring-green-300;
+}
+
+/* Canvas container */
+.canvas-container {
+  @apply w-full h-full relative bg-white rounded-lg shadow-lg overflow-hidden;
+}
+
+/* Gentle animations */
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hide scrollbars while maintaining functionality */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Input styles */
+.input-field {
+  @apply w-full px-4 py-3 rounded-lg border-2 border-gray-300 
+         focus:border-draw-primary focus:outline-none focus:ring-2 focus:ring-draw-primary focus:ring-opacity-20
+         transition-all duration-200 text-lg;
+}
+
+/* Card styles */
+.card {
+  @apply bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden;
+}
+
+/* Responsive text sizes */
+.text-child-title {
+  @apply text-2xl md:text-3xl lg:text-4xl font-bold;
+}
+
+.text-child-body {
+  @apply text-lg md:text-xl;
+}
