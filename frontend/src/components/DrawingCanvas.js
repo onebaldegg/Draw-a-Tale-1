@@ -536,7 +536,7 @@ const DrawingCanvas = ({ user }) => {
                 <button
                   key={c}
                   onClick={() => setColor(c)}
-                  className={`w-8 h-8 rounded border-2 ${color === c ? 'border-gray-800' : 'border-gray-300'}`}
+                  className={`w-6 h-6 rounded border-2 ${color === c ? 'border-gray-800' : 'border-gray-300'}`}
                   style={{ backgroundColor: c }}
                   title={c}
                 />
