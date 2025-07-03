@@ -470,7 +470,7 @@ const DrawingCanvas = ({ user }) => {
     <div className="drawing-interface">
       {/* Enhanced Toolbar */}
       <div className="drawing-toolbar">
-        <div className="space-y-4 h-full overflow-y-auto">
+        <div className="space-y-2 h-full overflow-y-auto">
           {/* Tools */}
           <div className="space-y-2">
             <div className="text-xs text-gray-500 px-2">Tools</div>
