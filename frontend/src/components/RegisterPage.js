@@ -60,7 +60,7 @@ const RegisterPage = ({ onLogin }) => {
   return (
     <div className="min-h-screen relative flex items-center justify-center overflow-hidden"
          style={{
-           backgroundImage: 'url(/draw-a-tale-logo.png)',
+           backgroundImage: 'url(/draw-a-tale-logo.svg)',
            backgroundSize: 'contain',
            backgroundPosition: 'center',
            backgroundRepeat: 'no-repeat',
