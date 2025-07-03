@@ -232,7 +232,7 @@ const QuestMap = ({ user }) => {
   }
 
   return (
-    <div className="page-wrapper">
+    <div className="min-h-screen bg-purple-600" style={{ backgroundColor: '#8A2BE2' }}>
       {/* Navigation */}
       <nav className="nav-container">
         <div className="nav-content">
