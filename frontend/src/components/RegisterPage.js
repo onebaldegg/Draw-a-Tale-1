@@ -58,73 +58,75 @@ const RegisterPage = ({ onLogin }) => {
   };
 
   return (
-    <div className="min-h-screen relative flex items-center justify-center overflow-hidden"
-         style={{
-           backgroundImage: 'url(/draw-a-tale-logo.svg)',
-           backgroundSize: 'contain',
-           backgroundPosition: 'center',
-           backgroundRepeat: 'no-repeat',
-           backgroundColor: '#000000'
-         }}>
-      {/* Semi-transparent overlay */}
-      <div className="absolute inset-0 bg-black bg-opacity-10"></div>
+    <div className="min-h-screen flex">
+      {/* Left side - Logo */}
+      <div className="flex-1 bg-black flex items-center justify-center p-8">
+        <div className="max-w-md w-full">
+          <img 
+            src="/draw-a-tale-logo.svg" 
+            alt="Draw-a-Tale Logo" 
+            className="w-full h-auto"
+          />
+        </div>
+      </div>
       
-      {/* Transparent form container */}
-      <div className="relative z-10 w-full max-w-md mx-4">
-        <div className="bg-white bg-opacity-10 backdrop-blur-md rounded-xl shadow-2xl border border-white border-opacity-20 overflow-hidden p-8">
+      {/* Right side - Register Form */}
+      <div className="flex-1 bg-white flex items-center justify-center p-8">
+        <div className="w-full max-w-md">
+          <div className="bg-white rounded-xl shadow-2xl border border-gray-200 p-8">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="form-group">
-                <label htmlFor="username" className="block text-sm font-medium text-white mb-2 drop-shadow-lg">Username</label>
+                <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-2">Username</label>
                 <input
                   type="text"
                   id="username"
                   name="username"
                   value={formData.username}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg border-2 border-white border-opacity-30 bg-white bg-opacity-20 text-white placeholder-gray-200 focus:border-white focus:border-opacity-60 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-30 transition-all duration-200 text-lg backdrop-blur-sm"
+                  className="w-full px-4 py-3 rounded-lg border-2 border-gray-300 bg-white text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200 transition-all duration-200 text-lg"
                   placeholder="Choose a username"
                   required
                 />
               </div>
 
               <div className="form-group">
-                <label htmlFor="email" className="block text-sm font-medium text-white mb-2 drop-shadow-lg">Email</label>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">Email</label>
                 <input
                   type="email"
                   id="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg border-2 border-white border-opacity-30 bg-white bg-opacity-20 text-white placeholder-gray-200 focus:border-white focus:border-opacity-60 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-30 transition-all duration-200 text-lg backdrop-blur-sm"
+                  className="w-full px-4 py-3 rounded-lg border-2 border-gray-300 bg-white text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200 transition-all duration-200 text-lg"
                   placeholder="Enter your email"
                   required
                 />
               </div>
 
               <div className="form-group">
-                <label htmlFor="user_type" className="block text-sm font-medium text-white mb-2 drop-shadow-lg">Account Type</label>
+                <label htmlFor="user_type" className="block text-sm font-medium text-gray-700 mb-2">Account Type</label>
                 <select
                   id="user_type"
                   name="user_type"
                   value={formData.user_type}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg border-2 border-white border-opacity-30 bg-white bg-opacity-20 text-white focus:border-white focus:border-opacity-60 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-30 transition-all duration-200 text-lg backdrop-blur-sm"
+                  className="w-full px-4 py-3 rounded-lg border-2 border-gray-300 bg-white text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200 transition-all duration-200 text-lg"
                 >
-                  <option value="child" className="text-gray-800">Child</option>
-                  <option value="parent" className="text-gray-800">Parent</option>
+                  <option value="child">Child</option>
+                  <option value="parent">Parent</option>
                 </select>
               </div>
 
               {formData.user_type === 'child' && (
                 <div className="form-group">
-                  <label htmlFor="age" className="block text-sm font-medium text-white mb-2 drop-shadow-lg">Age (optional)</label>
+                  <label htmlFor="age" className="block text-sm font-medium text-gray-700 mb-2">Age (optional)</label>
                   <input
                     type="number"
                     id="age"
                     name="age"
                     value={formData.age}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-lg border-2 border-white border-opacity-30 bg-white bg-opacity-20 text-white placeholder-gray-200 focus:border-white focus:border-opacity-60 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-30 transition-all duration-200 text-lg backdrop-blur-sm"
+                    className="w-full px-4 py-3 rounded-lg border-2 border-gray-300 bg-white text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200 transition-all duration-200 text-lg"
                     placeholder="Enter your age"
                     min="5"
                     max="12"
@@ -133,35 +135,35 @@ const RegisterPage = ({ onLogin }) => {
               )}
 
               <div className="form-group">
-                <label htmlFor="password" className="block text-sm font-medium text-white mb-2 drop-shadow-lg">Password</label>
+                <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">Password</label>
                 <input
                   type="password"
                   id="password"
                   name="password"
                   value={formData.password}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg border-2 border-white border-opacity-30 bg-white bg-opacity-20 text-white placeholder-gray-200 focus:border-white focus:border-opacity-60 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-30 transition-all duration-200 text-lg backdrop-blur-sm"
+                  className="w-full px-4 py-3 rounded-lg border-2 border-gray-300 bg-white text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200 transition-all duration-200 text-lg"
                   placeholder="Create a password"
                   required
                 />
               </div>
 
               <div className="form-group">
-                <label htmlFor="confirmPassword" className="block text-sm font-medium text-white mb-2 drop-shadow-lg">Confirm Password</label>
+                <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-2">Confirm Password</label>
                 <input
                   type="password"
                   id="confirmPassword"
                   name="confirmPassword"
                   value={formData.confirmPassword}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg border-2 border-white border-opacity-30 bg-white bg-opacity-20 text-white placeholder-gray-200 focus:border-white focus:border-opacity-60 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-30 transition-all duration-200 text-lg backdrop-blur-sm"
+                  className="w-full px-4 py-3 rounded-lg border-2 border-gray-300 bg-white text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200 transition-all duration-200 text-lg"
                   placeholder="Confirm your password"
                   required
                 />
               </div>
 
               {error && (
-                <div className="text-red-200 text-center text-sm bg-red-500 bg-opacity-30 p-3 rounded-lg border border-red-400 border-opacity-40 backdrop-blur-sm">
+                <div className="text-red-600 text-center text-sm bg-red-50 p-3 rounded-lg border border-red-200">
                   {error}
                 </div>
               )}
@@ -169,22 +171,23 @@ const RegisterPage = ({ onLogin }) => {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full px-6 py-3 rounded-full font-semibold text-lg transition-all duration-200 hover:scale-105 active:scale-95 focus:outline-none focus:ring-4 focus:ring-opacity-50 shadow-lg hover:shadow-xl bg-white bg-opacity-90 text-gray-800 hover:bg-opacity-100 focus:ring-white"
+                className="w-full px-6 py-3 rounded-full font-semibold text-lg transition-all duration-200 hover:scale-105 active:scale-95 focus:outline-none focus:ring-4 focus:ring-opacity-50 shadow-lg hover:shadow-xl bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-300"
               >
                 {loading ? 'Creating Account...' : 'Create Account'}
               </button>
             </form>
 
             <div className="text-center mt-6">
-              <p className="text-white drop-shadow-lg">
+              <p className="text-gray-600">
                 Already have an account?{' '}
-                <Link to="/login" className="text-yellow-200 hover:text-yellow-100 font-semibold transition-colors drop-shadow-lg underline">
+                <Link to="/login" className="text-blue-600 hover:text-blue-500 font-semibold transition-colors underline">
                   Sign in here
                 </Link>
               </p>
             </div>
           </div>
         </div>
+      </div>
     </div>
   );
 };
