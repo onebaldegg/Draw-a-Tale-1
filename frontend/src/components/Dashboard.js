@@ -45,27 +45,32 @@ const Dashboard = ({ user, onLogout }) => {
   }
 
   return (
-    <div className="page-wrapper">
-      {/* Navigation */}
-      <nav className="bg-white shadow-lg border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-          {/* Logo section with black background */}
-          <div className="bg-black px-6 py-2 rounded-lg">
-            <DrawATaleLogo width={180} showTagline={false} />
+    <div className="min-h-screen bg-purple-600" style={{ backgroundColor: '#8A2BE2' }}>
+      {/* Full Black Header - Extended Height */}
+      <header className="bg-black w-full" style={{ height: '140px' }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-full">
+          {/* Logo section */}
+          <div className="flex items-center">
+            <img 
+              src="https://i.imgur.com/3QxT3zD.png" 
+              alt="Draw-a-Tale Logo" 
+              className="h-20 w-auto"
+            />
           </div>
           
-          {/* Right side with black background for white text */}
-          <div className="flex items-center space-x-4 bg-black px-6 py-2 rounded-lg">
+          {/* Right side with white text */}
+          <div className="flex items-center space-x-4">
             <span className="text-white font-medium">Welcome, {user.username}!</span>
             <button
               onClick={handleLogout}
-              className="btn-child btn-secondary text-sm px-4 py-2"
+              className="text-sm px-4 py-2 rounded-lg font-semibold text-black hover:opacity-80 transition-all duration-200"
+              style={{ backgroundColor: '#FFC107' }}
             >
               Logout
             </button>
           </div>
         </div>
-      </nav>
+      </header>
 
       {/* Main Content */}
       <div className="main-content">
