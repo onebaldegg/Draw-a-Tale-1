@@ -65,8 +65,8 @@ const RegisterPage = ({ onLogin }) => {
           <img 
             src="https://i.imgur.com/3QxT3zD.png" 
             alt="Draw-a-Tale Logo" 
-            className="w-full h-auto transform scale-108"
-            style={{ transform: 'scale(1.08)' }}
+            className="w-full h-auto transform scale-111"
+            style={{ transform: 'scale(1.1124)' }}
           />
         </div>
       </div>
