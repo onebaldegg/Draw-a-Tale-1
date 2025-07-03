@@ -58,23 +58,27 @@ const RegisterPage = ({ onLogin }) => {
   };
 
   return (
-    <div className="min-h-screen flex bg-black">
-      {/* Left side - Logo */}
-      <div className="flex-1 bg-black flex items-center justify-center p-8">
+    <div className="min-h-screen flex bg-black relative">
+      {/* Logo background layer - behind everything */}
+      <div className="absolute inset-0 flex items-center justify-center z-0">
         <div className="max-w-2xl w-full">
           <img 
             src="/draw-a-tale-logo.svg" 
             alt="Draw-a-Tale Logo" 
-            className="w-full h-auto transform scale-185"
-            style={{ transform: 'scale(1.85)' }}
+            className="w-full h-auto opacity-40"
+            style={{ transform: 'scale(1.57)' }}
           />
         </div>
       </div>
       
-      {/* Right side - Register Form */}
-      <div className="flex-1 bg-black flex items-center justify-center p-8">
+      {/* Left side - Empty space for logo */}
+      <div className="flex-1 bg-black">
+      </div>
+      
+      {/* Right side - Register Form - in front of logo */}
+      <div className="flex-1 bg-black flex items-center justify-center p-8 relative z-10">
         <div className="w-full max-w-md">
-          <div className="bg-white rounded-xl shadow-2xl border border-gray-200 p-8">
+          <div className="rounded-xl shadow-2xl border border-purple-400 p-8" style={{ backgroundColor: '#8A2BE2' }}>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="form-group">
                 <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-2">Username</label>
