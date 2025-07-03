@@ -525,7 +525,7 @@ const DrawingCanvas = ({ user }) => {
                     setCustomColor(e.target.value);
                     setColor(e.target.value);
                   }}
-                  className="w-full h-8"
+                  className="w-full h-6"
                 />
               </div>
             )}
