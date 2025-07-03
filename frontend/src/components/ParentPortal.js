@@ -463,12 +463,29 @@ Keep encouraging creativity and celebrate every masterpiece! 🎨
                         <p className="gallery-item-date">
                           {formatDate(drawing.created_at)}
                         </p>
+                        {drawing.quest_id && (
+                          <div className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full mt-2">
+                            🎯 Quest Drawing
+                          </div>
+                        )}
                         <div className="mt-4 space-y-2">
-                          <button className="btn-child btn-primary text-sm px-3 py-1 w-full">
-                            View Details
+                          <button
+                            onClick={async () => {
+                              try {
+                                const analysis = await aiAssistance.analyzeDrawing(drawing.id);
+                                if (analysis) {
+                                  alert(`AI Analysis for "${drawing.title}":\n\n${JSON.stringify(analysis.analysis, null, 2)}`);
+                                }
+                              } catch (error) {
+                                console.error('Analysis failed:', error);
+                              }
+                            }}
+                            className="btn-child btn-primary text-sm px-3 py-1 w-full"
+                          >
+                            🤖 AI Analysis
                           </button>
                           <button className="btn-child btn-secondary text-sm px-3 py-1 w-full">
-                            Email to Me
+                            📧 Email to Me
                           </button>
                         </div>
                       </div>
@@ -481,20 +498,81 @@ Keep encouraging creativity and celebrate every masterpiece! 🎨
 
           {activeTab === 'progress' && (
             <div>
-              <h3 className="text-xl font-bold mb-6">Learning Progress</h3>
-              {childProgress.length === 0 ? (
-                <div className="card p-12 text-center">
-                  <div className="text-6xl mb-4">📊</div>
-                  <p className="text-gray-600">No progress data available yet</p>
+              <h3 className="text-xl font-bold mb-6">Learning Progress & Development</h3>
+              
+              {/* Progress Overview */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div className="card p-6">
+                  <h4 className="font-semibold mb-4">Skill Development</h4>
+                  <div className="space-y-4">
+                    <div>
+                      <div className="flex justify-between mb-2">
+                        <span className="text-sm">Drawing Fundamentals</span>
+                        <span className="text-sm font-semibold">{Math.min(stats.totalDrawings * 10, 100)}%</span>
+                      </div>
+                      <div className="w-full bg-gray-200 rounded-full h-2">
+                        <div 
+                          className="bg-draw-primary h-2 rounded-full"
+                          style={{ width: `${Math.min(stats.totalDrawings * 10, 100)}%` }}
+                        ></div>
+                      </div>
+                    </div>
+                    <div>
+                      <div className="flex justify-between mb-2">
+                        <span className="text-sm">Color Theory</span>
+                        <span className="text-sm font-semibold">{Math.min(stats.completedQuests * 25, 100)}%</span>
+                      </div>
+                      <div className="w-full bg-gray-200 rounded-full h-2">
+                        <div 
+                          className="bg-draw-secondary h-2 rounded-full"
+                          style={{ width: `${Math.min(stats.completedQuests * 25, 100)}%` }}
+                        ></div>
+                      </div>
+                    </div>
+                    <div>
+                      <div className="flex justify-between mb-2">
+                        <span className="text-sm">Creative Expression</span>
+                        <span className="text-sm font-semibold">{Math.min(stats.totalBadges * 20, 100)}%</span>
+                      </div>
+                      <div className="w-full bg-gray-200 rounded-full h-2">
+                        <div 
+                          className="bg-draw-accent h-2 rounded-full"
+                          style={{ width: `${Math.min(stats.totalBadges * 20, 100)}%` }}
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              ) : (
+                
+                <div className="card p-6">
+                  <h4 className="font-semibold mb-4">Activity Timeline</h4>
+                  <div className="space-y-3">
+                    {childDrawings.slice(0, 4).map((drawing, index) => (
+                      <div key={drawing.id} className="flex items-center space-x-3">
+                        <div className="w-2 h-2 bg-draw-primary rounded-full"></div>
+                        <div className="flex-1">
+                          <div className="text-sm font-medium">{drawing.title}</div>
+                          <div className="text-xs text-gray-500">{formatDate(drawing.created_at)}</div>
+                        </div>
+                        {drawing.quest_id && (
+                          <div className="text-xs text-blue-600">🎯</div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Quest Progress */}
+              {childProgress.length > 0 ? (
                 <div className="space-y-4">
+                  <h4 className="font-semibold">Quest Progress</h4>
                   {childProgress.map((progress) => (
                     <div key={progress.id} className="card p-6">
                       <div className="flex justify-between items-center mb-4">
                         <div>
-                          <h4 className="font-semibold">Quest ID: {progress.quest_id}</h4>
-                          <p className="text-sm text-gray-600">
+                          <h4 className="font-semibold">Quest: {progress.quest_id}</h4>
+                          <p className="text-sm text-gray-600 capitalize">
                             Status: {progress.status}
                           </p>
                         </div>
@@ -507,9 +585,9 @@ Keep encouraging creativity and celebrate every masterpiece! 🎨
                       </div>
                       
                       {/* Progress Bar */}
-                      <div className="w-full bg-gray-200 rounded-full h-2 mb-4">
+                      <div className="w-full bg-gray-200 rounded-full h-3 mb-4">
                         <div 
-                          className="bg-draw-primary h-2 rounded-full transition-all duration-300"
+                          className="bg-draw-primary h-3 rounded-full transition-all duration-300"
                           style={{ width: `${progress.completion_percentage}%` }}
                         ></div>
                       </div>
@@ -520,7 +598,7 @@ Keep encouraging creativity and celebrate every masterpiece! 🎨
                           <div className="text-sm font-semibold mb-2">Badges Earned:</div>
                           <div className="flex flex-wrap gap-2">
                             {progress.badges_earned.map((badge, index) => (
-                              <span key={index} className="bg-draw-secondary text-white px-2 py-1 rounded-full text-sm">
+                              <span key={index} className="bg-draw-secondary text-white px-3 py-1 rounded-full text-sm">
                                 🏆 {badge}
                               </span>
                             ))}
@@ -530,52 +608,167 @@ Keep encouraging creativity and celebrate every masterpiece! 🎨
                     </div>
                   ))}
                 </div>
+              ) : (
+                <div className="card p-12 text-center">
+                  <div className="text-6xl mb-4">📊</div>
+                  <p className="text-gray-600">No quest progress data available yet</p>
+                </div>
               )}
             </div>
           )}
 
           {activeTab === 'tools' && (
             <div>
-              <h3 className="text-xl font-bold mb-6">Parent Tools</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="card p-6">
-                  <h4 className="font-semibold mb-4">Custom Tracing Pages</h4>
-                  <p className="text-gray-600 mb-4">
-                    Create personalized tracing activities for your child
-                  </p>
-                  <button className="btn-child btn-primary">
-                    Create Tracing Page
-                  </button>
-                </div>
+              <h3 className="text-xl font-bold mb-6">Parent Tools & Settings</h3>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 
+                {/* Custom Tracing Page Creator */}
                 <div className="card p-6">
-                  <h4 className="font-semibold mb-4">Email Digest</h4>
-                  <p className="text-gray-600 mb-4">
-                    Get weekly updates on your child's progress and artwork
+                  <h4 className="font-semibold mb-4">📝 Custom Tracing Pages</h4>
+                  <p className="text-gray-600 mb-4 text-sm">
+                    Upload an image to create personalized tracing activities for your child
                   </p>
-                  <button className="btn-child btn-secondary">
-                    Setup Email Digest
-                  </button>
+                  
+                  <div className="space-y-4">
+                    <div>
+                      <label className="form-label">Tracing Page Title</label>
+                      <input
+                        type="text"
+                        value={tracingTitle}
+                        onChange={(e) => setTracingTitle(e.target.value)}
+                        placeholder="e.g., Trace our family dog"
+                        className="input-field"
+                      />
+                    </div>
+                    
+                    <div>
+                      <label className="form-label">Upload Image</label>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleImageUpload}
+                        className="input-field"
+                      />
+                    </div>
+                    
+                    {customTracingImage && (
+                      <div className="mt-4">
+                        <p className="text-sm text-gray-600 mb-2">Preview:</p>
+                        <img 
+                          src={customTracingImage} 
+                          alt="Tracing preview" 
+                          className="max-w-full h-32 object-contain border rounded"
+                        />
+                      </div>
+                    )}
+                    
+                    <button
+                      onClick={createTracingPage}
+                      disabled={!customTracingImage || !tracingTitle.trim()}
+                      className="btn-child btn-primary w-full disabled:opacity-50"
+                    >
+                      Create Tracing Page
+                    </button>
+                  </div>
                 </div>
-                
+
+                {/* Email Digest Settings */}
                 <div className="card p-6">
-                  <h4 className="font-semibold mb-4">AI Insights</h4>
-                  <p className="text-gray-600 mb-4">
-                    Get fun interpretations of your child's artwork (for entertainment only)
+                  <h4 className="font-semibold mb-4">📧 Email Notifications</h4>
+                  <p className="text-gray-600 mb-4 text-sm">
+                    Configure when you'd like to receive updates about your child's progress
                   </p>
-                  <button className="btn-child btn-accent">
-                    View AI Insights
-                  </button>
+                  
+                  <div className="space-y-4">
+                    <label className="flex items-center space-x-3">
+                      <input
+                        type="checkbox"
+                        checked={emailSettings.weeklyDigest}
+                        onChange={(e) => setEmailSettings({...emailSettings, weeklyDigest: e.target.checked})}
+                        className="rounded"
+                      />
+                      <span className="text-sm">Weekly progress digest</span>
+                    </label>
+                    
+                    <label className="flex items-center space-x-3">
+                      <input
+                        type="checkbox"
+                        checked={emailSettings.progressReports}
+                        onChange={(e) => setEmailSettings({...emailSettings, progressReports: e.target.checked})}
+                        className="rounded"
+                      />
+                      <span className="text-sm">Quest completion reports</span>
+                    </label>
+                    
+                    <label className="flex items-center space-x-3">
+                      <input
+                        type="checkbox"
+                        checked={emailSettings.achievementAlerts}
+                        onChange={(e) => setEmailSettings({...emailSettings, achievementAlerts: e.target.checked})}
+                        className="rounded"
+                      />
+                      <span className="text-sm">Achievement notifications</span>
+                    </label>
+                    
+                    <button className="btn-child btn-secondary w-full mt-4">
+                      Save Email Preferences
+                    </button>
+                  </div>
                 </div>
-                
+
+                {/* AI Insights Settings */}
                 <div className="card p-6">
-                  <h4 className="font-semibold mb-4">Settings</h4>
-                  <p className="text-gray-600 mb-4">
-                    Manage account settings and preferences
+                  <h4 className="font-semibold mb-4">🤖 AI Analysis Settings</h4>
+                  <p className="text-gray-600 mb-4 text-sm">
+                    Control how AI analyzes and provides insights about your child's artwork
                   </p>
-                  <button className="btn-child btn-secondary">
-                    Manage Settings
-                  </button>
+                  
+                  <div className="space-y-4">
+                    <div className="bg-blue-50 p-3 rounded-lg text-sm text-blue-800">
+                      <strong>Privacy Note:</strong> All AI analysis is for educational purposes only. 
+                      No personal data is shared with third parties.
+                    </div>
+                    
+                    <button
+                      onClick={() => fetchAIInsights(childDrawings)}
+                      className="btn-child btn-primary w-full"
+                    >
+                      🔄 Refresh AI Analysis
+                    </button>
+                    
+                    <button
+                      onClick={exportProgressReport}
+                      className="btn-child btn-accent w-full"
+                    >
+                      📊 Export Full Report
+                    </button>
+                  </div>
+                </div>
+
+                {/* Account Settings */}
+                <div className="card p-6">
+                  <h4 className="font-semibold mb-4">⚙️ Account Settings</h4>
+                  <p className="text-gray-600 mb-4 text-sm">
+                    Manage account preferences and privacy settings
+                  </p>
+                  
+                  <div className="space-y-4">
+                    <button className="btn-child btn-secondary w-full">
+                      👤 Manage Profile
+                    </button>
+                    
+                    <button className="btn-child btn-secondary w-full">
+                      🔒 Privacy Settings
+                    </button>
+                    
+                    <button className="btn-child btn-secondary w-full">
+                      💳 Subscription Settings
+                    </button>
+                    
+                    <div className="text-xs text-gray-500 mt-4">
+                      Need help? Contact support at support@draw-a-tale.com
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
