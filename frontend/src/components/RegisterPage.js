@@ -61,49 +61,56 @@ const RegisterPage = ({ onLogin }) => {
     <div className="page-wrapper">
       <div className="container py-16">
         <div className="form-container">
-          <div className="form-card">
+          {/* Logo at top, centered */}
+          <div className="text-center mb-8">
+            <div className="flex justify-center mb-6">
+              <DrawATaleLogo width={280} showTagline={true} />
+            </div>
+          </div>
+          
+          {/* Dark form container */}
+          <div className="bg-gray-800 rounded-xl shadow-2xl border border-gray-700 overflow-hidden p-8">
             <div className="text-center mb-8">
-              <div className="flex justify-center mb-4">
-                <DrawATaleLogo width={250} showTagline={true} />
-              </div>
-              <p className="text-gray-600">Create your artist account</p>
+              <p className="text-gray-300">Create your artist account</p>
             </div>
             
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="form-group">
-                <label htmlFor="username" className="form-label">Username</label>
+                <label htmlFor="username" className="block text-sm font-medium text-gray-300 mb-2">Username</label>
                 <input
                   type="text"
                   id="username"
                   name="username"
                   value={formData.username}
                   onChange={handleChange}
-                  className="input-field"
+                  className="w-full px-4 py-3 rounded-lg border-2 border-gray-600 bg-gray-700 text-white placeholder-gray-400 focus:border-draw-primary focus:outline-none focus:ring-2 focus:ring-draw-primary focus:ring-opacity-20 transition-all duration-200 text-lg"
+                  placeholder="Choose a username"
                   required
                 />
               </div>
 
               <div className="form-group">
-                <label htmlFor="email" className="form-label">Email</label>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">Email</label>
                 <input
                   type="email"
                   id="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="input-field"
+                  className="w-full px-4 py-3 rounded-lg border-2 border-gray-600 bg-gray-700 text-white placeholder-gray-400 focus:border-draw-primary focus:outline-none focus:ring-2 focus:ring-draw-primary focus:ring-opacity-20 transition-all duration-200 text-lg"
+                  placeholder="Enter your email"
                   required
                 />
               </div>
 
               <div className="form-group">
-                <label htmlFor="user_type" className="form-label">Account Type</label>
+                <label htmlFor="user_type" className="block text-sm font-medium text-gray-300 mb-2">Account Type</label>
                 <select
                   id="user_type"
                   name="user_type"
                   value={formData.user_type}
                   onChange={handleChange}
-                  className="input-field"
+                  className="w-full px-4 py-3 rounded-lg border-2 border-gray-600 bg-gray-700 text-white focus:border-draw-primary focus:outline-none focus:ring-2 focus:ring-draw-primary focus:ring-opacity-20 transition-all duration-200 text-lg"
                 >
                   <option value="child">Child</option>
                   <option value="parent">Parent</option>
@@ -112,14 +119,15 @@ const RegisterPage = ({ onLogin }) => {
 
               {formData.user_type === 'child' && (
                 <div className="form-group">
-                  <label htmlFor="age" className="form-label">Age (optional)</label>
+                  <label htmlFor="age" className="block text-sm font-medium text-gray-300 mb-2">Age (optional)</label>
                   <input
                     type="number"
                     id="age"
                     name="age"
                     value={formData.age}
                     onChange={handleChange}
-                    className="input-field"
+                    className="w-full px-4 py-3 rounded-lg border-2 border-gray-600 bg-gray-700 text-white placeholder-gray-400 focus:border-draw-primary focus:outline-none focus:ring-2 focus:ring-draw-primary focus:ring-opacity-20 transition-all duration-200 text-lg"
+                    placeholder="Enter your age"
                     min="5"
                     max="12"
                   />
@@ -127,33 +135,35 @@ const RegisterPage = ({ onLogin }) => {
               )}
 
               <div className="form-group">
-                <label htmlFor="password" className="form-label">Password</label>
+                <label htmlFor="password" className="block text-sm font-medium text-gray-300 mb-2">Password</label>
                 <input
                   type="password"
                   id="password"
                   name="password"
                   value={formData.password}
                   onChange={handleChange}
-                  className="input-field"
+                  className="w-full px-4 py-3 rounded-lg border-2 border-gray-600 bg-gray-700 text-white placeholder-gray-400 focus:border-draw-primary focus:outline-none focus:ring-2 focus:ring-draw-primary focus:ring-opacity-20 transition-all duration-200 text-lg"
+                  placeholder="Create a password"
                   required
                 />
               </div>
 
               <div className="form-group">
-                <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
+                <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-300 mb-2">Confirm Password</label>
                 <input
                   type="password"
                   id="confirmPassword"
                   name="confirmPassword"
                   value={formData.confirmPassword}
                   onChange={handleChange}
-                  className="input-field"
+                  className="w-full px-4 py-3 rounded-lg border-2 border-gray-600 bg-gray-700 text-white placeholder-gray-400 focus:border-draw-primary focus:outline-none focus:ring-2 focus:ring-draw-primary focus:ring-opacity-20 transition-all duration-200 text-lg"
+                  placeholder="Confirm your password"
                   required
                 />
               </div>
 
               {error && (
-                <div className="form-error text-center">
+                <div className="text-red-400 text-center text-sm bg-red-900 bg-opacity-20 p-3 rounded-lg border border-red-500">
                   {error}
                 </div>
               )}
@@ -168,9 +178,9 @@ const RegisterPage = ({ onLogin }) => {
             </form>
 
             <div className="text-center mt-6">
-              <p className="text-gray-600">
+              <p className="text-gray-400">
                 Already have an account?{' '}
-                <Link to="/login" className="text-draw-primary hover:underline font-semibold">
+                <Link to="/login" className="text-draw-primary hover:text-indigo-400 font-semibold transition-colors">
                   Sign in here
                 </Link>
               </p>
