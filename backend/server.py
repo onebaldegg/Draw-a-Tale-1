@@ -264,9 +264,51 @@ async def get_drawing(drawing_id: str, current_user: dict = Depends(get_current_
     return DrawingResponse(**convert_mongo_document(drawing))
 
 # Story routes
+@app.post("/api/stories/generate", response_model=StoryResponse)
+async def generate_ai_story(
+    story_request: dict, 
+    current_user: dict = Depends(get_current_user)
+):
+    """Generate AI-powered story based on user prompt"""
+    try:
+        prompt = story_request.get("prompt", "")
+        if not prompt:
+            raise HTTPException(status_code=400, detail="Story prompt is required")
+        
+        user_age = current_user.get("age", 7)
+        
+        # Analyze user's interests based on existing drawings
+        user_drawings = await drawings_collection.find({"user_id": str(current_user["_id"])}).to_list(100)
+        interests = interest_analyzer.analyze_drawing_patterns(user_drawings)
+        top_interests = [k for k, v in sorted(interests.items(), key=lambda x: x[1], reverse=True)[:3]]
+        
+        # Generate AI story
+        story_data = await story_generator.generate_story(prompt, user_age, top_interests)
+        
+        # Save to database
+        story_doc = {
+            "title": story_data["title"],
+            "content": json.dumps(story_data["pages"]),
+            "pages": story_data["pages"],
+            "user_prompt": prompt,
+            "themes": story_data.get("themes", []),
+            "art_focus": story_data.get("art_focus", ""),
+            "generated_with": story_data.get("generated_with", "ai"),
+            "user_id": str(current_user["_id"]),
+            "created_at": datetime.utcnow()
+        }
+        
+        result = await stories_collection.insert_one(story_doc)
+        story_doc["_id"] = result.inserted_id
+        
+        return StoryResponse(**convert_mongo_document(story_doc))
+        
+    except Exception as e:
+        print(f"Story generation error: {e}")
+        raise HTTPException(status_code=500, detail=f"Failed to generate story: {str(e)}")
+
 @app.post("/api/stories", response_model=StoryResponse)
 async def create_story(story: StoryCreate, current_user: dict = Depends(get_current_user)):
-    # TODO: Integrate with AI API for story generation
     story_doc = {
         "title": story.title,
         "content": story.content,
