@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { authService } from '../services/authService';
+import DrawATaleLogo from './DrawATaleLogo';
 
 const RegisterPage = ({ onLogin }) => {
   const [formData, setFormData] = useState({
@@ -62,7 +63,9 @@ const RegisterPage = ({ onLogin }) => {
         <div className="form-container">
           <div className="form-card">
             <div className="text-center mb-8">
-              <h1 className="text-4xl font-bold text-draw-primary mb-2">Join Draw-a-Tale</h1>
+              <div className="flex justify-center mb-4">
+                <DrawATaleLogo width={250} showTagline={true} />
+              </div>
               <p className="text-gray-600">Create your artist account</p>
             </div>
             
