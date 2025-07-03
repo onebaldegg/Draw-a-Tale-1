@@ -136,8 +136,8 @@
 }
 
 .drawing-toolbar {
-  @apply w-24 bg-white shadow-lg border-r border-gray-200;
-  @apply flex flex-col py-4 overflow-y-auto;
+  @apply w-20 bg-white shadow-lg border-r border-gray-200;
+  @apply flex flex-col py-2 overflow-y-auto;
   min-height: 100vh;
 }
 
