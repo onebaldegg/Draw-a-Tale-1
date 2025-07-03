@@ -184,7 +184,6 @@ const RegisterPage = ({ onLogin }) => {
             </div>
           </div>
         </div>
-      </div>
     </div>
   );
 };
