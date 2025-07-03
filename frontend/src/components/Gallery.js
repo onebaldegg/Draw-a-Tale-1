@@ -254,7 +254,9 @@ const Gallery = ({ user }) => {
           {/* Empty State */}
           {drawings.length === 0 && !error && (
             <div className="card p-12 text-center">
-              <div className="text-6xl mb-4">🎨</div>
+              <div className="mb-4 flex justify-center">
+                <DrawATaleLogo width={100} height={100} variant="icon-only" />
+              </div>
               <h2 className="text-2xl font-bold text-gray-800 mb-4">
                 No drawings yet!
               </h2>
