@@ -125,7 +125,7 @@
 
 /* Drawing canvas styles */
 .drawing-interface {
-  @apply flex h-screen bg-gray-100;
+  @apply flex h-screen bg-white;
 }
 
 .drawing-toolbar {
