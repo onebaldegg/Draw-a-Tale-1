@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import DrawATaleLogo from './DrawATaleLogo';
 
 const Dashboard = ({ user, onLogout }) => {
   const navigate = useNavigate();
@@ -48,7 +49,9 @@ const Dashboard = ({ user, onLogout }) => {
       {/* Navigation */}
       <nav className="nav-container">
         <div className="nav-content">
-          <div className="nav-logo">Draw-a-Tale</div>
+          <div className="nav-logo">
+            <DrawATaleLogo width={180} showTagline={false} />
+          </div>
           <div className="flex items-center space-x-4">
             <span className="text-gray-700">Welcome, {user.username}!</span>
             <button
