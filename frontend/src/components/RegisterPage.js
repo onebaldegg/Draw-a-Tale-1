@@ -58,21 +58,18 @@ const RegisterPage = ({ onLogin }) => {
   };
 
   return (
-    <div className="page-wrapper">
-      <div className="container py-16">
-        <div className="form-container">
-          {/* Logo at top, centered */}
-          <div className="text-center mb-8">
-            <div className="flex justify-center mb-6">
-              <DrawATaleLogo width={280} showTagline={true} />
-            </div>
-          </div>
-          
-          {/* Dark form container */}
-          <div className="bg-gray-800 rounded-xl shadow-2xl border border-gray-700 overflow-hidden p-8">
-            <div className="text-center mb-8">
-              <p className="text-gray-300">Create your artist account</p>
-            </div>
+    <div className="min-h-screen relative flex items-center justify-center overflow-hidden">
+      {/* Logo as wallpaper background */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <DrawATaleLogo width="80vw" height="80vh" showTagline={true} />
+      </div>
+      
+      {/* Semi-transparent overlay */}
+      <div className="absolute inset-0 bg-black bg-opacity-20"></div>
+      
+      {/* Transparent form container */}
+      <div className="relative z-10 w-full max-w-md mx-4">
+        <div className="bg-white bg-opacity-10 backdrop-blur-md rounded-xl shadow-2xl border border-white border-opacity-20 overflow-hidden p-8">
             
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="form-group">
