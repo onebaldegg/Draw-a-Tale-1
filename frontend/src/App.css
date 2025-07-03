@@ -58,7 +58,7 @@
 
 /* Hero section */
 .hero-section {
-  @apply bg-gradient-to-r from-draw-primary to-indigo-600 text-white;
+  @apply bg-gradient-to-r from-red-600 to-red-700 text-white;
   @apply py-16 md:py-24 text-center;
 }
 
