@@ -543,17 +543,6 @@ const DrawingCanvas = ({ user }) => {
               ))}
             </div>
           </div>
-          
-          {/* AI Assistant Toggle */}
-          <div className="px-2">
-            <button
-              onClick={() => setShowAiAssistant(!showAiAssistant)}
-              className={`drawing-tool w-full ${showAiAssistant ? 'bg-blue-100 border-blue-500' : 'text-purple-500'}`}
-              title="AI Drawing Assistant"
-            >
-              🤖
-            </button>
-          </div>
         </div>
       </div>
 
