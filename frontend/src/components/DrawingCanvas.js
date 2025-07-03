@@ -554,7 +554,6 @@ const DrawingCanvas = ({ user }) => {
               🤖
             </button>
           </div>
-          </div>
         </div>
       </div>
 
