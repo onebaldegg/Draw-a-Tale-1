@@ -89,7 +89,7 @@ body {
 
 /* Card styles */
 .card {
-  @apply bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden;
+  @apply bg-white rounded-xl shadow-lg border border-blue-100 overflow-hidden;
 }
 
 /* Responsive text sizes */
