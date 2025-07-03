@@ -98,6 +98,7 @@ const Dashboard = ({ user, onLogout }) => {
                 key={index}
                 to={item.path}
                 className="dashboard-card hover:shadow-2xl"
+                style={{ backgroundColor: '#FFC107' }}
               >
                 <div className={`dashboard-card-icon ${item.color} text-white rounded-full w-20 h-20 flex items-center justify-center text-3xl font-bold`}>
                   {item.icon}
