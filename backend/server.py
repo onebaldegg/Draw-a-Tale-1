@@ -12,6 +12,7 @@ from dotenv import load_dotenv
 import uuid
 from bson import ObjectId
 import json
+from ai_services import story_generator, interest_analyzer, progress_analyzer
 
 # Load environment variables
 load_dotenv()
