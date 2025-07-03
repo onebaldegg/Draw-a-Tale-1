@@ -38,11 +38,25 @@ body {
 }
 
 .btn-primary {
-  @apply bg-draw-primary text-white hover:bg-indigo-700 focus:ring-indigo-300;
+  background-color: #FFC107 !important;
+  color: #000 !important;
+  font-weight: bold !important;
+}
+
+.btn-primary:hover {
+  background-color: #FFB300 !important;
+  opacity: 0.9;
 }
 
 .btn-secondary {
-  @apply bg-draw-secondary text-white hover:bg-yellow-600 focus:ring-yellow-300;
+  background-color: #FFC107 !important;
+  color: #000 !important;
+  font-weight: bold !important;
+}
+
+.btn-secondary:hover {
+  background-color: #FFB300 !important;
+  opacity: 0.9;
 }
 
 .btn-success {
