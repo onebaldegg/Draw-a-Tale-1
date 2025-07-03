@@ -544,60 +544,16 @@ const DrawingCanvas = ({ user }) => {
             </div>
           </div>
           
-          {/* Actions */}
-          <div className="space-y-2 px-2">
-            <div className="text-xs text-gray-500">Actions</div>
+          {/* AI Assistant Toggle */}
+          <div className="px-2">
             <button
-              onClick={undo}
-              disabled={currentStep === 0}
-              className="drawing-tool w-full disabled:opacity-50"
-              title="Undo"
+              onClick={() => setShowAiAssistant(!showAiAssistant)}
+              className={`drawing-tool w-full ${showAiAssistant ? 'bg-blue-100 border-blue-500' : 'text-purple-500'}`}
+              title="AI Drawing Assistant"
             >
-              ↶
+              🤖
             </button>
-            <button
-              onClick={redo}
-              disabled={currentStep === drawingHistory.length - 1}
-              className="drawing-tool w-full disabled:opacity-50"
-              title="Redo"
-            >
-              ↷
-            </button>
-            <button
-              onClick={clearCanvas}
-              className="drawing-tool w-full text-red-500"
-              title="Clear Canvas"
-            >
-              🗑️
-            </button>
-            <button
-              onClick={exportCanvas}
-              className="drawing-tool w-full text-blue-500"
-              title="Export Drawing"
-            >
-              💾
-            </button>
-            {timeLapse.length > 0 && (
-              <button
-                onClick={playTimeLapse}
-                disabled={isPlaying}
-                className="drawing-tool w-full text-green-500"
-                title="Play Time-lapse"
-              >
-                {isPlaying ? '⏸️' : '▶️'}
-              </button>
-            )}
-            
-            {/* AI Assistant Toggle */}
-            {aiInitialized && (
-              <button
-                onClick={toggleAiAssistant}
-                className={`drawing-tool w-full ${showAiAssistant ? 'bg-blue-100 border-blue-500' : 'text-purple-500'}`}
-                title="AI Assistant"
-              >
-                🤖
-              </button>
-            )}
+          </div>
           </div>
         </div>
       </div>
