@@ -34,71 +34,74 @@ const LoginPage = ({ onLogin }) => {
   };
 
   return (
-    <div className="min-h-screen relative flex items-center justify-center overflow-hidden"
-         style={{
-           backgroundImage: 'url(/draw-a-tale-logo.svg)',
-           backgroundSize: 'contain',
-           backgroundPosition: 'center',
-           backgroundRepeat: 'no-repeat',
-           backgroundColor: '#000000'
-         }}>
-      {/* Semi-transparent overlay */}
-      <div className="absolute inset-0 bg-black bg-opacity-10"></div>
+    <div className="min-h-screen flex">
+      {/* Left side - Logo */}
+      <div className="flex-1 bg-black flex items-center justify-center p-8">
+        <div className="max-w-md w-full">
+          <img 
+            src="/draw-a-tale-logo.svg" 
+            alt="Draw-a-Tale Logo" 
+            className="w-full h-auto"
+          />
+        </div>
+      </div>
       
-      {/* Transparent form container */}
-      <div className="relative z-10 w-full max-w-md mx-4">
-        <div className="bg-white bg-opacity-10 backdrop-blur-md rounded-xl shadow-2xl border border-white border-opacity-20 overflow-hidden p-8">
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="form-group">
-              <label htmlFor="email" className="block text-sm font-medium text-white mb-2 drop-shadow-lg">Email</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                className="w-full px-4 py-3 rounded-lg border-2 border-white border-opacity-30 bg-white bg-opacity-20 text-white placeholder-gray-200 focus:border-white focus:border-opacity-60 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-30 transition-all duration-200 text-lg backdrop-blur-sm"
-                placeholder="Enter your email"
-                required
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="password" className="block text-sm font-medium text-white mb-2 drop-shadow-lg">Password</label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                className="w-full px-4 py-3 rounded-lg border-2 border-white border-opacity-30 bg-white bg-opacity-20 text-white placeholder-gray-200 focus:border-white focus:border-opacity-60 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-30 transition-all duration-200 text-lg backdrop-blur-sm"
-                placeholder="Enter your password"
-                required
-              />
-            </div>
-
-            {error && (
-              <div className="text-red-200 text-center text-sm bg-red-500 bg-opacity-30 p-3 rounded-lg border border-red-400 border-opacity-40 backdrop-blur-sm">
-                {error}
+      {/* Right side - Login Form */}
+      <div className="flex-1 bg-white flex items-center justify-center p-8">
+        <div className="w-full max-w-md">
+          <div className="bg-white rounded-xl shadow-2xl border border-gray-200 p-8">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="form-group">
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 rounded-lg border-2 border-gray-300 bg-white text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200 transition-all duration-200 text-lg"
+                  placeholder="Enter your email"
+                  required
+                />
               </div>
-            )}
 
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full px-6 py-3 rounded-full font-semibold text-lg transition-all duration-200 hover:scale-105 active:scale-95 focus:outline-none focus:ring-4 focus:ring-opacity-50 shadow-lg hover:shadow-xl bg-white bg-opacity-90 text-gray-800 hover:bg-opacity-100 focus:ring-white"
-            >
-              {loading ? 'Signing In...' : 'Sign In'}
-            </button>
-          </form>
+              <div className="form-group">
+                <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 rounded-lg border-2 border-gray-300 bg-white text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200 transition-all duration-200 text-lg"
+                  placeholder="Enter your password"
+                  required
+                />
+              </div>
 
-          <div className="text-center mt-6">
-            <p className="text-white drop-shadow-lg">
-              Don't have an account?{' '}
-              <Link to="/register" className="text-yellow-200 hover:text-yellow-100 font-semibold transition-colors drop-shadow-lg underline">
-                Register here
-              </Link>
-            </p>
+              {error && (
+                <div className="text-red-600 text-center text-sm bg-red-50 p-3 rounded-lg border border-red-200">
+                  {error}
+                </div>
+              )}
+
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full px-6 py-3 rounded-full font-semibold text-lg transition-all duration-200 hover:scale-105 active:scale-95 focus:outline-none focus:ring-4 focus:ring-opacity-50 shadow-lg hover:shadow-xl bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-300"
+              >
+                {loading ? 'Signing In...' : 'Sign In'}
+              </button>
+            </form>
+
+            <div className="text-center mt-6">
+              <p className="text-gray-600">
+                Don't have an account?{' '}
+                <Link to="/register" className="text-blue-600 hover:text-blue-500 font-semibold transition-colors underline">
+                  Register here
+                </Link>
+              </p>
+            </div>
           </div>
         </div>
       </div>
