@@ -555,8 +555,8 @@ const DrawingCanvas = ({ user }) => {
             <div className="flex items-center space-x-2">
               <button
                 onClick={() => navigate('/dashboard')}
-                className="text-xs px-2 py-1 rounded bg-yellow-500 text-white hover:bg-yellow-600 transition-all duration-200"
-                style={{ fontSize: '10px' }}
+                className="text-sm px-3 py-2 rounded bg-yellow-500 text-white hover:bg-yellow-600 transition-all duration-200"
+                style={{ fontSize: '12px' }}
               >
                 ← Back
               </button>
@@ -565,7 +565,7 @@ const DrawingCanvas = ({ user }) => {
               <button
                 onClick={undo}
                 disabled={currentStep === 0}
-                className="w-6 h-6 flex items-center justify-center rounded border border-gray-300 hover:border-gray-500 disabled:opacity-50 bg-white text-xs"
+                className="w-10 h-10 flex items-center justify-center rounded border border-gray-300 hover:border-gray-500 disabled:opacity-50 bg-white text-sm"
                 title="Undo"
               >
                 ↶
@@ -573,21 +573,21 @@ const DrawingCanvas = ({ user }) => {
               <button
                 onClick={redo}
                 disabled={currentStep === drawingHistory.length - 1}
-                className="w-6 h-6 flex items-center justify-center rounded border border-gray-300 hover:border-gray-500 disabled:opacity-50 bg-white text-xs"
+                className="w-10 h-10 flex items-center justify-center rounded border border-gray-300 hover:border-gray-500 disabled:opacity-50 bg-white text-sm"
                 title="Redo"
               >
                 ↷
               </button>
               <button
                 onClick={clearCanvas}
-                className="w-6 h-6 flex items-center justify-center rounded border border-gray-300 hover:border-gray-500 bg-white text-red-500 text-xs"
+                className="w-10 h-10 flex items-center justify-center rounded border border-gray-300 hover:border-gray-500 bg-white text-red-500 text-sm"
                 title="Clear Canvas"
               >
                 🗑️
               </button>
               <button
                 onClick={exportCanvas}
-                className="w-6 h-6 flex items-center justify-center rounded border border-gray-300 hover:border-gray-500 bg-white text-blue-500 text-xs"
+                className="w-10 h-10 flex items-center justify-center rounded border border-gray-300 hover:border-gray-500 bg-white text-blue-500 text-sm"
                 title="Export Drawing"
               >
                 💾
@@ -596,7 +596,7 @@ const DrawingCanvas = ({ user }) => {
                 <button
                   onClick={playTimeLapse}
                   disabled={isPlaying}
-                  className="w-6 h-6 flex items-center justify-center rounded border border-gray-300 hover:border-gray-500 bg-white text-green-500 text-xs"
+                  className="w-10 h-10 flex items-center justify-center rounded border border-gray-300 hover:border-gray-500 bg-white text-green-500 text-sm"
                   title="Play Time-lapse"
                 >
                   {isPlaying ? '⏸️' : '▶️'}
