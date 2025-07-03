@@ -99,12 +99,12 @@ const Dashboard = ({ user, onLogout }) => {
                 to={item.path}
                 className="dashboard-card hover:shadow-2xl"
               >
-                <div className={`dashboard-card-icon ${item.color} text-white rounded-full w-20 h-20 flex items-center justify-center text-3xl`}>
+                <div className={`dashboard-card-icon text-white rounded-full w-20 h-20 flex items-center justify-center text-3xl font-bold`} style={{ backgroundColor: '#FFC107' }}>
                   {item.icon}
                 </div>
                 <h3 className="dashboard-card-title">{item.title}</h3>
                 <p className="dashboard-card-description">{item.description}</p>
-                <div className="btn-child btn-primary text-sm px-4 py-2">
+                <div className="text-sm px-4 py-2 rounded-lg font-bold text-black hover:opacity-80 transition-all duration-200" style={{ backgroundColor: '#FFC107' }}>
                   Get Started
                 </div>
               </Link>
