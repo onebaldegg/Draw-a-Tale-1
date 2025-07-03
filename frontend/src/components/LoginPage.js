@@ -37,43 +37,50 @@ const LoginPage = ({ onLogin }) => {
     <div className="page-wrapper">
       <div className="container py-16">
         <div className="form-container">
-          <div className="form-card">
+          {/* Logo at top, centered */}
+          <div className="text-center mb-8">
+            <div className="flex justify-center mb-6">
+              <DrawATaleLogo width={280} showTagline={true} />
+            </div>
+          </div>
+          
+          {/* Dark form container */}
+          <div className="bg-gray-800 rounded-xl shadow-2xl border border-gray-700 overflow-hidden p-8">
             <div className="text-center mb-8">
-              <div className="flex justify-center mb-4">
-                <DrawATaleLogo width={250} showTagline={true} />
-              </div>
-              <p className="text-gray-600">Welcome back to your creative journey!</p>
+              <p className="text-gray-300">Welcome back to your creative journey!</p>
             </div>
             
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="form-group">
-                <label htmlFor="email" className="form-label">Email</label>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">Email</label>
                 <input
                   type="email"
                   id="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="input-field"
+                  className="w-full px-4 py-3 rounded-lg border-2 border-gray-600 bg-gray-700 text-white placeholder-gray-400 focus:border-draw-primary focus:outline-none focus:ring-2 focus:ring-draw-primary focus:ring-opacity-20 transition-all duration-200 text-lg"
+                  placeholder="Enter your email"
                   required
                 />
               </div>
 
               <div className="form-group">
-                <label htmlFor="password" className="form-label">Password</label>
+                <label htmlFor="password" className="block text-sm font-medium text-gray-300 mb-2">Password</label>
                 <input
                   type="password"
                   id="password"
                   name="password"
                   value={formData.password}
                   onChange={handleChange}
-                  className="input-field"
+                  className="w-full px-4 py-3 rounded-lg border-2 border-gray-600 bg-gray-700 text-white placeholder-gray-400 focus:border-draw-primary focus:outline-none focus:ring-2 focus:ring-draw-primary focus:ring-opacity-20 transition-all duration-200 text-lg"
+                  placeholder="Enter your password"
                   required
                 />
               </div>
 
               {error && (
-                <div className="form-error text-center">
+                <div className="text-red-400 text-center text-sm bg-red-900 bg-opacity-20 p-3 rounded-lg border border-red-500">
                   {error}
                 </div>
               )}
@@ -88,9 +95,9 @@ const LoginPage = ({ onLogin }) => {
             </form>
 
             <div className="text-center mt-6">
-              <p className="text-gray-600">
+              <p className="text-gray-400">
                 Don't have an account?{' '}
-                <Link to="/register" className="text-draw-primary hover:underline font-semibold">
+                <Link to="/register" className="text-draw-primary hover:text-indigo-400 font-semibold transition-colors">
                   Register here
                 </Link>
               </p>
