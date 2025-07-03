@@ -1,84 +1,60 @@
-<svg width="800" height="400" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
-  <!-- Black background -->
-  <rect width="800" height="400" fill="#000000"/>
-  
-  <!-- Paint brush handle (orange/brown gradient) -->
+<svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="600" height="300" fill="#000"/>
   <defs>
-    <linearGradient id="handleGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#D2691E"/>
-      <stop offset="50%" stop-color="#CD853F"/>
-      <stop offset="100%" stop-color="#A0522D"/>
+    <linearGradient id="brush" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ff1493"/>
+      <stop offset="25%" stop-color="#ffd700"/>
+      <stop offset="50%" stop-color="#32cd32"/>
+      <stop offset="75%" stop-color="#00bfff"/>
+      <stop offset="100%" stop-color="#9370db"/>
     </linearGradient>
-    
-    <radialGradient id="bristleGradient" cx="50%" cy="20%" r="80%">
-      <stop offset="0%" stop-color="#FF1493"/>
-      <stop offset="15%" stop-color="#FF69B4"/>
-      <stop offset="30%" stop-color="#FFD700"/>
-      <stop offset="45%" stop-color="#32CD32"/>
-      <stop offset="60%" stop-color="#00BFFF"/>
-      <stop offset="75%" stop-color="#9370DB"/>
-      <stop offset="90%" stop-color="#FF6347"/>
-      <stop offset="100%" stop-color="#FF1493"/>
-    </radialGradient>
-    
-    <radialGradient id="swirlGradient" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#FF69B4"/>
-      <stop offset="25%" stop-color="#FFD700"/>
-      <stop offset="50%" stop-color="#00BFFF"/>
-      <stop offset="75%" stop-color="#9370DB"/>
-      <stop offset="100%" stop-color="#FF1493"/>
+    <radialGradient id="swirl">
+      <stop offset="0%" stop-color="#ff69b4"/>
+      <stop offset="33%" stop-color="#ffd700"/>
+      <stop offset="66%" stop-color="#00bfff"/>
+      <stop offset="100%" stop-color="#9370db"/>
     </radialGradient>
   </defs>
   
-  <!-- Paint brush wooden handle -->
-  <ellipse cx="87" cy="280" rx="8" ry="60" fill="url(#handleGradient)"/>
+  <!-- Brush handle -->
+  <rect x="45" y="180" width="12" height="80" fill="#cd853f" rx="2"/>
   
-  <!-- Metal ferrule (silver band) -->
-  <rect x="79" y="210" width="16" height="18" fill="#C0C0C0" rx="2"/>
+  <!-- Metal ferrule -->
+  <rect x="43" y="170" width="16" height="15" fill="#c0c0c0" rx="1"/>
   
-  <!-- Colorful paint bristles -->
-  <ellipse cx="87" cy="175" rx="18" ry="40" fill="url(#bristleGradient)"/>
+  <!-- Brush bristles -->
+  <ellipse cx="51" cy="145" rx="15" ry="30" fill="url(#brush)"/>
   
-  <!-- Paint drops and splashes -->
-  <circle cx="125" cy="140" r="9" fill="#FF69B4" opacity="0.9"/>
-  <circle cx="145" cy="170" r="7" fill="#FFD700" opacity="0.8"/>
-  <circle cx="115" cy="190" r="8" fill="#32CD32" opacity="0.9"/>
-  <circle cx="135" cy="120" r="6" fill="#00BFFF" opacity="0.8"/>
-  <circle cx="65" cy="150" r="5" fill="#9370DB" opacity="0.7"/>
-  <circle cx="155" cy="155" r="10" fill="#FF6347" opacity="0.9"/>
-  <circle cx="50" cy="180" r="4" fill="#FF1493" opacity="0.6"/>
+  <!-- Paint splashes -->
+  <circle cx="80" cy="120" r="6" fill="#ff69b4"/>
+  <circle cx="95" cy="140" r="4" fill="#ffd700"/>
+  <circle cx="75" cy="160" r="5" fill="#32cd32"/>
+  <circle cx="90" cy="100" r="3" fill="#00bfff"/>
+  <circle cx="25" cy="130" r="3" fill="#9370db"/>
   
-  <!-- Paint swirl on the right -->
-  <g transform="translate(680, 180)">
-    <circle cx="0" cy="0" r="32" fill="url(#swirlGradient)" opacity="0.8"/>
-    <circle cx="0" cy="0" r="25" fill="none" stroke="#FFD700" stroke-width="5" opacity="0.9"/>
-    <circle cx="0" cy="0" r="18" fill="none" stroke="#FF69B4" stroke-width="4" opacity="0.8"/>
-    <circle cx="0" cy="0" r="12" fill="none" stroke="#00BFFF" stroke-width="3" opacity="0.7"/>
+  <!-- Paint swirl -->
+  <g transform="translate(520,150)">
+    <circle r="25" fill="url(#swirl)" opacity="0.8"/>
+    <circle r="18" fill="none" stroke="#ffd700" stroke-width="3" opacity="0.9"/>
+    <circle r="12" fill="none" stroke="#ff69b4" stroke-width="2" opacity="0.8"/>
   </g>
   
-  <!-- Smaller paint drops around the swirl -->
-  <circle cx="620" cy="140" r="6" fill="#FF69B4" opacity="0.7"/>
-  <circle cx="740" cy="160" r="5" fill="#FFD700" opacity="0.8"/>
-  <circle cx="660" cy="220" r="7" fill="#32CD32" opacity="0.6"/>
-  <circle cx="720" cy="130" r="4" fill="#9370DB" opacity="0.7"/>
+  <!-- More paint drops -->
+  <circle cx="480" cy="110" r="4" fill="#ff69b4" opacity="0.7"/>
+  <circle cx="560" cy="130" r="3" fill="#ffd700" opacity="0.8"/>
+  <circle cx="500" cy="190" r="4" fill="#32cd32" opacity="0.6"/>
   
-  <!-- White sparkles/stars -->
-  <circle cx="200" cy="100" r="2.5" fill="#FFFFFF" opacity="0.9"/>
-  <circle cx="280" cy="280" r="2" fill="#FFFFFF" opacity="0.8"/>
-  <circle cx="590" cy="90" r="2.5" fill="#FFFFFF" opacity="0.9"/>
-  <circle cx="750" cy="290" r="2" fill="#FFFFFF" opacity="0.8"/>
-  <circle cx="350" cy="120" r="1.5" fill="#FFFFFF" opacity="0.7"/>
-  <circle cx="520" cy="320" r="1.5" fill="#FFFFFF" opacity="0.7"/>
+  <!-- Sparkles -->
+  <circle cx="150" cy="80" r="1.5" fill="#fff"/>
+  <circle cx="200" cy="220" r="1" fill="#fff"/>
+  <circle cx="450" cy="70" r="1.5" fill="#fff"/>
+  <circle cx="570" cy="230" r="1" fill="#fff"/>
   
-  <!-- Main title with purple outline -->
-  <text x="400" y="240" font-family="Arial Black, sans-serif" font-size="52" font-weight="900" 
-        text-anchor="middle" fill="#FFFFFF" stroke="#8A2BE2" stroke-width="3">
-    DRAW-a-TALE
-  </text>
+  <!-- Main text -->
+  <text x="300" y="180" text-anchor="middle" fill="#fff" stroke="#8a2be2" stroke-width="2" 
+        font-family="Arial Black" font-size="40" font-weight="900">DRAW-a-TALE</text>
   
-  <!-- Tagline in elegant script -->
-  <text x="400" y="275" font-family="Brush Script MT, cursive" font-size="22" font-style="italic"
-        text-anchor="middle" fill="#FFFFFF" opacity="0.95">
-    Begin your Artist's Journey
-  </text>
+  <!-- Tagline -->
+  <text x="300" y="205" text-anchor="middle" fill="#fff" 
+        font-family="cursive" font-size="16" font-style="italic">Begin your Artist's Journey</text>
 </svg>
