@@ -34,74 +34,69 @@ const LoginPage = ({ onLogin }) => {
   };
 
   return (
-    <div className="page-wrapper">
-      <div className="container py-16">
-        <div className="form-container">
-          {/* Logo at top, centered */}
-          <div className="text-center mb-8">
-            <div className="flex justify-center mb-6">
-              <DrawATaleLogo width={280} showTagline={true} />
+    <div className="min-h-screen relative flex items-center justify-center overflow-hidden">
+      {/* Logo as wallpaper background */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <DrawATaleLogo width="80vw" height="80vh" showTagline={true} />
+      </div>
+      
+      {/* Semi-transparent overlay */}
+      <div className="absolute inset-0 bg-black bg-opacity-20"></div>
+      
+      {/* Transparent form container */}
+      <div className="relative z-10 w-full max-w-md mx-4">
+        <div className="bg-white bg-opacity-10 backdrop-blur-md rounded-xl shadow-2xl border border-white border-opacity-20 overflow-hidden p-8">
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="form-group">
+              <label htmlFor="email" className="block text-sm font-medium text-white mb-2 drop-shadow-lg">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                className="w-full px-4 py-3 rounded-lg border-2 border-white border-opacity-30 bg-white bg-opacity-20 text-white placeholder-gray-200 focus:border-white focus:border-opacity-60 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-30 transition-all duration-200 text-lg backdrop-blur-sm"
+                placeholder="Enter your email"
+                required
+              />
             </div>
-          </div>
-          
-          {/* Dark form container */}
-          <div className="bg-gray-800 rounded-xl shadow-2xl border border-gray-700 overflow-hidden p-8">
-            <div className="text-center mb-8">
-              <p className="text-gray-300">Welcome back to your creative journey!</p>
+
+            <div className="form-group">
+              <label htmlFor="password" className="block text-sm font-medium text-white mb-2 drop-shadow-lg">Password</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                className="w-full px-4 py-3 rounded-lg border-2 border-white border-opacity-30 bg-white bg-opacity-20 text-white placeholder-gray-200 focus:border-white focus:border-opacity-60 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-30 transition-all duration-200 text-lg backdrop-blur-sm"
+                placeholder="Enter your password"
+                required
+              />
             </div>
-            
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="form-group">
-                <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg border-2 border-gray-600 bg-gray-700 text-white placeholder-gray-400 focus:border-draw-primary focus:outline-none focus:ring-2 focus:ring-draw-primary focus:ring-opacity-20 transition-all duration-200 text-lg"
-                  placeholder="Enter your email"
-                  required
-                />
+
+            {error && (
+              <div className="text-red-200 text-center text-sm bg-red-500 bg-opacity-30 p-3 rounded-lg border border-red-400 border-opacity-40 backdrop-blur-sm">
+                {error}
               </div>
+            )}
 
-              <div className="form-group">
-                <label htmlFor="password" className="block text-sm font-medium text-gray-300 mb-2">Password</label>
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg border-2 border-gray-600 bg-gray-700 text-white placeholder-gray-400 focus:border-draw-primary focus:outline-none focus:ring-2 focus:ring-draw-primary focus:ring-opacity-20 transition-all duration-200 text-lg"
-                  placeholder="Enter your password"
-                  required
-                />
-              </div>
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full px-6 py-3 rounded-full font-semibold text-lg transition-all duration-200 hover:scale-105 active:scale-95 focus:outline-none focus:ring-4 focus:ring-opacity-50 shadow-lg hover:shadow-xl bg-white bg-opacity-90 text-gray-800 hover:bg-opacity-100 focus:ring-white"
+            >
+              {loading ? 'Signing In...' : 'Sign In'}
+            </button>
+          </form>
 
-              {error && (
-                <div className="text-red-400 text-center text-sm bg-red-900 bg-opacity-20 p-3 rounded-lg border border-red-500">
-                  {error}
-                </div>
-              )}
-
-              <button
-                type="submit"
-                disabled={loading}
-                className="btn-child btn-primary w-full"
-              >
-                {loading ? 'Signing In...' : 'Sign In'}
-              </button>
-            </form>
-
-            <div className="text-center mt-6">
-              <p className="text-gray-400">
-                Don't have an account?{' '}
-                <Link to="/register" className="text-draw-primary hover:text-indigo-400 font-semibold transition-colors">
-                  Register here
-                </Link>
-              </p>
-            </div>
+          <div className="text-center mt-6">
+            <p className="text-white drop-shadow-lg">
+              Don't have an account?{' '}
+              <Link to="/register" className="text-yellow-200 hover:text-yellow-100 font-semibold transition-colors drop-shadow-lg underline">
+                Register here
+              </Link>
+            </p>
           </div>
         </div>
       </div>
