@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { questService } from '../services/questService';
 import { storyService } from '../services/storyService';
 import LoadingSpinner from './LoadingSpinner';
+import DrawATaleLogo from './DrawATaleLogo';
 
 const QuestMap = ({ user }) => {
   const [quests, setQuests] = useState([]);
