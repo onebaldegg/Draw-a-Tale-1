@@ -61,7 +61,7 @@ const RegisterPage = ({ onLogin }) => {
     <div className="min-h-screen flex bg-black">
       {/* Left side - Logo */}
       <div className="flex-1 bg-black flex items-center justify-center p-8">
-        <div className="max-w-lg w-full">
+        <div className="max-w-2xl w-full">
           <img 
             src="https://i.imgur.com/3QxT3zD.png" 
             alt="Draw-a-Tale Logo" 
