@@ -2,63 +2,83 @@
   <!-- Black background -->
   <rect width="800" height="400" fill="#000000"/>
   
-  <!-- Paint brush handle (orange/brown wood) -->
-  <rect x="80" y="220" width="15" height="120" fill="#CD853F" rx="3"/>
-  
-  <!-- Brush ferrule (silver metal band) -->
-  <rect x="78" y="205" width="19" height="20" fill="#C0C0C0" rx="2"/>
-  
-  <!-- Brush bristles (colorful gradient) -->
+  <!-- Paint brush handle (orange/brown gradient) -->
   <defs>
-    <radialGradient id="bristleGradient" cx="50%" cy="30%" r="70%">
+    <linearGradient id="handleGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#D2691E"/>
+      <stop offset="50%" stop-color="#CD853F"/>
+      <stop offset="100%" stop-color="#A0522D"/>
+    </linearGradient>
+    
+    <radialGradient id="bristleGradient" cx="50%" cy="20%" r="80%">
       <stop offset="0%" stop-color="#FF1493"/>
-      <stop offset="20%" stop-color="#FF69B4"/>
-      <stop offset="40%" stop-color="#FFD700"/>
-      <stop offset="60%" stop-color="#00CED1"/>
-      <stop offset="80%" stop-color="#9370DB"/>
-      <stop offset="100%" stop-color="#FF6347"/>
+      <stop offset="15%" stop-color="#FF69B4"/>
+      <stop offset="30%" stop-color="#FFD700"/>
+      <stop offset="45%" stop-color="#32CD32"/>
+      <stop offset="60%" stop-color="#00BFFF"/>
+      <stop offset="75%" stop-color="#9370DB"/>
+      <stop offset="90%" stop-color="#FF6347"/>
+      <stop offset="100%" stop-color="#FF1493"/>
+    </radialGradient>
+    
+    <radialGradient id="swirlGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FF69B4"/>
+      <stop offset="25%" stop-color="#FFD700"/>
+      <stop offset="50%" stop-color="#00BFFF"/>
+      <stop offset="75%" stop-color="#9370DB"/>
+      <stop offset="100%" stop-color="#FF1493"/>
     </radialGradient>
   </defs>
   
-  <!-- Main brush bristle area -->
-  <ellipse cx="87" cy="170" rx="20" ry="45" fill="url(#bristleGradient)"/>
+  <!-- Paint brush wooden handle -->
+  <ellipse cx="87" cy="280" rx="8" ry="60" fill="url(#handleGradient)"/>
   
-  <!-- Paint splashes around brush -->
-  <circle cx="120" cy="150" r="8" fill="#FF69B4"/>
-  <circle cx="140" cy="180" r="6" fill="#FFD700"/>
-  <circle cx="110" cy="200" r="7" fill="#00CED1"/>
-  <circle cx="130" cy="130" r="5" fill="#9370DB"/>
-  <circle cx="60" cy="160" r="4" fill="#FF6347"/>
-  <circle cx="150" cy="160" r="9" fill="#FF1493"/>
+  <!-- Metal ferrule (silver band) -->
+  <rect x="79" y="210" width="16" height="18" fill="#C0C0C0" rx="2"/>
+  
+  <!-- Colorful paint bristles -->
+  <ellipse cx="87" cy="175" rx="18" ry="40" fill="url(#bristleGradient)"/>
+  
+  <!-- Paint drops and splashes -->
+  <circle cx="125" cy="140" r="9" fill="#FF69B4" opacity="0.9"/>
+  <circle cx="145" cy="170" r="7" fill="#FFD700" opacity="0.8"/>
+  <circle cx="115" cy="190" r="8" fill="#32CD32" opacity="0.9"/>
+  <circle cx="135" cy="120" r="6" fill="#00BFFF" opacity="0.8"/>
+  <circle cx="65" cy="150" r="5" fill="#9370DB" opacity="0.7"/>
+  <circle cx="155" cy="155" r="10" fill="#FF6347" opacity="0.9"/>
+  <circle cx="50" cy="180" r="4" fill="#FF1493" opacity="0.6"/>
   
   <!-- Paint swirl on the right -->
   <g transform="translate(680, 180)">
-    <circle cx="0" cy="0" r="35" fill="none" stroke="#FF69B4" stroke-width="6" opacity="0.8"/>
-    <circle cx="0" cy="0" r="25" fill="none" stroke="#FFD700" stroke-width="5" opacity="0.7"/>
-    <circle cx="0" cy="0" r="15" fill="none" stroke="#00CED1" stroke-width="4" opacity="0.6"/>
-    <circle cx="0" cy="0" r="8" fill="#9370DB" opacity="0.9"/>
+    <circle cx="0" cy="0" r="32" fill="url(#swirlGradient)" opacity="0.8"/>
+    <circle cx="0" cy="0" r="25" fill="none" stroke="#FFD700" stroke-width="5" opacity="0.9"/>
+    <circle cx="0" cy="0" r="18" fill="none" stroke="#FF69B4" stroke-width="4" opacity="0.8"/>
+    <circle cx="0" cy="0" r="12" fill="none" stroke="#00BFFF" stroke-width="3" opacity="0.7"/>
   </g>
   
-  <!-- Additional paint drops -->
-  <circle cx="600" cy="120" r="6" fill="#FF69B4" opacity="0.7"/>
-  <circle cx="720" cy="140" r="4" fill="#FFD700" opacity="0.8"/>
-  <circle cx="650" cy="240" r="5" fill="#00CED1" opacity="0.6"/>
+  <!-- Smaller paint drops around the swirl -->
+  <circle cx="620" cy="140" r="6" fill="#FF69B4" opacity="0.7"/>
+  <circle cx="740" cy="160" r="5" fill="#FFD700" opacity="0.8"/>
+  <circle cx="660" cy="220" r="7" fill="#32CD32" opacity="0.6"/>
+  <circle cx="720" cy="130" r="4" fill="#9370DB" opacity="0.7"/>
   
-  <!-- White sparkles -->
-  <circle cx="200" cy="100" r="2" fill="#FFFFFF"/>
-  <circle cx="250" cy="280" r="1.5" fill="#FFFFFF"/>
-  <circle cx="600" cy="80" r="2" fill="#FFFFFF"/>
-  <circle cx="750" cy="300" r="1.5" fill="#FFFFFF"/>
+  <!-- White sparkles/stars -->
+  <circle cx="200" cy="100" r="2.5" fill="#FFFFFF" opacity="0.9"/>
+  <circle cx="280" cy="280" r="2" fill="#FFFFFF" opacity="0.8"/>
+  <circle cx="590" cy="90" r="2.5" fill="#FFFFFF" opacity="0.9"/>
+  <circle cx="750" cy="290" r="2" fill="#FFFFFF" opacity="0.8"/>
+  <circle cx="350" cy="120" r="1.5" fill="#FFFFFF" opacity="0.7"/>
+  <circle cx="520" cy="320" r="1.5" fill="#FFFFFF" opacity="0.7"/>
   
-  <!-- Main title text with white outline -->
-  <text x="400" y="240" font-family="Arial Black, sans-serif" font-size="56" font-weight="900" 
-        text-anchor="middle" fill="#FFFFFF" stroke="#8A2BE2" stroke-width="2">
+  <!-- Main title with purple outline -->
+  <text x="400" y="240" font-family="Arial Black, sans-serif" font-size="52" font-weight="900" 
+        text-anchor="middle" fill="#FFFFFF" stroke="#8A2BE2" stroke-width="3">
     DRAW-a-TALE
   </text>
   
-  <!-- Tagline in cursive script -->
-  <text x="400" y="280" font-family="Brush Script MT, cursive" font-size="24" font-style="italic"
-        text-anchor="middle" fill="#FFFFFF" opacity="0.9">
+  <!-- Tagline in elegant script -->
+  <text x="400" y="275" font-family="Brush Script MT, cursive" font-size="22" font-style="italic"
+        text-anchor="middle" fill="#FFFFFF" opacity="0.95">
     Begin your Artist's Journey
   </text>
 </svg>
