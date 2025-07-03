@@ -606,49 +606,101 @@ const DrawingCanvas = ({ user }) => {
       <div className="drawing-canvas-area">
         {/* Enhanced Header */}
         <div className="drawing-canvas-header">
-          <div className="flex items-center space-x-4">
-            <button
-              onClick={() => navigate('/dashboard')}
-              className="btn-child btn-secondary text-sm px-4 py-2"
-            >
-              ← Back to Dashboard
-            </button>
-            <input
-              type="text"
-              placeholder={questContext ? `Quest: ${questContext.questTitle}` : 
-                           storyContext ? `Story: ${storyContext.story.title}` :
-                           "Enter drawing title..."}
-              value={drawingTitle}
-              onChange={(e) => setDrawingTitle(e.target.value)}
-              className="input-field flex-1 max-w-md"
-            />
-            {questContext && (
-              <div className="text-sm text-blue-600 bg-blue-50 px-3 py-1 rounded-full">
-                🎯 Quest Mode
-              </div>
-            )}
-            {storyContext && (
-              <div className="text-sm text-purple-600 bg-purple-50 px-3 py-1 rounded-full">
-                📚 Story Mode
-              </div>
-            )}
-          </div>
-          <div className="flex items-center space-x-4">
-            <div className="text-sm text-gray-600">
-              Tool: <span className="font-semibold">{tool}</span> | 
-              Size: <span className="font-semibold">{brushSize}px</span> |
-              Steps: <span className="font-semibold">{timeLapse.length}</span>
-              {aiInitialized && (
-                <span className="ml-2 text-green-600">🤖 AI Active</span>
+          <div className="flex items-center justify-between w-full">
+            {/* Left side - Back button and Actions */}
+            <div className="flex items-center space-x-2">
+              <button
+                onClick={() => navigate('/dashboard')}
+                className="text-xs px-2 py-1 rounded bg-yellow-500 text-white hover:bg-yellow-600 transition-all duration-200"
+                style={{ fontSize: '10px' }}
+              >
+                ← Back
+              </button>
+              
+              {/* Action Buttons */}
+              <button
+                onClick={undo}
+                disabled={currentStep === 0}
+                className="w-6 h-6 flex items-center justify-center rounded border border-gray-300 hover:border-gray-500 disabled:opacity-50 bg-white text-xs"
+                title="Undo"
+              >
+                ↶
+              </button>
+              <button
+                onClick={redo}
+                disabled={currentStep === drawingHistory.length - 1}
+                className="w-6 h-6 flex items-center justify-center rounded border border-gray-300 hover:border-gray-500 disabled:opacity-50 bg-white text-xs"
+                title="Redo"
+              >
+                ↷
+              </button>
+              <button
+                onClick={clearCanvas}
+                className="w-6 h-6 flex items-center justify-center rounded border border-gray-300 hover:border-gray-500 bg-white text-red-500 text-xs"
+                title="Clear Canvas"
+              >
+                🗑️
+              </button>
+              <button
+                onClick={exportCanvas}
+                className="w-6 h-6 flex items-center justify-center rounded border border-gray-300 hover:border-gray-500 bg-white text-blue-500 text-xs"
+                title="Export Drawing"
+              >
+                💾
+              </button>
+              {timeLapse.length > 0 && (
+                <button
+                  onClick={playTimeLapse}
+                  disabled={isPlaying}
+                  className="w-6 h-6 flex items-center justify-center rounded border border-gray-300 hover:border-gray-500 bg-white text-green-500 text-xs"
+                  title="Play Time-lapse"
+                >
+                  {isPlaying ? '⏸️' : '▶️'}
+                </button>
               )}
             </div>
-            <button
-              onClick={saveDrawing}
-              disabled={isLoading}
-              className="btn-child btn-primary text-sm px-4 py-2"
-            >
-              {isLoading ? 'Saving...' : '💾 Save Drawing'}
-            </button>
+
+            {/* Center - Tool Info (Stacked) */}
+            <div className="text-xs text-gray-600 text-center">
+              <div>Tool: <span className="font-semibold">{tool}</span></div>
+              <div>Size: <span className="font-semibold">{brushSize}px</span></div>
+              <div>Steps: <span className="font-semibold">{timeLapse.length}</span></div>
+              {aiInitialized && (
+                <div className="text-green-600">🤖 AI Active</div>
+              )}
+            </div>
+
+            {/* Right side - Title input and Save button */}
+            <div className="flex items-center space-x-2">
+              <input
+                type="text"
+                placeholder={questContext ? `Quest: ${questContext.questTitle}` : 
+                             storyContext ? `Story: ${storyContext.story.title}` :
+                             "Enter drawing title..."}
+                value={drawingTitle}
+                onChange={(e) => setDrawingTitle(e.target.value)}
+                className="text-xs px-2 py-1 border border-gray-300 rounded w-40"
+              />
+              <button
+                onClick={saveDrawing}
+                disabled={isLoading}
+                className="text-xs px-2 py-1 rounded bg-blue-600 text-white hover:bg-blue-700 transition-all duration-200"
+                style={{ fontSize: '10px' }}
+              >
+                {isLoading ? 'Saving...' : '💾 Save'}
+              </button>
+              
+              {questContext && (
+                <div className="text-xs text-blue-600 bg-blue-50 px-2 py-1 rounded-full">
+                  🎯 Quest
+                </div>
+              )}
+              {storyContext && (
+                <div className="text-xs text-purple-600 bg-purple-50 px-2 py-1 rounded-full">
+                  📚 Story
+                </div>
+              )}
+            </div>
           </div>
         </div>
 
