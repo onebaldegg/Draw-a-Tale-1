@@ -138,7 +138,9 @@ const Gallery = ({ user }) => {
                 />
               ) : (
                 <div className="text-gray-500 text-center">
-                  <div className="text-6xl mb-4">🎨</div>
+                  <div className="mb-4 flex justify-center">
+                    <DrawATaleLogo width={80} height={80} variant="icon-only" />
+                  </div>
                   <p>Drawing preview not available</p>
                 </div>
               )}
