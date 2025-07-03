@@ -615,14 +615,25 @@ const DrawingCanvas = ({ user }) => {
               )}
             </div>
 
-            {/* Center - Tool Info (Stacked) */}
-            <div className="text-xs text-gray-600 text-center">
-              <div>Tool: <span className="font-semibold">{tool}</span></div>
-              <div>Size: <span className="font-semibold">{brushSize}px</span></div>
-              <div>Steps: <span className="font-semibold">{timeLapse.length}</span></div>
-              {aiInitialized && (
-                <div className="text-green-600">🤖 AI Active</div>
-              )}
+            {/* Center - Tool Info (Stacked) and AI Assistant */}
+            <div className="flex items-center space-x-4">
+              <div className="text-xs text-gray-600 text-center">
+                <div>Tool: <span className="font-semibold">{tool}</span></div>
+                <div>Size: <span className="font-semibold">{brushSize}px</span></div>
+                <div>Steps: <span className="font-semibold">{timeLapse.length}</span></div>
+                {aiInitialized && (
+                  <div className="text-green-600">🤖 AI Active</div>
+                )}
+              </div>
+              
+              {/* AI Assistant Button */}
+              <button
+                onClick={() => setShowAiAssistant(!showAiAssistant)}
+                className={`drawing-tool ${showAiAssistant ? 'bg-blue-100 border-blue-500' : 'text-purple-500'}`}
+                title="AI Drawing Assistant"
+              >
+                🤖
+              </button>
             </div>
 
             {/* Right side - Title input and Save button */}
