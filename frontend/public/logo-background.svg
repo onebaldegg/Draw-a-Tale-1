@@ -1,0 +1,40 @@
+<svg viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="brushGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff6b6b" />
+      <stop offset="25%" stop-color="#ffd93d" />
+      <stop offset="50%" stop-color="#6bcf7f" />
+      <stop offset="75%" stop-color="#4d9de0" />
+      <stop offset="100%" stop-color="#9b59b6" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Brush handle -->
+  <rect x="70" y="120" width="16" height="60" fill="#8b4513" rx="4" />
+  
+  <!-- Brush ferrule -->
+  <rect x="66" y="100" width="24" height="24" fill="#c0c0c0" rx="2" />
+  
+  <!-- Brush bristles with colorful paint -->
+  <path d="M60 100 Q80 70 100 100 Q80 50 60 100" fill="url(#brushGradient)" opacity="0.9" />
+  
+  <!-- Paint drips -->
+  <circle cx="110" cy="80" r="6" fill="#ff6b6b" opacity="0.8" />
+  <circle cx="50" cy="90" r="4" fill="#4d9de0" opacity="0.8" />
+  <circle cx="90" cy="60" r="5" fill="#ffd93d" opacity="0.8" />
+  
+  <!-- Sparkle effects -->
+  <circle cx="130" cy="50" r="3" fill="#fff" opacity="0.9" />
+  <circle cx="40" cy="70" r="2" fill="#fff" opacity="0.9" />
+  <circle cx="120" cy="30" r="2" fill="#fff" opacity="0.9" />
+  
+  <!-- Main text -->
+  <text x="200" y="120" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#4f46e5">
+    DRAW-a-TALE
+  </text>
+  
+  <!-- Tagline -->
+  <text x="200" y="160" font-family="Arial, sans-serif" font-size="20" fill="#6b7280">
+    Begin your Artist's Journey
+  </text>
+</svg>
