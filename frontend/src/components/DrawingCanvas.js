@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import paper from 'paper';
 import { drawingService } from '../services/drawingService';
+import { aiAssistance } from '../services/aiService';
 
 const DrawingCanvas = ({ user }) => {
   const canvasRef = useRef(null);
@@ -21,14 +22,40 @@ const DrawingCanvas = ({ user }) => {
   const [customColor, setCustomColor] = useState('#000000');
   const [isPlaying, setIsPlaying] = useState(false);
   const [questContext, setQuestContext] = useState(null);
+  const [storyContext, setStoryContext] = useState(null);
+  const [aiHints, setAiHints] = useState([]);
+  const [showAiAssistant, setShowAiAssistant] = useState(false);
+  const [aiInitialized, setAiInitialized] = useState(false);
 
   useEffect(() => {
-    // Check if we're coming from a quest
-    if (location.state && location.state.questId) {
-      setQuestContext(location.state);
-      setDrawingTitle(`Quest: ${location.state.questTitle}`);
+    // Initialize AI assistance
+    const initAI = async () => {
+      const initialized = await aiAssistance.initialize();
+      setAiInitialized(initialized);
+    };
+    initAI();
+
+    // Check if we're coming from a quest or story
+    if (location.state) {
+      if (location.state.questId) {
+        setQuestContext(location.state);
+        setDrawingTitle(`Quest: ${location.state.questTitle}`);
+        loadQuestHints(location.state.questId);
+      } else if (location.state.storyMode) {
+        setStoryContext(location.state);
+        setDrawingTitle(`Story: ${location.state.story.title}`);
+      }
     }
   }, [location.state]);
+
+  const loadQuestHints = async (questId) => {
+    try {
+      const hints = await aiAssistance.getPersonalizedHints(questId);
+      setAiHints(hints.hints || []);
+    } catch (error) {
+      console.error('Failed to load hints:', error);
+    }
+  };
 
   useEffect(() => {
     if (canvasRef.current) {
