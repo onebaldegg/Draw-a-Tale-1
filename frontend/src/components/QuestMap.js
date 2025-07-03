@@ -184,7 +184,9 @@ const QuestMap = ({ user }) => {
     }}>
       <div className="card max-w-md w-full m-4 p-6" onClick={(e) => e.stopPropagation()}>
         <div className="text-center">
-          <div className="text-6xl mb-4">📚</div>
+          <div className="mb-4">
+            <DrawATaleLogo width={80} height={80} variant="icon-only" />
+          </div>
           <h3 className="text-2xl font-bold mb-4">Create Your Story</h3>
           <p className="text-gray-600 mb-6">
             Tell me what you'd like to draw about, and I'll create a magical story for you to illustrate!
