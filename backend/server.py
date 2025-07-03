@@ -12,6 +12,12 @@ from dotenv import load_dotenv
 import uuid
 from bson import ObjectId
 import json
+import sys
+import os
+
+# Add current directory to Python path
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
 from ai_services import story_generator, interest_analyzer, progress_analyzer
 
 # Load environment variables
