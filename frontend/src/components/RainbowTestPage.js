@@ -65,11 +65,13 @@ const RainbowTestPage = () => {
 
         {/* Animation Controls Info */}
         <div className="card p-6 text-center">
-          <h3 className="text-xl font-bold mb-4">Animation Details</h3>
+          <h3 className="text-xl font-bold mb-4">Rainbow Frame Implementation</h3>
           <div className="text-sm text-gray-600 space-y-2">
-            <p><strong>Basic Rainbow Frame:</strong> 3s rotation + 4s reverse rotation</p>
-            <p><strong>Enhanced Rainbow Frame:</strong> 2.5s pulse + 3.5s orbit</p>
-            <p><strong>Frame Width:</strong> 30px all around</p>
+            <p><strong>Frame Width:</strong> Exactly 30pt around each element</p>
+            <p><strong>Box Colors:</strong> Original colors maintained (red hero, yellow cards)</p>
+            <p><strong>Frame Effect:</strong> Rainbow kaleidoscope animation only on the 30pt border</p>
+            <p><strong>Basic Frame:</strong> 3s rotation + 4s reverse rotation</p>
+            <p><strong>Enhanced Frame:</strong> 2.5s pulse + 3.5s orbit</p>
             <p><strong>Colors:</strong> Full spectrum rainbow with smooth transitions</p>
           </div>
         </div>
