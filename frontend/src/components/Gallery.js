@@ -140,6 +140,33 @@ const Gallery = ({ user }) => {
     setViewMode('detail');
   };
 
+  // Delete functionality
+  const handleDeleteClick = (drawing, e) => {
+    e.preventDefault(); // Prevent navigation to drawing view
+    e.stopPropagation(); // Stop event bubbling
+    setDeleteConfirmation(drawing);
+  };
+
+  const confirmDelete = async () => {
+    if (!deleteConfirmation) return;
+    
+    try {
+      await drawingService.deleteDrawing(deleteConfirmation.id);
+      // Remove drawing from local state
+      setDrawings(drawings.filter(d => d.id !== deleteConfirmation.id));
+      setDeleteConfirmation(null);
+      console.log('Drawing deleted successfully');
+    } catch (error) {
+      console.error('Failed to delete drawing:', error);
+      setError('Failed to delete drawing. Please try again.');
+      setDeleteConfirmation(null);
+    }
+  };
+
+  const cancelDelete = () => {
+    setDeleteConfirmation(null);
+  };
+
   const playTimeLapse = async (drawing) => {
     if (!drawing.time_lapse || drawing.time_lapse.length === 0) {
       alert('No time-lapse data available for this drawing');
