@@ -205,7 +205,15 @@ const Gallery = ({ user }) => {
       {/* Navigation */}
       <nav className="nav-container">
         <div className="nav-content">
-          <div className="nav-logo">My Gallery</div>
+          <button
+            onClick={() => navigate('/dashboard')}
+            className="btn-child btn-secondary text-sm px-4 py-2"
+          >
+            ← Back to Dashboard
+          </button>
+          <div className="nav-logo-centered">
+            <div className="child-header-font">My Gallery</div>
+          </div>
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-2">
               <button
@@ -221,12 +229,6 @@ const Gallery = ({ user }) => {
                 List
               </button>
             </div>
-            <button
-              onClick={() => navigate('/dashboard')}
-              className="btn-child btn-secondary text-sm px-4 py-2"
-            >
-              ← Back to Dashboard
-            </button>
           </div>
         </div>
       </nav>
