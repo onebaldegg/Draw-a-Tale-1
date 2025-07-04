@@ -290,36 +290,6 @@ const Gallery = ({ user }) => {
             </div>
           </div>
           
-          {/* Actions */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {drawing.time_lapse && drawing.time_lapse.length > 0 && (
-              <button
-                onClick={() => playTimeLapse(drawing)}
-                disabled={isPlayingTimeLapse}
-                className="btn-child btn-primary text-center"
-              >
-                {isPlayingTimeLapse ? '🎬 Playing...' : '▶️ Play Time-lapse'}
-              </button>
-            )}
-            
-            <button
-              onClick={() => downloadDrawing(drawing)}
-              className="btn-child btn-secondary text-center"
-            >
-              💾 Download
-            </button>
-            
-            <button
-              onClick={() => {
-                // TODO: Navigate to edit mode
-                navigate('/draw', { state: { editDrawing: drawing } });
-              }}
-              className="btn-child btn-accent text-center"
-            >
-              ✏️ Edit
-            </button>
-          </div>
-          
           {/* Drawing Info */}
           <div className="mt-6 bg-gray-50 rounded-lg p-4">
             <h4 className="font-semibold mb-2">Drawing Details</h4>
