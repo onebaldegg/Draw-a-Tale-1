@@ -89,7 +89,8 @@
 .dashboard-card-title {
   @apply text-xl font-bold mb-2 text-gray-800;
   font-family: 'Indie Flower', cursive;
-  font-weight: bold;
+  font-weight: 900;
+  font-size: 1.875rem; /* 50% bigger than text-xl (1.25rem) */
 }
 
 .dashboard-card-description {
