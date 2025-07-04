@@ -195,44 +195,82 @@ body {
   /* This ensures the red hero box keeps its original color */
 }
 
-/* Color shifting animations - changes colors without rotation */
-@keyframes rainbow-color-shift {
-  0% {
-    filter: hue-rotate(0deg);
+/* Child-friendly playful font styles for headers */
+.child-header-font {
+  font-family: 'Comic Sans MS', 'Bubblegum Sans', 'Fredoka One', 'Bungee', cursive;
+  font-weight: bold;
+  font-size: 2.5rem;
+  background: linear-gradient(45deg, 
+    #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7, #fd79a8, #e17055);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: rainbow-text-flow 4s ease-in-out infinite;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+  letter-spacing: 2px;
+  transform: perspective(500px) rotateX(15deg);
+  display: block;
+  margin: 0 auto;
+}
+
+.child-header-font:hover {
+  animation-duration: 1s;
+  transform: perspective(500px) rotateX(15deg) scale(1.05);
+  transition: transform 0.3s ease;
+}
+
+@keyframes rainbow-text-flow {
+  0%, 100% {
+    background-position: 0% 50%;
   }
   25% {
-    filter: hue-rotate(90deg);
+    background-position: 100% 50%;
   }
   50% {
-    filter: hue-rotate(180deg);
+    background-position: 100% 100%;
   }
   75% {
-    filter: hue-rotate(270deg);
-  }
-  100% {
-    filter: hue-rotate(360deg);
+    background-position: 0% 100%;
   }
 }
 
-@keyframes enhanced-rainbow-color-shift {
-  0% {
-    filter: hue-rotate(0deg) saturate(1.2);
-  }
-  25% {
-    filter: hue-rotate(90deg) saturate(1.2);
+/* Alternative bubbly style for variety */
+.child-header-bubbly {
+  font-family: 'Comic Sans MS', 'Bubblegum Sans', 'Fredoka One', cursive;
+  font-weight: 900;
+  font-size: 2.8rem;
+  color: #ff6b6b;
+  text-align: center;
+  text-shadow: 
+    3px 3px 0px #ff9ff3,
+    6px 6px 0px #54a0ff,
+    9px 9px 0px #5f27cd,
+    12px 12px 0px #00d2d3;
+  letter-spacing: 3px;
+  transform: perspective(600px) rotateY(-15deg);
+  display: block;
+  margin: 0 auto;
+  animation: bubbly-bounce 3s ease-in-out infinite;
+}
+
+@keyframes bubbly-bounce {
+  0%, 100% {
+    transform: perspective(600px) rotateY(-15deg) translateY(0px);
   }
   50% {
-    filter: hue-rotate(180deg) saturate(1.2);
-  }
-  75% {
-    filter: hue-rotate(270deg) saturate(1.2);
-  }
-  100% {
-    filter: hue-rotate(360deg) saturate(1.2);
+    transform: perspective(600px) rotateY(-15deg) translateY(-10px);
   }
 }
 
-/* Color shifting animations - changes colors without rotation */
+/* Centered navigation header */
+.nav-logo-centered {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 @keyframes rainbow-color-shift {
   0% {
     filter: hue-rotate(0deg);
