@@ -233,7 +233,7 @@ body {
 /* Simple handwriting style for variety */
 .child-header-bubbly {
   font-family: 'Indie Flower', 'Gochi Hand', 'Patrick Hand', cursive;
-  font-weight: 400;
+  font-weight: bold;
   font-size: 3.2rem;
   color: #374151;
   text-align: center;
