@@ -78,7 +78,7 @@ const Dashboard = ({ user, onLogout }) => {
           {/* Hero Section */}
           <div className="rainbow-kaleidoscope-enhanced mb-12">
             <div className="hero-section">
-              <h1 className="hero-title">
+              <h1 className="hero-title hero-title-handwriting">
                 {user.user_type === 'child' 
                   ? `Ready to Create, ${user.username}?` 
                   : `Welcome to Your Portal, ${user.username}!`
