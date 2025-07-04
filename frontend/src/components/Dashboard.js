@@ -76,19 +76,21 @@ const Dashboard = ({ user, onLogout }) => {
       <div className="px-4 sm:px-6 lg:px-8 py-8">
         <div className="max-w-7xl mx-auto">
           {/* Hero Section */}
-          <div className="hero-section rounded-2xl mb-12 rainbow-kaleidoscope-enhanced">
-            <h1 className="hero-title">
-              {user.user_type === 'child' 
-                ? `Ready to Create, ${user.username}?` 
-                : `Welcome to Your Portal, ${user.username}!`
-              }
-            </h1>
-            <p className="hero-subtitle">
-              {user.user_type === 'child' 
-                ? 'Let your imagination soar with magical drawing adventures!'
-                : 'Monitor progress, create custom activities, and celebrate creativity!'
-              }
-            </p>
+          <div className="rainbow-kaleidoscope-enhanced rounded-2xl mb-12">
+            <div className="hero-section rounded-2xl">
+              <h1 className="hero-title">
+                {user.user_type === 'child' 
+                  ? `Ready to Create, ${user.username}?` 
+                  : `Welcome to Your Portal, ${user.username}!`
+                }
+              </h1>
+              <p className="hero-subtitle">
+                {user.user_type === 'child' 
+                  ? 'Let your imagination soar with magical drawing adventures!'
+                  : 'Monitor progress, create custom activities, and celebrate creativity!'
+                }
+              </p>
+            </div>
           </div>
 
           {/* Dashboard Grid */}
