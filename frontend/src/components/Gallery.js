@@ -399,6 +399,15 @@ const Gallery = ({ user }) => {
             <div className="gallery-grid">
               {drawings.map((drawing) => (
                 <div key={drawing.id} className="gallery-item">
+                  {/* Delete button - small and positioned in corner */}
+                  <button
+                    onClick={(e) => handleDeleteClick(drawing, e)}
+                    className="absolute top-2 right-2 w-6 h-6 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center text-xs z-10 opacity-70 hover:opacity-100 transition-opacity"
+                    title="Delete drawing"
+                  >
+                    ×
+                  </button>
+                  
                   <div className="gallery-item-image bg-gray-100 flex items-center justify-center overflow-hidden" style={{ width: '100%', height: '120px' }}>
                     {renderThumbnail(drawing)}
                   </div>
