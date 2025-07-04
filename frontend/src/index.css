@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Import authentic children's handwriting fonts from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Gochi+Hand&family=Indie+Flower&family=Schoolbell&display=swap');
+
 /* Custom styles for neuro-inclusive design */
 * {
   box-sizing: border-box;
