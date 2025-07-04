@@ -73,44 +73,25 @@ const Gallery = ({ user }) => {
     // Try to decode and render SVG directly for better debugging
     if (drawing.canvas_data && drawing.canvas_data.svg) {
       console.log('Rendering SVG directly for:', drawing.title);
+      console.log('SVG content:', drawing.canvas_data.svg);
       
+      // Parse the SVG to add proper attributes for scaling
       let svgContent = drawing.canvas_data.svg;
       
-      // Calculate the bounding box of the actual drawing content
-      const pathMatch = svgContent.match(/d="([^"]+)"/);
-      if (pathMatch) {
-        const pathData = pathMatch[1];
-        const coords = pathData.match(/[\d.]+/g);
-        
-        if (coords && coords.length >= 4) {
-          const numbers = coords.map(Number);
-          const minX = Math.min(...numbers.filter((_, i) => i % 2 === 0));
-          const maxX = Math.max(...numbers.filter((_, i) => i % 2 === 0));
-          const minY = Math.min(...numbers.filter((_, i) => i % 2 === 1));
-          const maxY = Math.max(...numbers.filter((_, i) => i % 2 === 1));
-          
-          // Add some padding around the content
-          const padding = 20;
-          const contentMinX = Math.max(0, minX - padding);
-          const contentMinY = Math.max(0, minY - padding);
-          const contentWidth = (maxX - minX) + (padding * 2);
-          const contentHeight = (maxY - minY) + (padding * 2);
-          
-          console.log('Content bounds:', { minX, maxX, minY, maxY, contentWidth, contentHeight });
-          
-          // Replace the viewBox to show just the content area
-          svgContent = svgContent.replace(
-            /viewBox="[^"]*"/,
-            `viewBox="${contentMinX},${contentMinY},${contentWidth},${contentHeight}"`
-          );
+      // Make sure SVG has proper viewBox and dimensions for scaling
+      if (!svgContent.includes('viewBox')) {
+        // Try to extract width/height and create viewBox
+        const widthMatch = svgContent.match(/width="(\d+)"/);
+        const heightMatch = svgContent.match(/height="(\d+)"/);
+        if (widthMatch && heightMatch) {
+          const width = widthMatch[1];
+          const height = heightMatch[1];
+          svgContent = svgContent.replace('<svg', `<svg viewBox="0 0 ${width} ${height}"`);
         }
       }
       
       // Ensure SVG scales to fit container
-      svgContent = svgContent.replace(
-        '<svg',
-        '<svg width="100%" height="100%" preserveAspectRatio="xMidYMid meet"'
-      );
+      svgContent = svgContent.replace('<svg', '<svg width="100%" height="100%" preserveAspectRatio="xMidYMid meet"');
       
       return (
         <div 
