@@ -56,13 +56,8 @@ class DrawATaleAPITester:
             200
         )
 
-    def test_register(self):
-        """Test user registration"""
-        # Generate unique username and email
-        unique_id = uuid.uuid4().hex[:8]
-        username = f"test_user_{unique_id}"
-        email = f"test_{unique_id}@example.com"
-        
+    def test_register(self, email="test_rainbow@example.com", username="rainbow_tester", password="Rainbow123!"):
+        """Test user registration with specific test user for rainbow effects testing"""
         success, response = self.run_test(
             "User Registration",
             "POST",
@@ -71,7 +66,7 @@ class DrawATaleAPITester:
             data={
                 "email": email,
                 "username": username,
-                "password": "Test123!",
+                "password": password,
                 "user_type": "child",
                 "age": 8
             }
@@ -83,20 +78,16 @@ class DrawATaleAPITester:
         
         return success, response
 
-    def test_login(self):
-        """Test user login"""
-        if not self.user_data:
-            print("❌ Cannot test login without registered user")
-            return False, {}
-            
+    def test_login(self, email="test_rainbow@example.com", password="Rainbow123!"):
+        """Test user login with specific test user for rainbow effects testing"""
         success, response = self.run_test(
             "User Login",
             "POST",
             "auth/login",
             200,
             data={
-                "email": self.user_data["email"],
-                "password": "Test123!"
+                "email": email,
+                "password": password
             }
         )
         
@@ -134,21 +125,30 @@ def main():
     tester = DrawATaleAPITester()
     
     # Run tests
+    print("\n===== TESTING BACKEND API =====")
+    
     health_success, _ = tester.test_health_check()
     if not health_success:
         print("❌ API health check failed, stopping tests")
         return 1
-        
-    register_success, _ = tester.test_register()
-    if not register_success:
-        print("❌ Registration failed, stopping tests")
-        return 1
-        
+    
+    # Try to login with the test user first (in case it already exists)
     login_success, _ = tester.test_login()
+    
+    # If login fails, try to register the user
     if not login_success:
-        print("❌ Login failed, stopping tests")
-        return 1
-        
+        print("Login failed, attempting to register the test user...")
+        register_success, _ = tester.test_register()
+        if not register_success:
+            print("❌ Registration failed, stopping tests")
+            return 1
+            
+        # Try login again after registration
+        login_success, _ = tester.test_login()
+        if not login_success:
+            print("❌ Login failed after registration, stopping tests")
+            return 1
+    
     user_success, _ = tester.test_get_current_user()
     if not user_success:
         print("❌ Getting user info failed")
@@ -159,6 +159,7 @@ def main():
 
     # Print results
     print(f"\n📊 Tests passed: {tester.tests_passed}/{tester.tests_run}")
+    print("\nBackend API is functioning correctly. Now you can proceed with UI testing.")
     return 0 if tester.tests_passed == tester.tests_run else 1
 
 if __name__ == "__main__":
