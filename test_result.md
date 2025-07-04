@@ -57,6 +57,8 @@ run_ui: false
 
 current_focus:
   - "DELETE endpoint for drawings"
+  - "Gallery page delete functionality"
+  - "Dashboard card titles font"
 stuck_tasks: []
 test_all: false
 test_priority: "high_first"
@@ -67,3 +69,5 @@ test_priority: "high_first"
   message: "Starting testing of the DELETE endpoint for drawings"
 - agent: "testing"
   message: "DELETE endpoint testing completed. The endpoint is working correctly with proper authentication, error handling, and successful deletion. The only minor issue is that unauthenticated requests return 403 instead of 401, but this is consistent with FastAPI's HTTPBearer behavior and doesn't affect functionality."
+- agent: "testing"
+  message: "Testing completed for Gallery page delete functionality and dashboard card titles font. Both features are working correctly. The delete functionality properly shows a confirmation modal and successfully deletes drawings from the gallery with no 405 errors. The dashboard card titles are correctly using the 'Indie Flower' handwriting font as specified in the requirements."
