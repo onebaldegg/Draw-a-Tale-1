@@ -271,18 +271,25 @@ async def get_drawing(drawing_id: str, current_user: dict = Depends(get_current_
 
 @app.delete("/api/drawings/{drawing_id}")
 async def delete_drawing(drawing_id: str, current_user: dict = Depends(get_current_user)):
-    # Check if drawing exists and belongs to current user
-    drawing = await drawings_collection.find_one({"_id": ObjectId(drawing_id), "user_id": str(current_user["_id"])})
-    if not drawing:
-        raise HTTPException(status_code=404, detail="Drawing not found")
-    
-    # Delete the drawing
-    result = await drawings_collection.delete_one({"_id": ObjectId(drawing_id), "user_id": str(current_user["_id"])})
-    
-    if result.deleted_count == 0:
-        raise HTTPException(status_code=404, detail="Drawing not found or could not be deleted")
-    
-    return {"message": "Drawing deleted successfully", "drawing_id": drawing_id}
+    try:
+        # Check if drawing exists and belongs to current user
+        drawing = await drawings_collection.find_one({"_id": ObjectId(drawing_id), "user_id": str(current_user["_id"])})
+        if not drawing:
+            raise HTTPException(status_code=404, detail="Drawing not found")
+        
+        # Delete the drawing
+        result = await drawings_collection.delete_one({"_id": ObjectId(drawing_id), "user_id": str(current_user["_id"])})
+        
+        if result.deleted_count == 0:
+            raise HTTPException(status_code=404, detail="Drawing not found or could not be deleted")
+        
+        return {"message": "Drawing deleted successfully", "drawing_id": drawing_id}
+    except Exception as e:
+        if isinstance(e, HTTPException):
+            raise e
+        if "ObjectId" in str(e):
+            raise HTTPException(status_code=404, detail="Invalid drawing ID format")
+        raise HTTPException(status_code=500, detail=f"An error occurred: {str(e)}")
 
 # Story routes
 @app.post("/api/stories/generate", response_model=StoryResponse)
