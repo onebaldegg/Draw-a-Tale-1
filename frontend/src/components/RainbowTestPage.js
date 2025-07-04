@@ -8,6 +8,17 @@ const RainbowTestPage = () => {
           Rainbow Kaleidoscope Frame Test
         </h1>
         
+        {/* Simple Rainbow Frame Test - Guaranteed Visible */}
+        <div className="mb-12">
+          <h2 className="text-2xl font-bold text-white mb-4">Simple Rainbow Frame Test (Should be visible!)</h2>
+          <div className="rainbow-frame-simple">
+            <div className="bg-yellow-400 p-8 rounded-lg">
+              <h3 className="text-2xl font-bold text-black mb-4">30pt Rainbow Border Test</h3>
+              <p className="text-black">This yellow box should have a clearly visible 30pt rainbow animated border around it.</p>
+            </div>
+          </div>
+        </div>
+
         {/* Test Hero Section with Enhanced Rainbow Effect */}
         <div className="mb-12">
           <h2 className="text-2xl font-bold text-white mb-4">Enhanced Rainbow Frame (Hero Section)</h2>
