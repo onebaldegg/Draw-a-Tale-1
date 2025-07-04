@@ -72,9 +72,30 @@ const Gallery = ({ user }) => {
   const renderThumbnail = (drawing) => {
     // Try to decode and render SVG directly for better debugging
     if (drawing.canvas_data && drawing.canvas_data.svg) {
+      console.log('Rendering SVG directly for:', drawing.title);
+      console.log('SVG content:', drawing.canvas_data.svg);
+      
+      // Parse the SVG to add proper attributes for scaling
+      let svgContent = drawing.canvas_data.svg;
+      
+      // Make sure SVG has proper viewBox and dimensions for scaling
+      if (!svgContent.includes('viewBox')) {
+        // Try to extract width/height and create viewBox
+        const widthMatch = svgContent.match(/width="(\d+)"/);
+        const heightMatch = svgContent.match(/height="(\d+)"/);
+        if (widthMatch && heightMatch) {
+          const width = widthMatch[1];
+          const height = heightMatch[1];
+          svgContent = svgContent.replace('<svg', `<svg viewBox="0 0 ${width} ${height}"`);
+        }
+      }
+      
+      // Ensure SVG scales to fit container
+      svgContent = svgContent.replace('<svg', '<svg width="100%" height="100%" preserveAspectRatio="xMidYMid meet"');
+      
       return (
         <div 
-          dangerouslySetInnerHTML={{ __html: drawing.canvas_data.svg }}
+          dangerouslySetInnerHTML={{ __html: svgContent }}
           style={{ 
             width: '100%', 
             height: '100%', 
