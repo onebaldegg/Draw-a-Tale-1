@@ -204,7 +204,7 @@
 }
 
 .gallery-item-date {
-  @apply text-sm text-gray-600;
+  @apply text-sm text-white;
 }
 
 /* Quest map styles */
