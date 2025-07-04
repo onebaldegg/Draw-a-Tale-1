@@ -236,7 +236,7 @@ const Gallery = ({ user }) => {
                 <button
                   onClick={() => playTimeLapse(drawing)}
                   disabled={isPlayingTimeLapse}
-                  className="btn-child btn-primary text-sm px-3 py-2"
+                  className="btn-child btn-primary text-sm px-4 py-2 w-32"
                 >
                   {isPlayingTimeLapse ? '🎬 Playing...' : '▶️ Play Time-lapse'}
                 </button>
@@ -244,7 +244,7 @@ const Gallery = ({ user }) => {
               
               <button
                 onClick={() => downloadDrawing(drawing)}
-                className="btn-child btn-secondary text-sm px-3 py-2"
+                className="btn-child btn-secondary text-sm px-4 py-2 w-32"
               >
                 💾 Download
               </button>
@@ -254,7 +254,7 @@ const Gallery = ({ user }) => {
                   // TODO: Navigate to edit mode
                   navigate('/draw', { state: { editDrawing: drawing } });
                 }}
-                className="btn-child bg-red-500 hover:bg-red-600 text-white text-sm px-3 py-2"
+                className="btn-child bg-red-500 hover:bg-red-600 text-white text-sm px-4 py-2 w-32"
               >
                 ✏️ Edit
               </button>
