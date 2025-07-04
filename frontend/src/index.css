@@ -129,20 +129,9 @@ body {
   }
 }
 
-/* Rainbow 30pt Frame Effect - ONLY on frame, NOT on content */
+/* Rainbow 30pt Frame Effect - VISIBLE VERSION with content protection */
 .rainbow-kaleidoscope-frame {
   position: relative;
-  padding: 30px;
-  border-radius: 20px;
-}
-
-.rainbow-kaleidoscope-frame::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
   background: conic-gradient(
     from 0deg,
     #ff0000, #ff4000, #ff8000, #ffbf00, #ffff00, #bfff00,
@@ -151,29 +140,19 @@ body {
     #8000ff, #bf00ff, #ff00ff, #ff00bf, #ff0080, #ff0040, #ff0000
   );
   animation: rainbow-border-spin 3s linear infinite;
-  border-radius: inherit;
-  z-index: -1;
+  padding: 30px;
+  border-radius: 0; /* Square corners for consistency */
 }
 
 .rainbow-kaleidoscope-frame > * {
   position: relative;
   z-index: 1;
+  border-radius: 0; /* Square corners */
 }
 
-/* Enhanced rainbow frame for hero section - ONLY on frame */
+/* Enhanced rainbow frame for hero section - VISIBLE VERSION */
 .rainbow-kaleidoscope-enhanced {
   position: relative;
-  padding: 30px;
-  border-radius: 20px;
-}
-
-.rainbow-kaleidoscope-enhanced::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
   background: conic-gradient(
     from 0deg,
     #ff0066, #ff3366, #ff6666, #ff9966, #ffcc66, #ffff66,
@@ -182,13 +161,14 @@ body {
     #ff66cc, #ff6699, #ff0066
   );
   animation: enhanced-rainbow-border 2.5s linear infinite;
-  border-radius: inherit;
-  z-index: -1;
+  padding: 30px;
+  border-radius: 0; /* Square corners as requested */
 }
 
 .rainbow-kaleidoscope-enhanced > * {
   position: relative;
   z-index: 1;
+  border-radius: 0; /* Square corners */
 }
 
 @keyframes simple-rainbow-spin {
