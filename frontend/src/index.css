@@ -195,6 +195,15 @@ body {
   opacity: 0.8;
 }
 
+@keyframes simple-rainbow-spin {
+  from {
+    filter: hue-rotate(0deg);
+  }
+  to {
+    filter: hue-rotate(360deg);
+  }
+}
+
 @keyframes rainbow-border-spin {
   from {
     filter: hue-rotate(0deg);
