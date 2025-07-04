@@ -320,6 +320,13 @@ const Gallery = ({ user }) => {
                       alt={drawing.title}
                       className="max-w-full max-h-full object-contain hover:scale-105 transition-transform duration-200"
                       style={{ minHeight: '120px' }}
+                      onError={(e) => {
+                        console.error('Image failed to load for drawing:', drawing.title, drawing.canvas_data);
+                        e.target.src = "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='150' viewBox='0 0 200 150'%3E%3Crect width='200' height='150' fill='%23f8fafc'/%3E%3Ctext x='100' y='75' text-anchor='middle' font-family='Arial' font-size='14' fill='%23ef4444'%3EImage Error%3C/text%3E%3C/svg%3E";
+                      }}
+                      onLoad={() => {
+                        console.log('Image loaded successfully for drawing:', drawing.title);
+                      }}
                     />
                   </div>
                   <div className="gallery-item-info">
