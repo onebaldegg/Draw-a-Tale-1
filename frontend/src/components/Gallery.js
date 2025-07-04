@@ -42,11 +42,29 @@ const Gallery = ({ user }) => {
   };
 
   const generateThumbnail = (canvasData) => {
-    // Simple: use thumbnail if it exists, otherwise use fallback
+    console.log('Raw canvas data:', canvasData);
+    
+    // Check if thumbnail exists and is valid base64
     if (canvasData && canvasData.thumbnail) {
-      return canvasData.thumbnail;
+      console.log('Thumbnail found:', canvasData.thumbnail.substring(0, 50) + '...');
+      // Make sure it has proper data URL format
+      if (canvasData.thumbnail.startsWith('data:')) {
+        return canvasData.thumbnail;
+      } else {
+        // It might be just base64 without the prefix
+        return `data:image/svg+xml;base64,${canvasData.thumbnail}`;
+      }
     }
     
+    // Try to use SVG data directly
+    if (canvasData && canvasData.svg) {
+      console.log('SVG data found, converting to data URL');
+      // Convert SVG string to base64
+      const base64Svg = btoa(canvasData.svg);
+      return `data:image/svg+xml;base64,${base64Svg}`;
+    }
+    
+    console.log('No image data found, using fallback');
     // Simple fallback
     return "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='150' viewBox='0 0 200 150'%3E%3Crect width='200' height='150' fill='%23f0f0f0'/%3E%3Ctext x='100' y='75' text-anchor='middle' font-family='Arial' font-size='14' fill='%23666'%3ENo Image%3C/text%3E%3C/svg%3E";
   };
