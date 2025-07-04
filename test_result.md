@@ -34,6 +34,18 @@
       agent: "testing"
       comment: "Delete functionality in Gallery page is now working correctly. The delete button shows a confirmation modal, and upon confirmation, it successfully sends a DELETE request to the backend API and removes the drawing from the gallery. No 405 errors were observed."
 
+- task: "Dashboard card titles font"
+  implemented: true
+  working: true
+  file: "/app/frontend/src/App.css"
+  stuck_count: 0
+  priority: "medium"
+  needs_retesting: false
+  status_history:
+    - working: true
+      agent: "testing"
+      comment: "Dashboard card titles are correctly using the 'Indie Flower' handwriting font as specified in App.css. The font is properly applied to all three dashboard cards ('Start Drawing', 'My Gallery', 'Quest Map')."
+
 ## Metadata
 
 created_by: "testing_agent"
