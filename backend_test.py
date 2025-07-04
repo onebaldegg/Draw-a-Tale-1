@@ -5,7 +5,7 @@ import json
 from datetime import datetime
 
 class DrawATaleAPITester:
-    def __init__(self, base_url="https://a63ccf0d-f31c-4ac2-91ca-11887ddf1804.preview.emergentagent.com/api"):
+    def __init__(self, base_url="https://0ea8cde4-993b-452f-8956-b2ca7c1533b1.preview.emergentagent.com/api"):
         self.base_url = base_url
         self.token = None
         self.tests_run = 0
