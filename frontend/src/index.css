@@ -253,6 +253,16 @@ body {
   margin: 0 auto;
 }
 
+/* Hero title with handwriting font */
+.hero-title-handwriting {
+  font-family: 'Indie Flower', 'Gochi Hand', 'Patrick Hand', cursive;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+}
+
 @keyframes bubbly-bounce {
   0%, 100% {
     transform: rotate(-2deg) translateY(0px);
