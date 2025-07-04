@@ -241,7 +241,7 @@ const Gallery = ({ user }) => {
             <h1 className="child-header-white mb-4">
               {user.username}'s Art Gallery
             </h1>
-            <p className="text-child-body text-gray-600">
+            <p className="text-child-body text-white">
               Your amazing artwork collection ({drawings.length} drawings)
             </p>
           </div>
