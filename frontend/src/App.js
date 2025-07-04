@@ -11,6 +11,7 @@ import Gallery from './components/Gallery';
 import QuestMap from './components/QuestMap';
 import ParentPortal from './components/ParentPortal';
 import LoadingSpinner from './components/LoadingSpinner';
+import RainbowTestPage from './components/RainbowTestPage';
 
 // Import services
 import { authService } from './services/authService';
