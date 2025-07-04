@@ -200,8 +200,8 @@ body {
 
 /* Child-friendly handwriting font styles for headers - clean version */
 .child-header-font {
-  font-family: 'Patrick Hand', 'Indie Flower', 'Gochi Hand', cursive;
-  font-weight: 400;
+  font-family: 'Indie Flower', 'Gochi Hand', 'Patrick Hand', cursive;
+  font-weight: bold;
   font-size: 3rem;
   color: #374151;
   text-align: center;
