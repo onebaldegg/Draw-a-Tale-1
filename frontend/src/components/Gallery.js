@@ -398,7 +398,7 @@ const Gallery = ({ user }) => {
           {drawings.length > 0 && viewMode === 'grid' && (
             <div className="gallery-grid">
               {drawings.map((drawing) => (
-                <div key={drawing.id} className="gallery-item">
+                <div key={drawing.id} className="gallery-item relative">
                   {/* Delete button - small and positioned in corner */}
                   <button
                     onClick={(e) => handleDeleteClick(drawing, e)}
