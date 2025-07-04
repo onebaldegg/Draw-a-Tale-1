@@ -242,6 +242,17 @@ body {
   width: 100%;
 }
 
+/* White version of handwriting font for content headers */
+.child-header-white {
+  font-family: 'Indie Flower', 'Gochi Hand', 'Patrick Hand', cursive;
+  font-weight: bold;
+  font-size: 2.5rem;
+  color: white;
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+}
+
 @keyframes bubbly-bounce {
   0%, 100% {
     transform: rotate(-2deg) translateY(0px);
