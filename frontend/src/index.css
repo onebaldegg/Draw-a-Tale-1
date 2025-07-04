@@ -230,25 +230,16 @@ body {
   }
 }
 
-/* Alternative bubbly style for variety */
+/* Simple handwriting style for variety */
 .child-header-bubbly {
   font-family: 'Indie Flower', 'Gochi Hand', 'Patrick Hand', cursive;
   font-weight: 400;
   font-size: 3.2rem;
-  color: #00ff41;
+  color: #374151;
   text-align: center;
-  text-shadow: 
-    3px 3px 0px #00d2d3,
-    6px 6px 0px #54a0ff,
-    9px 9px 0px #5f27cd,
-    12px 12px 0px #ff8c42;
-  letter-spacing: 2px;
-  transform: rotate(-2deg);
   display: block;
   margin: 0 auto;
-  animation: bubbly-bounce 3s ease-in-out infinite;
   width: 100%;
-  text-align: center;
 }
 
 @keyframes bubbly-bounce {
