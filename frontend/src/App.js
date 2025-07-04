@@ -69,6 +69,12 @@ function App() {
           } 
         />
         
+        {/* Test route for rainbow effects - publicly accessible */}
+        <Route 
+          path="/rainbow-test" 
+          element={<RainbowTestPage />} 
+        />
+        
         {/* Protected routes */}
         <Route 
           path="/dashboard" 
