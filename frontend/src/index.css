@@ -108,19 +108,19 @@ body {
   }
 }
 
-/* Rainbow Kaleidoscope Frame Effect */
+/* Rainbow Kaleidoscope Frame Effect - Creates 30pt border around elements */
 .rainbow-kaleidoscope-frame {
   position: relative;
-  overflow: hidden;
+  padding: 30px; /* Creates the 30pt space for the frame */
 }
 
 .rainbow-kaleidoscope-frame::before {
   content: '';
   position: absolute;
-  top: -30px;
-  left: -30px;
-  right: -30px;
-  bottom: -30px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: conic-gradient(
     from 0deg,
     #ff0000,
@@ -139,15 +139,16 @@ body {
   );
   animation: rainbow-spin 3s linear infinite;
   z-index: -1;
+  border-radius: inherit;
 }
 
 .rainbow-kaleidoscope-frame::after {
   content: '';
   position: absolute;
-  top: -30px;
-  left: -30px;
-  right: -30px;
-  bottom: -30px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: conic-gradient(
     from 180deg,
     #ff0000,
@@ -179,57 +180,28 @@ body {
   animation: rainbow-spin-reverse 4s linear infinite;
   z-index: -1;
   opacity: 0.7;
+  border-radius: inherit;
 }
 
-@keyframes rainbow-spin {
-  from {
-    transform: rotate(0deg) scale(1.1);
-  }
-  25% {
-    transform: rotate(90deg) scale(1.15);
-  }
-  50% {
-    transform: rotate(180deg) scale(1.1);
-  }
-  75% {
-    transform: rotate(270deg) scale(1.15);
-  }
-  to {
-    transform: rotate(360deg) scale(1.1);
-  }
+/* Inner content area - this maintains the original box colors */
+.rainbow-kaleidoscope-frame > * {
+  position: relative;
+  z-index: 1;
 }
 
-@keyframes rainbow-spin-reverse {
-  from {
-    transform: rotate(360deg) scale(1.05);
-  }
-  25% {
-    transform: rotate(270deg) scale(1.12);
-  }
-  50% {
-    transform: rotate(180deg) scale(1.05);
-  }
-  75% {
-    transform: rotate(90deg) scale(1.12);
-  }
-  to {
-    transform: rotate(0deg) scale(1.05);
-  }
-}
-
-/* Enhanced kaleidoscope effect with multiple layers */
+/* Enhanced kaleidoscope effect with 30pt frame */
 .rainbow-kaleidoscope-enhanced {
   position: relative;
-  overflow: hidden;
+  padding: 30px; /* Creates the 30pt space for the frame */
 }
 
 .rainbow-kaleidoscope-enhanced::before {
   content: '';
   position: absolute;
-  top: -30px;
-  left: -30px;
-  right: -30px;
-  bottom: -30px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: conic-gradient(
     from 0deg,
     #ff0066, #ff3366, #ff6666, #ff9966, #ffcc66, #ffff66,
@@ -238,16 +210,17 @@ body {
     #ff66cc, #ff6699, #ff0066
   );
   animation: kaleidoscope-pulse 2.5s ease-in-out infinite;
-  z-index: -2;
+  z-index: -1;
+  border-radius: inherit;
 }
 
 .rainbow-kaleidoscope-enhanced::after {
   content: '';
   position: absolute;
-  top: -30px;
-  left: -30px;
-  right: -30px;
-  bottom: -30px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: radial-gradient(
     circle at 50% 50%,
     transparent 40%,
@@ -263,6 +236,13 @@ body {
   animation: kaleidoscope-orbit 3.5s linear infinite;
   z-index: -1;
   opacity: 0.8;
+  border-radius: inherit;
+}
+
+/* Inner content area for enhanced frame - maintains original colors */
+.rainbow-kaleidoscope-enhanced > * {
+  position: relative;
+  z-index: 1;
 }
 
 @keyframes kaleidoscope-pulse {
