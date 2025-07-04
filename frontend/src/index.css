@@ -108,6 +108,27 @@ body {
   }
 }
 
+/* SIMPLE BUT VISIBLE 30pt Rainbow Frame - Guaranteed to work */
+.rainbow-frame-simple {
+  position: relative;
+  border: 30px solid transparent;
+  background: linear-gradient(white, white) padding-box, 
+              conic-gradient(from 0deg, 
+                #ff0000, #ff8000, #ffff00, #80ff00, #00ff00, #00ff80,
+                #00ffff, #0080ff, #0000ff, #8000ff, #ff00ff, #ff0080, #ff0000) border-box;
+  animation: simple-rainbow-spin 3s linear infinite;
+  border-radius: 20px;
+}
+
+@keyframes simple-rainbow-spin {
+  from {
+    filter: hue-rotate(0deg);
+  }
+  to {
+    filter: hue-rotate(360deg);
+  }
+}
+
 /* Rainbow Kaleidoscope 30pt Frame Effect - WORKING VERSION */
 .rainbow-kaleidoscope-frame {
   position: relative;
