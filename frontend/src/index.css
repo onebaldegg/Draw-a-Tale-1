@@ -202,19 +202,19 @@ body {
 
 @keyframes rainbow-border-spin {
   from {
-    filter: hue-rotate(0deg);
+    transform: rotate(0deg);
   }
   to {
-    filter: hue-rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 
 @keyframes enhanced-rainbow-border {
   from {
-    filter: hue-rotate(0deg) saturate(1.2);
+    transform: rotate(0deg);
   }
   to {
-    filter: hue-rotate(360deg) saturate(1.2);
+    transform: rotate(360deg);
   }
 }
 
