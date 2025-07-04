@@ -238,7 +238,7 @@ const Gallery = ({ user }) => {
         <div className="container">
           {/* Header */}
           <div className="text-center mb-12">
-            <h1 className="text-child-title text-gray-800 mb-4">
+            <h1 className="child-header-white mb-4">
               {user.username}'s Art Gallery
             </h1>
             <p className="text-child-body text-gray-600">
