@@ -270,9 +270,7 @@ body {
   align-items: center;
 }
 @keyframes rainbow-color-shift {
-.gallery-item-date {
-  @apply text-sm text-white;
-}
+
 
   0% {
     filter: hue-rotate(0deg);
