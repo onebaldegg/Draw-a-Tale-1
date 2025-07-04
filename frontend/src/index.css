@@ -186,24 +186,6 @@ body {
   }
 }
 
-@keyframes rainbow-spin-reverse {
-  from {
-    transform: rotate(360deg);
-  }
-  to {
-    transform: rotate(0deg);
-  }
-}
-
-@keyframes enhanced-rainbow-reverse {
-  from {
-    transform: rotate(360deg);
-  }
-  to {
-    transform: rotate(0deg);
-  }
-}
-
 @keyframes rainbow-spin {
   from {
     transform: rotate(0deg);
