@@ -144,24 +144,6 @@ body {
   border-radius: 20px;
 }
 
-.rainbow-kaleidoscope-frame::before {
-  content: '';
-  position: absolute;
-  top: -30px;
-  left: -30px;
-  right: -30px;
-  bottom: -30px;
-  background: conic-gradient(
-    from 180deg,
-    #ff1493, #ff69b4, #ff6347, #ffa500, #ffd700, #adff2f,
-    #00ff7f, #00ffff, #1e90ff, #4169e1, #9370db, #da70d6, #ff1493
-  );
-  animation: rainbow-spin-reverse 4s linear infinite;
-  border-radius: inherit;
-  z-index: -1;
-  opacity: 0.7;
-}
-
 /* Enhanced kaleidoscope effect for hero section */
 .rainbow-kaleidoscope-enhanced {
   position: relative;
@@ -175,24 +157,6 @@ body {
   ) 30;
   animation: enhanced-rainbow-border 2.5s linear infinite;
   border-radius: 20px;
-}
-
-.rainbow-kaleidoscope-enhanced::before {
-  content: '';
-  position: absolute;
-  top: -30px;
-  left: -30px;
-  right: -30px;
-  bottom: -30px;
-  background: conic-gradient(
-    from 120deg,
-    #ff1493, #ff69b4, #ff6347, #ffa500, #ffd700, #adff2f,
-    #00ff7f, #00ffff, #1e90ff, #4169e1, #9370db, #da70d6, #ff1493
-  );
-  animation: enhanced-rainbow-reverse 3.5s linear infinite;
-  border-radius: inherit;
-  z-index: -1;
-  opacity: 0.8;
 }
 
 @keyframes simple-rainbow-spin {
