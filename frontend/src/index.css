@@ -262,10 +262,10 @@ body {
 
 @keyframes bubbly-bounce {
   0%, 100% {
-    transform: perspective(600px) rotateY(0deg) rotate(-2deg) translateY(0px);
+    transform: rotate(-2deg) translateY(0px);
   }
   50% {
-    transform: perspective(600px) rotateY(0deg) rotate(-1deg) translateY(-10px);
+    transform: rotate(-1deg) translateY(-8px);
   }
 }
 
