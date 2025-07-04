@@ -11,6 +11,7 @@ const Gallery = ({ user }) => {
   const [error, setError] = useState('');
   const [selectedDrawing, setSelectedDrawing] = useState(null);
   const [viewMode, setViewMode] = useState('grid'); // grid or detail
+  const [deleteConfirmation, setDeleteConfirmation] = useState(null); // For delete confirmation modal
   const [isPlayingTimeLapse, setIsPlayingTimeLapse] = useState(false);
   const navigate = useNavigate();
 
