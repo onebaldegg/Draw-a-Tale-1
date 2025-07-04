@@ -257,7 +257,7 @@ const QuestMap = ({ user }) => {
             <h1 className="child-header-white mb-4">
               Your Drawing Adventure Map
             </h1>
-            <p className="text-child-body text-gray-600">
+            <p className="text-child-body text-white">
               Choose a quest to learn new skills, or create your own story!
             </p>
           </div>
