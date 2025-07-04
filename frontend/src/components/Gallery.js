@@ -42,28 +42,13 @@ const Gallery = ({ user }) => {
   };
 
   const generateThumbnail = (canvasData) => {
-    // Check for existing thumbnail (base64 or regular URL)
+    // Simple: use thumbnail if it exists, otherwise use fallback
     if (canvasData && canvasData.thumbnail) {
       return canvasData.thumbnail;
     }
     
-    // Check for SVG data
-    if (canvasData && canvasData.svg) {
-      // Create a data URL from the SVG
-      const svgDataUrl = `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(canvasData.svg)}`;
-      return svgDataUrl;
-    }
-    
-    // Check for any base64 image data
-    if (canvasData && canvasData.image) {
-      return canvasData.image;
-    }
-    
-    // Debug: Log the canvas data structure to console
-    console.log('Canvas data structure for thumbnail generation:', canvasData);
-    
-    // Fallback SVG thumbnail
-    return "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='150' viewBox='0 0 200 150'%3E%3Crect width='200' height='150' fill='%23f8fafc'/%3E%3Cpath d='M40 60 Q60 40, 80 60 T120 60' stroke='%236366f1' stroke-width='3' fill='none'/%3E%3Ctext x='100' y='130' text-anchor='middle' font-family='Arial' font-size='12' fill='%23374151'%3E🎨 Artwork%3C/text%3E%3C/svg%3E";
+    // Simple fallback
+    return "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='150' viewBox='0 0 200 150'%3E%3Crect width='200' height='150' fill='%23f0f0f0'/%3E%3Ctext x='100' y='75' text-anchor='middle' font-family='Arial' font-size='14' fill='%23666'%3ENo Image%3C/text%3E%3C/svg%3E";
   };
 
   const viewDrawing = (drawing) => {
