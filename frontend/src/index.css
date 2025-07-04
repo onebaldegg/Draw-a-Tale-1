@@ -208,30 +208,40 @@ body {
   }
 }
 
-@keyframes simple-rainbow-spin {
-  from {
+/* Color shifting animations - changes colors without rotation */
+@keyframes rainbow-color-shift {
+  0% {
     filter: hue-rotate(0deg);
   }
-  to {
+  25% {
+    filter: hue-rotate(90deg);
+  }
+  50% {
+    filter: hue-rotate(180deg);
+  }
+  75% {
+    filter: hue-rotate(270deg);
+  }
+  100% {
     filter: hue-rotate(360deg);
   }
 }
 
-@keyframes rainbow-border-spin {
-  from {
-    transform: rotate(0deg);
+@keyframes enhanced-rainbow-color-shift {
+  0% {
+    filter: hue-rotate(0deg) saturate(1.2);
   }
-  to {
-    transform: rotate(360deg);
+  25% {
+    filter: hue-rotate(90deg) saturate(1.2);
   }
-}
-
-@keyframes enhanced-rainbow-border {
-  from {
-    transform: rotate(0deg);
+  50% {
+    filter: hue-rotate(180deg) saturate(1.2);
   }
-  to {
-    transform: rotate(360deg);
+  75% {
+    filter: hue-rotate(270deg) saturate(1.2);
+  }
+  100% {
+    filter: hue-rotate(360deg) saturate(1.2);
   }
 }
 
