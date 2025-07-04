@@ -552,6 +552,7 @@ const Gallery = ({ user }) => {
           </div>
         </div>
       )}
+    </div>
   );
 };
 
