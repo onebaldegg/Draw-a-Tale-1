@@ -21,7 +21,7 @@
 
 - task: "Gallery page delete functionality"
   implemented: true
-  working: "NA"
+  working: true
   file: "/app/frontend/src/components/Gallery.js"
   stuck_count: 0
   priority: "high"
@@ -30,6 +30,9 @@
     - working: "NA"
       agent: "main"
       comment: "Delete button in Gallery page is implemented but was getting 405 errors"
+    - working: true
+      agent: "testing"
+      comment: "Delete functionality in Gallery page is now working correctly. The delete button shows a confirmation modal, and upon confirmation, it successfully sends a DELETE request to the backend API and removes the drawing from the gallery. No 405 errors were observed."
 
 ## Metadata
 
