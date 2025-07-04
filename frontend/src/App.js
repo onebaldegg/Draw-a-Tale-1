@@ -107,12 +107,6 @@ function App() {
           } 
         />
         
-        {/* Test route for rainbow effects */}
-        <Route 
-          path="/rainbow-test" 
-          element={<RainbowTestPage />} 
-        />
-        
         {/* Default redirect */}
         <Route 
           path="/" 
