@@ -272,7 +272,7 @@ const QuestMap = ({ user }) => {
             </button>
             <button
               onClick={() => setShowStoryGenerator(true)}
-              className="btn-child btn-accent"
+              className="bg-yellow-500 hover:bg-yellow-600 text-white text-sm font-medium px-3 py-2 rounded-lg transition-colors duration-200"
             >
               📚 Create Story
             </button>
