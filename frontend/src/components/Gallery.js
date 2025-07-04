@@ -525,7 +525,6 @@ const Gallery = ({ user }) => {
           }}
         />
       )}
-    </div>
 
       {/* Delete Confirmation Modal */}
       {deleteConfirmation && (
