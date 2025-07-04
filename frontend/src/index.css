@@ -198,22 +198,13 @@ body {
   /* This ensures the red hero box keeps its original color */
 }
 
-/* Child-friendly playful font styles for headers */
+/* Child-friendly handwriting font styles for headers - clean version */
 .child-header-font {
   font-family: 'Patrick Hand', 'Indie Flower', 'Gochi Hand', cursive;
   font-weight: 400;
   font-size: 3rem;
-  background: linear-gradient(45deg, 
-    #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7, #fd79a8, #e17055);
-  background-size: 400% 400%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: rainbow-text-flow 4s ease-in-out infinite;
+  color: #374151;
   text-align: center;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-  letter-spacing: 1px;
-  transform: rotate(-1deg);
   display: block;
   margin: 0 auto;
 }
