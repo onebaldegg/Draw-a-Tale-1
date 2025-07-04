@@ -129,7 +129,7 @@ body {
   }
 }
 
-/* Rainbow 30pt Frame Effect - VISIBLE VERSION with content protection */
+/* Rainbow 30pt Frame Effect - STATIC VERSION (no spinning) */
 .rainbow-kaleidoscope-frame {
   position: relative;
   background: conic-gradient(
@@ -139,7 +139,6 @@ body {
     #00ffff, #00bfff, #0080ff, #0040ff, #0000ff, #4000ff,
     #8000ff, #bf00ff, #ff00ff, #ff00bf, #ff0080, #ff0040, #ff0000
   );
-  animation: rainbow-border-spin 3s linear infinite;
   padding: 30px;
   border-radius: 0; /* Square corners for consistency */
 }
@@ -150,7 +149,7 @@ body {
   border-radius: 0; /* Square corners */
 }
 
-/* Enhanced rainbow frame for hero section - VISIBLE VERSION */
+/* Enhanced rainbow frame for hero section - STATIC VERSION (no spinning) */
 .rainbow-kaleidoscope-enhanced {
   position: relative;
   background: conic-gradient(
@@ -160,7 +159,6 @@ body {
     #66ccff, #6699ff, #6666ff, #9966ff, #cc66ff, #ff66ff,
     #ff66cc, #ff6699, #ff0066
   );
-  animation: enhanced-rainbow-border 2.5s linear infinite;
   padding: 30px;
   border-radius: 0; /* Square corners as requested */
 }
