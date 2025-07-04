@@ -1,6 +1,7 @@
 import requests
 import sys
 import uuid
+import json
 from datetime import datetime
 
 class DrawATaleAPITester:
@@ -10,6 +11,7 @@ class DrawATaleAPITester:
         self.tests_run = 0
         self.tests_passed = 0
         self.user_data = None
+        self.drawing_id = None
 
     def run_test(self, name, method, endpoint, expected_status, data=None):
         """Run a single API test"""
@@ -119,6 +121,102 @@ class DrawATaleAPITester:
             "quests",
             200
         )
+        
+    def test_create_drawing(self, title="Test Poop Drawing"):
+        """Test creating a drawing with a simple canvas_data structure"""
+        if not self.token:
+            print("❌ Cannot create drawing without token")
+            return False, {}
+            
+        # Create a simple drawing with SVG data
+        canvas_data = {
+            "svg": '<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><circle cx="100" cy="100" r="50" fill="brown"/><text x="100" y="110" text-anchor="middle" fill="white">poop</text></svg>',
+            "paperjs": "[\"Path\",{\"segments\":[[100,100],[150,100],[150,150],[100,150]],\"closed\":true,\"fillColor\":[0,0,0]}]",
+            "thumbnail": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIj48Y2lyY2xlIGN4PSIxMDAiIGN5PSIxMDAiIHI9IjUwIiBmaWxsPSJicm93biIvPjx0ZXh0IHg9IjEwMCIgeT0iMTEwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSI+cG9vcDwvdGV4dD48L3N2Zz4=",
+            "width": 800,
+            "height": 600
+        }
+        
+        drawing_data = {
+            "title": title,
+            "description": "A test drawing of poop",
+            "canvas_data": canvas_data,
+            "time_lapse": [
+                {
+                    "timestamp": datetime.now().timestamp() * 1000,
+                    "action": "start",
+                    "tool": "pencil",
+                    "color": "#8B4513",
+                    "size": 5,
+                    "point": {"x": 100, "y": 100}
+                },
+                {
+                    "timestamp": datetime.now().timestamp() * 1000 + 1000,
+                    "action": "stop",
+                    "state": "[\"Path\",{\"segments\":[[100,100],[150,100],[150,150],[100,150]],\"closed\":true,\"fillColor\":[0,0,0]}]"
+                }
+            ]
+        }
+        
+        success, response = self.run_test(
+            "Create Drawing",
+            "POST",
+            "drawings",
+            201,
+            data=drawing_data
+        )
+        
+        if success and 'id' in response:
+            self.drawing_id = response['id']
+            print(f"✅ Successfully created drawing with ID: {self.drawing_id}")
+            print(f"Canvas data structure: {json.dumps(response['canvas_data'], indent=2)}")
+        
+        return success, response
+        
+    def test_get_drawings(self):
+        """Test getting all user drawings"""
+        if not self.token:
+            print("❌ Cannot get drawings without token")
+            return False, {}
+            
+        success, response = self.run_test(
+            "Get User Drawings",
+            "GET",
+            "drawings",
+            200
+        )
+        
+        if success:
+            print(f"✅ Retrieved {len(response)} drawings")
+            # Print details about each drawing's canvas_data structure
+            for i, drawing in enumerate(response):
+                print(f"\nDrawing {i+1}: {drawing['title']}")
+                print(f"Canvas data keys: {list(drawing['canvas_data'].keys()) if 'canvas_data' in drawing else 'No canvas_data'}")
+                if 'canvas_data' in drawing and 'svg' in drawing['canvas_data']:
+                    svg_length = len(drawing['canvas_data']['svg'])
+                    print(f"SVG data length: {svg_length} characters")
+                    print(f"SVG data preview: {drawing['canvas_data']['svg'][:100]}...")
+        
+        return success, response
+        
+    def test_get_drawing(self):
+        """Test getting a specific drawing"""
+        if not self.token or not self.drawing_id:
+            print("❌ Cannot get specific drawing without token or drawing ID")
+            return False, {}
+            
+        success, response = self.run_test(
+            "Get Specific Drawing",
+            "GET",
+            f"drawings/{self.drawing_id}",
+            200
+        )
+        
+        if success:
+            print(f"✅ Retrieved drawing: {response['title']}")
+            print(f"Canvas data structure: {json.dumps(response['canvas_data'], indent=2)}")
+        
+        return success, response
 
 def main():
     # Setup
@@ -156,10 +254,29 @@ def main():
     quests_success, _ = tester.test_get_quests()
     if not quests_success:
         print("❌ Getting quests failed")
+    
+    # Test drawings API - this is what we're debugging
+    print("\n===== TESTING DRAWINGS API =====")
+    
+    # Create a test drawing
+    create_drawing_success, _ = tester.test_create_drawing()
+    if not create_drawing_success:
+        print("❌ Creating drawing failed")
+    
+    # Get all drawings
+    get_drawings_success, _ = tester.test_get_drawings()
+    if not get_drawings_success:
+        print("❌ Getting drawings failed")
+    
+    # Get specific drawing
+    if tester.drawing_id:
+        get_drawing_success, _ = tester.test_get_drawing()
+        if not get_drawing_success:
+            print("❌ Getting specific drawing failed")
 
     # Print results
     print(f"\n📊 Tests passed: {tester.tests_passed}/{tester.tests_run}")
-    print("\nBackend API is functioning correctly. Now you can proceed with UI testing.")
+    print("\nBackend API testing complete.")
     return 0 if tester.tests_passed == tester.tests_run else 1
 
 if __name__ == "__main__":
