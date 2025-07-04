@@ -238,8 +238,8 @@ body {
 
 /* Alternative bubbly style for variety */
 .child-header-bubbly {
-  font-family: 'Comic Sans MS', 'Bubblegum Sans', 'Fredoka One', cursive;
-  font-weight: 900;
+  font-family: 'Kalam', 'Caveat', 'Schoolbell', 'Architects Daughter', 'Comic Sans MS', cursive;
+  font-weight: 600;
   font-size: 2.8rem;
   color: #00ff41;
   text-align: center;
@@ -248,8 +248,8 @@ body {
     6px 6px 0px #54a0ff,
     9px 9px 0px #5f27cd,
     12px 12px 0px #ff8c42;
-  letter-spacing: 3px;
-  transform: perspective(600px) rotateY(0deg);
+  letter-spacing: 2px;
+  transform: perspective(600px) rotateY(0deg) rotate(-2deg);
   display: block;
   margin: 0 auto;
   animation: bubbly-bounce 3s ease-in-out infinite;
