@@ -129,9 +129,20 @@ body {
   }
 }
 
-/* Rainbow 30pt Frame Effect - COLOR CHANGING without spinning */
+/* Rainbow 30pt Frame Effect - COLOR CHANGING ONLY in frame area */
 .rainbow-kaleidoscope-frame {
   position: relative;
+  padding: 30px;
+  border-radius: 0;
+}
+
+.rainbow-kaleidoscope-frame::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: conic-gradient(
     from 0deg,
     #ff0000, #ff4000, #ff8000, #ffbf00, #ffff00, #bfff00,
@@ -140,19 +151,31 @@ body {
     #8000ff, #bf00ff, #ff00ff, #ff00bf, #ff0080, #ff0040, #ff0000
   );
   animation: rainbow-color-shift 4s linear infinite;
-  padding: 30px;
-  border-radius: 0; /* Square corners for consistency */
+  border-radius: 0;
+  z-index: 0;
 }
 
 .rainbow-kaleidoscope-frame > * {
   position: relative;
   z-index: 1;
-  border-radius: 0; /* Square corners */
+  border-radius: 0;
+  /* This ensures the yellow cards keep their original color */
 }
 
-/* Enhanced rainbow frame for hero section - COLOR CHANGING without spinning */
+/* Enhanced rainbow frame for hero section - COLOR CHANGING ONLY in frame area */
 .rainbow-kaleidoscope-enhanced {
   position: relative;
+  padding: 30px;
+  border-radius: 0;
+}
+
+.rainbow-kaleidoscope-enhanced::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: conic-gradient(
     from 0deg,
     #ff0066, #ff3366, #ff6666, #ff9966, #ffcc66, #ffff66,
@@ -161,14 +184,15 @@ body {
     #ff66cc, #ff6699, #ff0066
   );
   animation: enhanced-rainbow-color-shift 3s linear infinite;
-  padding: 30px;
-  border-radius: 0; /* Square corners as requested */
+  border-radius: 0;
+  z-index: 0;
 }
 
 .rainbow-kaleidoscope-enhanced > * {
   position: relative;
   z-index: 1;
-  border-radius: 0; /* Square corners */
+  border-radius: 0;
+  /* This ensures the red hero box keeps its original color */
 }
 
 /* Color shifting animations - changes colors without rotation */
