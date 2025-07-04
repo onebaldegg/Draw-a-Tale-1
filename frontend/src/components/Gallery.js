@@ -254,9 +254,10 @@ const Gallery = ({ user }) => {
                   // TODO: Navigate to edit mode
                   navigate('/draw', { state: { editDrawing: drawing } });
                 }}
-                className="btn-child bg-red-500 hover:bg-red-600 text-white text-xs px-6 py-3 w-40 rounded-full"
+                className="btn-child bg-red-500 hover:bg-red-600 text-white text-xs px-6 py-3 w-40 rounded-full flex flex-col items-center"
               >
-                ✏️ Edit
+                <span className="text-sm">✏️</span>
+                <span>EDIT</span>
               </button>
             </div>
             
