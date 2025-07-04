@@ -207,9 +207,9 @@ const Gallery = ({ user }) => {
         <div className="nav-content">
           <button
             onClick={() => navigate('/dashboard')}
-            className="btn-child btn-secondary text-sm px-4 py-2"
+            className="text-gray-700 hover:text-draw-primary text-sm font-medium px-2 py-1"
           >
-            ← Back to Dashboard
+            ← Back
           </button>
           <div className="nav-logo-centered">
             <div className="child-header-font">My Gallery</div>
