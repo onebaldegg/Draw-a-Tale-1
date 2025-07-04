@@ -225,10 +225,41 @@ const Gallery = ({ user }) => {
         {/* Header */}
         <div className="p-6 border-b border-gray-200">
           <div className="flex justify-between items-center">
-            <div>
+            <div className="flex-1">
               <h3 className="text-2xl font-bold text-gray-800">{drawing.title}</h3>
               <p className="text-gray-600">{formatDate(drawing.created_at)}</p>
             </div>
+            
+            {/* Action Buttons - moved to header */}
+            <div className="flex items-center space-x-3 mr-4">
+              {drawing.time_lapse && drawing.time_lapse.length > 0 && (
+                <button
+                  onClick={() => playTimeLapse(drawing)}
+                  disabled={isPlayingTimeLapse}
+                  className="btn-child btn-primary text-sm px-3 py-2"
+                >
+                  {isPlayingTimeLapse ? '🎬 Playing...' : '▶️ Play Time-lapse'}
+                </button>
+              )}
+              
+              <button
+                onClick={() => downloadDrawing(drawing)}
+                className="btn-child btn-secondary text-sm px-3 py-2"
+              >
+                💾 Download
+              </button>
+              
+              <button
+                onClick={() => {
+                  // TODO: Navigate to edit mode
+                  navigate('/draw', { state: { editDrawing: drawing } });
+                }}
+                className="btn-child bg-red-500 hover:bg-red-600 text-white text-sm px-3 py-2"
+              >
+                ✏️ Edit
+              </button>
+            </div>
+            
             <button
               onClick={onClose}
               className="text-gray-500 hover:text-gray-700 text-2xl"
