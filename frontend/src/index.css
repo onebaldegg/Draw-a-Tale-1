@@ -108,10 +108,16 @@ body {
   }
 }
 
-/* Rainbow Kaleidoscope Frame Effect - Creates 30pt border around elements */
+/* Rainbow Kaleidoscope 30pt Frame Effect - WORKING VERSION */
 .rainbow-kaleidoscope-frame {
   position: relative;
-  padding: 30px; /* Creates the 30pt space for the frame */
+  background: linear-gradient(45deg, 
+    #ff0000, #ff8000, #ffff00, #80ff00, #00ff00, #00ff80, 
+    #00ffff, #0080ff, #0000ff, #8000ff, #ff00ff, #ff0080, #ff0000);
+  background-size: 400% 400%;
+  animation: rainbow-shift 3s ease infinite;
+  padding: 30px;
+  border-radius: 20px;
 }
 
 .rainbow-kaleidoscope-frame::before {
@@ -123,76 +129,34 @@ body {
   bottom: 0;
   background: conic-gradient(
     from 0deg,
-    #ff0000,
-    #ff8000,
-    #ffff00,
-    #80ff00,
-    #00ff00,
-    #00ff80,
-    #00ffff,
-    #0080ff,
-    #0000ff,
-    #8000ff,
-    #ff00ff,
-    #ff0080,
-    #ff0000
+    #ff0000, #ff4000, #ff8000, #ffbf00, #ffff00, #bfff00,
+    #80ff00, #40ff00, #00ff00, #00ff40, #00ff80, #00ffbf,
+    #00ffff, #00bfff, #0080ff, #0040ff, #0000ff, #4000ff,
+    #8000ff, #bf00ff, #ff00ff, #ff00bf, #ff0080, #ff0040, #ff0000
   );
-  animation: rainbow-spin 3s linear infinite;
-  z-index: -1;
+  animation: rainbow-spin 4s linear infinite;
   border-radius: inherit;
+  z-index: 0;
 }
 
-.rainbow-kaleidoscope-frame::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: conic-gradient(
-    from 180deg,
-    #ff0000,
-    #ff4000,
-    #ff8000,
-    #ffbf00,
-    #ffff00,
-    #bfff00,
-    #80ff00,
-    #40ff00,
-    #00ff00,
-    #00ff40,
-    #00ff80,
-    #00ffbf,
-    #00ffff,
-    #00bfff,
-    #0080ff,
-    #0040ff,
-    #0000ff,
-    #4000ff,
-    #8000ff,
-    #bf00ff,
-    #ff00ff,
-    #ff00bf,
-    #ff0080,
-    #ff0040,
-    #ff0000
-  );
-  animation: rainbow-spin-reverse 4s linear infinite;
-  z-index: -1;
-  opacity: 0.7;
-  border-radius: inherit;
-}
-
-/* Inner content area - this maintains the original box colors */
 .rainbow-kaleidoscope-frame > * {
   position: relative;
   z-index: 1;
+  background: inherit;
+  border-radius: 12px;
 }
 
-/* Enhanced kaleidoscope effect with 30pt frame */
+/* Enhanced kaleidoscope effect for hero section */
 .rainbow-kaleidoscope-enhanced {
   position: relative;
-  padding: 30px; /* Creates the 30pt space for the frame */
+  background: conic-gradient(
+    from 0deg,
+    #ff1493, #ff69b4, #ff6347, #ffa500, #ffd700, #adff2f,
+    #00ff7f, #00ffff, #1e90ff, #4169e1, #9370db, #da70d6, #ff1493
+  );
+  animation: enhanced-rainbow-spin 2.5s linear infinite;
+  padding: 30px;
+  border-radius: 20px;
 }
 
 .rainbow-kaleidoscope-enhanced::before {
@@ -203,46 +167,62 @@ body {
   right: 0;
   bottom: 0;
   background: conic-gradient(
-    from 0deg,
+    from 180deg,
     #ff0066, #ff3366, #ff6666, #ff9966, #ffcc66, #ffff66,
     #ccff66, #99ff66, #66ff66, #66ff99, #66ffcc, #66ffff,
     #66ccff, #6699ff, #6666ff, #9966ff, #cc66ff, #ff66ff,
     #ff66cc, #ff6699, #ff0066
   );
-  animation: kaleidoscope-pulse 2.5s ease-in-out infinite;
-  z-index: -1;
+  animation: enhanced-rainbow-reverse 3.5s linear infinite;
   border-radius: inherit;
-}
-
-.rainbow-kaleidoscope-enhanced::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(
-    circle at 50% 50%,
-    transparent 40%,
-    rgba(255, 255, 255, 0.1) 50%,
-    transparent 60%
-  ),
-  conic-gradient(
-    from 120deg,
-    #ff1493, #ff69b4, #ff6347, #ffa500, #ffd700, #adff2f,
-    #00ff7f, #00ffff, #1e90ff, #4169e1, #9370db, #da70d6,
-    #ff1493
-  );
-  animation: kaleidoscope-orbit 3.5s linear infinite;
-  z-index: -1;
+  z-index: 0;
   opacity: 0.8;
-  border-radius: inherit;
 }
 
-/* Inner content area for enhanced frame - maintains original colors */
 .rainbow-kaleidoscope-enhanced > * {
   position: relative;
   z-index: 1;
+  background: inherit;
+  border-radius: 12px;
+}
+
+@keyframes rainbow-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes rainbow-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes enhanced-rainbow-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes enhanced-rainbow-reverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
 }
 
 @keyframes rainbow-spin {
