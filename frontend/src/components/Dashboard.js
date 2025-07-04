@@ -98,7 +98,7 @@ const Dashboard = ({ user, onLogout }) => {
             {dashboardItems.map((item, index) => (
               <div
                 key={index}
-                className="rainbow-kaleidoscope-frame rounded-xl"
+                className="rainbow-kaleidoscope-frame"
               >
                 <Link
                   to={item.path}
