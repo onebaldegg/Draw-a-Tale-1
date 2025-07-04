@@ -236,13 +236,16 @@ const QuestMap = ({ user }) => {
       {/* Navigation */}
       <nav className="nav-container">
         <div className="nav-content">
-          <div className="nav-logo">Quest Map</div>
           <button
             onClick={() => navigate('/dashboard')}
             className="btn-child btn-secondary text-sm px-4 py-2"
           >
             ← Back to Dashboard
           </button>
+          <div className="nav-logo-centered">
+            <div className="child-header-bubbly">Quest Map</div>
+          </div>
+          <div style={{ width: '120px' }}></div> {/* Spacer for balance */}
         </div>
       </nav>
 
