@@ -269,6 +269,21 @@ async def get_drawing(drawing_id: str, current_user: dict = Depends(get_current_
         raise HTTPException(status_code=404, detail="Drawing not found")
     return DrawingResponse(**convert_mongo_document(drawing))
 
+@app.delete("/api/drawings/{drawing_id}")
+async def delete_drawing(drawing_id: str, current_user: dict = Depends(get_current_user)):
+    # Check if drawing exists and belongs to current user
+    drawing = await drawings_collection.find_one({"_id": ObjectId(drawing_id), "user_id": str(current_user["_id"])})
+    if not drawing:
+        raise HTTPException(status_code=404, detail="Drawing not found")
+    
+    # Delete the drawing
+    result = await drawings_collection.delete_one({"_id": ObjectId(drawing_id), "user_id": str(current_user["_id"])})
+    
+    if result.deleted_count == 0:
+        raise HTTPException(status_code=404, detail="Drawing not found or could not be deleted")
+    
+    return {"message": "Drawing deleted successfully", "drawing_id": drawing_id}
+
 # Story routes
 @app.post("/api/stories/generate", response_model=StoryResponse)
 async def generate_ai_story(
