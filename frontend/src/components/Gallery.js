@@ -42,7 +42,7 @@ const Gallery = ({ user }) => {
   };
 
   const generateThumbnail = (canvasData) => {
-    // Check for existing thumbnail
+    // Check for existing thumbnail (base64 or regular URL)
     if (canvasData && canvasData.thumbnail) {
       return canvasData.thumbnail;
     }
@@ -50,19 +50,8 @@ const Gallery = ({ user }) => {
     // Check for SVG data
     if (canvasData && canvasData.svg) {
       // Create a data URL from the SVG
-      const svgBlob = new Blob([canvasData.svg], { type: 'image/svg+xml' });
-      return URL.createObjectURL(svgBlob);
-    }
-    
-    // Check for Paper.js project data
-    if (canvasData && canvasData.paperjs) {
-      // Try to render Paper.js data (this would need Paper.js to be loaded)
-      try {
-        // This is a placeholder for Paper.js rendering
-        console.log('Paper.js data found but rendering not implemented yet');
-      } catch (error) {
-        console.error('Error rendering Paper.js data:', error);
-      }
+      const svgDataUrl = `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(canvasData.svg)}`;
+      return svgDataUrl;
     }
     
     // Check for any base64 image data
@@ -71,7 +60,7 @@ const Gallery = ({ user }) => {
     }
     
     // Debug: Log the canvas data structure to console
-    console.log('Canvas data structure:', canvasData);
+    console.log('Canvas data structure for thumbnail generation:', canvasData);
     
     // Fallback SVG thumbnail
     return "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='150' viewBox='0 0 200 150'%3E%3Crect width='200' height='150' fill='%23f8fafc'/%3E%3Cpath d='M40 60 Q60 40, 80 60 T120 60' stroke='%236366f1' stroke-width='3' fill='none'/%3E%3Ctext x='100' y='130' text-anchor='middle' font-family='Arial' font-size='12' fill='%23374151'%3E🎨 Artwork%3C/text%3E%3C/svg%3E";
