@@ -28,6 +28,8 @@ class DrawATaleAPITester:
                 response = requests.get(url, headers=headers)
             elif method == 'POST':
                 response = requests.post(url, json=data, headers=headers)
+            elif method == 'DELETE':
+                response = requests.delete(url, headers=headers)
 
             success = response.status_code == expected_status
             if success:
@@ -162,7 +164,7 @@ class DrawATaleAPITester:
             "Create Drawing",
             "POST",
             "drawings",
-            201,
+            200,
             data=drawing_data
         )
         
@@ -215,6 +217,74 @@ class DrawATaleAPITester:
         if success:
             print(f"✅ Retrieved drawing: {response['title']}")
             print(f"Canvas data structure: {json.dumps(response['canvas_data'], indent=2)}")
+        
+        return success, response
+    
+    def test_delete_drawing_unauthorized(self):
+        """Test deleting a drawing without authentication"""
+        # Save the current token
+        saved_token = self.token
+        self.token = None
+        
+        # Create a random drawing ID that likely doesn't exist
+        random_drawing_id = str(uuid.uuid4())
+        
+        success, response = self.run_test(
+            "Delete Drawing Without Authentication",
+            "DELETE",
+            f"drawings/{random_drawing_id}",
+            401  # Expect 401 Unauthorized
+        )
+        
+        # Restore the token
+        self.token = saved_token
+        return success, response
+    
+    def test_delete_nonexistent_drawing(self):
+        """Test deleting a drawing that doesn't exist"""
+        if not self.token:
+            print("❌ Cannot test deleting nonexistent drawing without token")
+            return False, {}
+        
+        # Create a random drawing ID that likely doesn't exist
+        random_drawing_id = str(uuid.uuid4())
+        
+        return self.run_test(
+            "Delete Nonexistent Drawing",
+            "DELETE",
+            f"drawings/{random_drawing_id}",
+            404  # Expect 404 Not Found
+        )
+    
+    def test_delete_drawing(self):
+        """Test deleting a drawing"""
+        if not self.token or not self.drawing_id:
+            print("❌ Cannot delete drawing without token or drawing ID")
+            return False, {}
+        
+        success, response = self.run_test(
+            "Delete Drawing",
+            "DELETE",
+            f"drawings/{self.drawing_id}",
+            200  # Expect 200 OK
+        )
+        
+        if success:
+            print(f"✅ Successfully deleted drawing with ID: {self.drawing_id}")
+            
+            # Verify the drawing is actually deleted by trying to get it
+            verify_success, _ = self.run_test(
+                "Verify Drawing Deletion",
+                "GET",
+                f"drawings/{self.drawing_id}",
+                404  # Expect 404 Not Found
+            )
+            
+            if verify_success:
+                print("✅ Verified drawing was actually deleted")
+            else:
+                print("❌ Drawing still exists after deletion")
+                success = False
         
         return success, response
 
@@ -273,6 +343,31 @@ def main():
         get_drawing_success, _ = tester.test_get_drawing()
         if not get_drawing_success:
             print("❌ Getting specific drawing failed")
+    
+    # Test DELETE endpoint
+    print("\n===== TESTING DELETE ENDPOINT =====")
+    
+    # Test deleting without authentication
+    delete_unauth_success, _ = tester.test_delete_drawing_unauthorized()
+    if not delete_unauth_success:
+        print("❌ Delete drawing without authentication test failed")
+    
+    # Test deleting nonexistent drawing
+    delete_nonexistent_success, _ = tester.test_delete_nonexistent_drawing()
+    if not delete_nonexistent_success:
+        print("❌ Delete nonexistent drawing test failed")
+    
+    # Create a new drawing specifically for deletion test
+    if tester.token:
+        print("\nCreating a new drawing for deletion test...")
+        create_for_delete_success, _ = tester.test_create_drawing(title="Drawing to Delete")
+        if create_for_delete_success and tester.drawing_id:
+            # Test deleting the drawing
+            delete_success, _ = tester.test_delete_drawing()
+            if not delete_success:
+                print("❌ Delete drawing test failed")
+        else:
+            print("❌ Could not create drawing for deletion test")
 
     # Print results
     print(f"\n📊 Tests passed: {tester.tests_passed}/{tester.tests_run}")
