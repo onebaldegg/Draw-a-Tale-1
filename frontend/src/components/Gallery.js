@@ -351,28 +351,7 @@ const Gallery = ({ user }) => {
               {drawings.map((drawing) => (
                 <div key={drawing.id} className="gallery-item">
                   <div className="gallery-item-image bg-gray-100 flex items-center justify-center overflow-hidden" style={{ width: '100%', height: '120px' }}>
-                    <img
-                      src={generateThumbnail(drawing.canvas_data)}
-                      alt={drawing.title}
-                      className="max-w-full max-h-full object-contain hover:scale-105 transition-transform duration-200"
-                      style={{ 
-                        minHeight: '120px', 
-                        width: 'auto', 
-                        height: 'auto',
-                        maxWidth: '100%',
-                        maxHeight: '100%',
-                        display: 'block'
-                      }}
-                      onError={(e) => {
-                        console.error('Image failed to load for:', drawing.title);
-                        console.error('Attempted src:', e.target.src);
-                        e.target.src = "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='150' viewBox='0 0 200 150'%3E%3Crect width='200' height='150' fill='%23ff0000'/%3E%3Ctext x='100' y='75' text-anchor='middle' font-family='Arial' font-size='14' fill='white'%3EERROR%3C/text%3E%3C/svg%3E";
-                      }}
-                      onLoad={(e) => {
-                        console.log('Image loaded successfully for:', drawing.title);
-                        console.log('Image dimensions:', e.target.naturalWidth, 'x', e.target.naturalHeight);
-                      }}
-                    />
+                    {renderThumbnail(drawing)}
                   </div>
                   <div className="gallery-item-info">
                     <h3 className="gallery-item-title">{drawing.title}</h3>
